@@ -102,7 +102,7 @@ SUCCESSOR = {
     "L2188": "5179",   # Harrogate Borough Council -> North Yorkshire Council
 }
 ll["code"] = ll.code.map(lambda c: SUCCESSOR.get(str(c), c) if isinstance(c, str) or not pd.isna(c) else c)
-ll.sort_values("cases", ascending=False).to_csv(OUT + "ombudsman_landlord_aliases.csv", index=False)
+ll.sort_values(["cases", "landlord"], ascending=[False, True]).to_csv(OUT + "ombudsman_landlord_aliases.csv", index=False)  # name breaks ties: stable output
 df = df.merge(ll[["landlord", "code"]], on="landlord", how="left").rename(columns={"code": "landlord_code"})
 
 df = df[["case_id", "landlord", "landlord_code", "ltype", "occ", "dtype", "date", "month", "outcomes", "worst_outcome", "any_maladministration", "severe", "categories", "orders", "href"]]
