@@ -39,10 +39,10 @@ jobs:
         run: python -c "import json; json.load(open('site/data.json'))"
 
   rebuild:
-    # Downloads every official file and rebuilds from scratch, then checks the result is exactly what is
-    # committed. A failure means either the change altered figures (expected for a data change: commit the
-    # rebuilt files) or a publisher has replaced a file (see data/SOURCES.md). Scottish data comes from a
-    # "current" link that changes when the regulator publishes, so expect that table to move.
+    # Rebuilds everything from the archived snapshot of the official files (a GitHub release) and checks the
+    # result is exactly what is committed. A failure means the change altered figures without committing the
+    # rebuilt data, or the committed data was not produced by the pipeline. A data refresh that uses new
+    # source files must publish a new snapshot release and point pipeline/fetch_snapshot.sh at it.
     name: Pipeline reproduces the committed data
     runs-on: ubuntu-latest
     steps:
@@ -64,9 +64,11 @@ jobs:
           cache: pip
       - if: steps.touched.outputs.run == 'yes'
         run: pip install -r requirements.txt
-      - name: Download the official source files
+      - name: Download the archived source files the committed data was built from
         if: steps.touched.outputs.run == 'yes'
-        run: bash pipeline/fetch_sources.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash pipeline/fetch_snapshot.sh
       - name: Rebuild everything
         if: steps.touched.outputs.run == 'yes'
         run: bash pipeline/run.sh
