@@ -1,0 +1,6 @@
+{
+  "name": "housing-records",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" }
+}

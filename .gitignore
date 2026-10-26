@@ -1,0 +1,14 @@
+# Raw source data: large and re-downloadable (pipeline/fetch_sources.sh, data/SOURCES.md).
+data/raw/*
+!data/raw/ho/
+data/raw/ho/*
+!data/raw/ho/*.json.gz
+
+# Generated single-file build
+dist/
+
+__pycache__/
+*.py[cod]
+.DS_Store
+.vercel
+.venv/
