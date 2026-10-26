@@ -1,0 +1,2114 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Housing Records</title>
+<meta name="description" content="A public record of how England's social landlords are performing. What the Regulator, the Housing Ombudsman and tenants themselves say about each one, on a single map.">
+<meta name="theme-color" content="#0f0f10">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Housing Records">
+<meta property="og:title" content="The Housing Records">
+<meta property="og:url" content="https://housingrecords.org/">
+<link rel="canonical" href="https://housingrecords.org/">
+<meta property="og:description" content="Every large social landlord in England, on one map. Regulator judgements, Housing Ombudsman findings and tenant satisfaction, from published official sources.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%230f0f10'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23ff5a4d'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&display=swap">
+<style>
+/* ============================================================================
+   The Housing Records
+
+   The design position, so later edits do not drift back to a dashboard:
+
+   GROUND     Neutral near-black, warm off-white ink. No tinted greys, no glass.
+              Panels are opaque printed surfaces with a hairline, not floating
+              cards. Radius 4, everywhere, and 2 on the smallest chips.
+
+   COLOUR     Two jobs only, kept apart.
+              Identity: brick for a housing association, ochre for a council.
+              Severity: one red ramp. A landlord in the worst tenth is red, in
+              the worst quarter is a muted red, and everything else gets no
+              colour at all. There is deliberately no green. Traffic lights are
+              the laziest thing a data page can do, they fail for colour-blind
+              readers, and "fine" does not need announcing. A well run landlord
+              reads as a calm, almost monochrome page. That is the point.
+
+   SPACE      One scale: 4, 8, 12, 16, 24, 32. Nothing off the scale, ever.
+
+   TYPE       Inter for words. IBM Plex Mono for figures and nothing else, so a
+              monospaced glyph on the page always means "this is a number you
+              can compare". Seven sizes, each with its line height fixed here.
+   ========================================================================== */
+:root{
+  color-scheme: dark;
+
+  --bg:#0f0f10; --bg-2:#141416;
+  --surface:#17171a; --surface-2:#1e1e22;
+  --rule:#2a2a2f; --rule-soft:#202024;
+  --ink:#eceae6; --ink-2:#a2a09b; --ink-3:#6d6c68;
+
+  /* the map. Colour is how a landlord performs, shape is what kind it is:
+     a circle for a housing association, a square for a council. Zoomed out a
+     dot is a whole borough, which is a count and not a judgement, so it takes
+     its own amber and never a performance colour. */
+  --area:#f5c451; --area-lift:#ffdb8a;
+  --prp:#ff5a4d; --prp-lift:#ff8b81;
+  --council:#ffa92e; --council-lift:#ffc46b;
+
+  /* how a landlord compares, four bands on one ramp. Desaturated for a dark
+     ground: the same hues at full chroma glow and read as a stoplight. */
+  --sev-good:#3ecf8e;
+  --sev-mid:#f0d557;
+  --sev-poor:#ff9f2e;
+  --sev-bad:#ff4d4d;
+
+  /* space */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
+
+  /* shape and motion. Soft, and consistent: panels, then controls, then chips */
+  --r-lg:16px; --r:10px; --r-s:6px;
+  --sh:0 18px 44px rgba(0,0,0,.5);
+  --t:150ms cubic-bezier(.2,.6,.2,1);
+
+  --z-vignette:1; --z-chrome:6; --z-card:7; --z-tip:8; --z-pop:9; --z-grain:60;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);overflow:hidden;
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:13px;line-height:1.5;font-weight:400;-webkit-font-smoothing:antialiased;
+  font-feature-settings:"cv05","cv08","tnum" 0}
+h1,h2,h3{margin:0;font-weight:600}
+p{margin:0}
+a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--ink-3);text-underline-offset:2px}
+a:hover{text-decoration-color:var(--ink)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:#2f2f35;color:var(--ink)}
+:focus-visible{outline:1.5px solid var(--ink-2);outline-offset:2px;border-radius:var(--r-s)}
+
+/* type scale: size / line-height / tracking, nothing outside this set */
+.t-title{font-size:22px;line-height:1.2;letter-spacing:-.021em;font-weight:600}
+.t-lead {font-size:15px;line-height:1.45;letter-spacing:-.008em;font-weight:500}
+.t-body {font-size:13px;line-height:1.55;letter-spacing:-.002em}
+.t-sm   {font-size:12px;line-height:1.5}
+.t-xs   {font-size:11px;line-height:1.5}
+.t-micro{font-size:10px;line-height:1.4;letter-spacing:.06em}
+.num{font-variant-numeric:tabular-nums;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+
+.skip{position:fixed;left:var(--s3);top:-60px;z-index:99;background:var(--surface);border:1px solid var(--rule);
+  border-radius:var(--r);padding:var(--s2) var(--s3);font-size:12px;transition:top var(--t);text-decoration:none}
+.skip:focus{top:var(--s3)}
+
+/* ---------- map ---------- */
+#map{position:fixed;inset:0;width:100%;height:100%;display:block;cursor:grab;touch-action:none}
+#map.drag{cursor:grabbing}
+#map.over{cursor:pointer}
+.vignette{position:fixed;inset:0;z-index:var(--z-vignette);pointer-events:none;
+  background:radial-gradient(130% 100% at 48% 42%,transparent 62%,rgba(0,0,0,.42) 100%)}
+.grain{position:fixed;inset:0;z-index:var(--z-grain);pointer-events:none;opacity:.028;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- panels: opaque printed surfaces, not glass ---------- */
+.panel{background:rgba(15,15,16,.62);backdrop-filter:blur(22px) saturate(1.15);-webkit-backdrop-filter:blur(22px) saturate(1.15);
+  border:1px solid rgba(255,255,255,.08);border-radius:var(--r-lg);box-shadow:var(--sh)}
+
+.brand{position:fixed;top:var(--s5);left:var(--s5);z-index:var(--z-chrome);width:min(46vw,376px);padding:var(--s5)}
+.brand h1{font-size:23px;line-height:1.15;letter-spacing:-.028em;font-weight:600}
+.brand p{margin-top:var(--s2);font-size:12px;line-height:1.55;color:var(--ink-2)}
+.brand hr{border:0;border-top:1px solid var(--rule-soft);margin:var(--s5) 0 var(--s4)}
+
+.search{position:relative;margin-top:var(--s4)}
+.search input{width:100%;font:inherit;font-size:13px;padding:9px var(--s3);border:1px solid var(--rule);
+  border-radius:var(--r);background:rgba(255,255,255,.04);color:var(--ink);transition:border-color var(--t)}
+.search input::placeholder{color:var(--ink-3)}
+/* The search field breathes: Border Beam's "pulse inner / mono" (MIT, Jakub Antalik), ported
+   from the React component to plain CSS. Soft grey blobs sit on the 1px border and just inside
+   it and drift and swell on their own slow cycles, with a blurred bloom over the top. The
+   library drives the drift from a requestAnimationFrame loop; here every parameter is a CSS
+   animation between the same two values on the same period, so no script runs for it. */
+.field{position:relative;--beam-strength:.55}
+@property --bw1-thr{syntax:"<number>";initial-value:1;inherits:true}
+@property --bh1-thr{syntax:"<number>";initial-value:1;inherits:true}
+@property --bw2-thr{syntax:"<number>";initial-value:1;inherits:true}
+@property --bh2-thr{syntax:"<number>";initial-value:1;inherits:true}
+@property --bw3-thr{syntax:"<number>";initial-value:1;inherits:true}
+@property --bh3-thr{syntax:"<number>";initial-value:1;inherits:true}
+@property --bgh-thr{syntax:"<number>";initial-value:1;inherits:true}
+@property --bop-tl-thr{syntax:"<number>";initial-value:1;inherits:true}
+@property --bop-tr-thr{syntax:"<number>";initial-value:1;inherits:true}
+@property --bop-bl-thr{syntax:"<number>";initial-value:1;inherits:true}
+@property --bop-br-thr{syntax:"<number>";initial-value:1;inherits:true}
+@property --bx1-thr{syntax:"<length>";initial-value:0px;inherits:true}
+@property --by1-thr{syntax:"<length>";initial-value:0px;inherits:true}
+@property --bx2-thr{syntax:"<length>";initial-value:0px;inherits:true}
+@property --by2-thr{syntax:"<length>";initial-value:0px;inherits:true}
+@property --bx3-thr{syntax:"<length>";initial-value:0px;inherits:true}
+@property --by3-thr{syntax:"<length>";initial-value:0px;inherits:true}
+@property --beam-opacity-thr{syntax:"<number>";initial-value:0;inherits:true}
+[data-beam="thr"] {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+
+[data-beam="thr"][data-active]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  padding: 1px;
+  clip-path: inset(0 round 10px);
+  background: radial-gradient(ellipse calc(70px * var(--bw1-thr) * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(40px * var(--bh1-thr) * var(--bgh-thr) * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at calc(33% + var(--bx1-thr)) calc(-7.4% + var(--by1-thr)), rgba(180, 180, 180, var(--bop-tl-thr)), transparent),
+    radial-gradient(ellipse calc(60px * var(--bw2-thr) * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(35px * var(--bh2-thr) * var(--bgh-thr) * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at calc(12% + var(--bx2-thr)) calc(-5% + var(--by2-thr)), rgba(140, 140, 140, var(--bop-tl-thr)), transparent),
+    radial-gradient(ellipse calc(40px * var(--bw3-thr) * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(70px * var(--bh3-thr) * var(--bgh-thr) * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at calc(2.1% + var(--bx3-thr)) calc(68.3% + var(--by3-thr)), rgba(160, 160, 160, var(--bop-bl-thr)), transparent),
+    radial-gradient(ellipse calc(20px * var(--bw1-thr) * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(35px * var(--bh1-thr) * var(--bgh-thr) * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at calc(2.1% + var(--bx1-thr)) calc(68.3% + var(--by1-thr)), rgba(130, 130, 130, var(--bop-bl-thr)), transparent),
+    radial-gradient(ellipse calc(180px * var(--bw2-thr) * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(32px * var(--bh2-thr) * var(--bgh-thr) * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at calc(74.4% + var(--bx2-thr)) calc(100% + var(--by2-thr)), rgba(170, 170, 170, var(--bop-br-thr)), transparent),
+    radial-gradient(ellipse calc(85px * var(--bw3-thr) * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(26px * var(--bh3-thr) * var(--bgh-thr) * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at calc(55% + var(--bx3-thr)) calc(100% + var(--by3-thr)), rgba(150, 150, 150, var(--bop-br-thr)), transparent),
+    radial-gradient(ellipse calc(74px * var(--bw1-thr) * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(32px * var(--bh1-thr) * var(--bgh-thr) * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at calc(93.9% + var(--bx1-thr)) calc(0% + var(--by1-thr)), rgba(190, 190, 190, var(--bop-tr-thr)), transparent),
+    radial-gradient(ellipse calc(26px * var(--bw2-thr) * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(42px * var(--bh2-thr) * var(--bgh-thr) * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at calc(100% + var(--bx2-thr)) calc(27.1% + var(--by2-thr)), rgba(145, 145, 145, var(--bop-tr-thr)), transparent),
+    radial-gradient(ellipse calc(52px * var(--bw3-thr) * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(48px * var(--bh3-thr) * var(--bgh-thr) * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at calc(100% + var(--bx3-thr)) calc(27.1% + var(--by3-thr)), rgba(165, 165, 165, var(--bop-tr-thr)), transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+  will-change: opacity, filter;
+  opacity: calc(var(--beam-opacity-thr) * 0.77 * var(--beam-stroke-opacity, 1) * var(--beam-strength, 1));
+  filter: brightness(0.75) saturate(1.20);
+}
+
+[data-beam="thr"][data-active]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  clip-path: inset(0 round 10px);
+  background: radial-gradient(ellipse calc(65px * var(--bw1-thr) * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(35px * var(--bh1-thr) * var(--bgh-thr) * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at calc(33% + var(--bx1-thr)) calc(-7.4% + var(--by1-thr)), rgba(180, 180, 180, var(--bop-tl-thr)), transparent),
+    radial-gradient(ellipse calc(55px * var(--bw2-thr) * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(30px * var(--bh2-thr) * var(--bgh-thr) * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at calc(12% + var(--bx2-thr)) calc(-5% + var(--by2-thr)), rgba(140, 140, 140, var(--bop-tl-thr)), transparent),
+    radial-gradient(ellipse calc(35px * var(--bw3-thr) * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(65px * var(--bh3-thr) * var(--bgh-thr) * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at calc(2.1% + var(--bx3-thr)) calc(68.3% + var(--by3-thr)), rgba(160, 160, 160, var(--bop-bl-thr)), transparent),
+    radial-gradient(ellipse calc(15px * var(--bw1-thr) * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(30px * var(--bh1-thr) * var(--bgh-thr) * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at calc(2.1% + var(--bx1-thr)) calc(68.3% + var(--by1-thr)), rgba(130, 130, 130, var(--bop-bl-thr)), transparent),
+    radial-gradient(ellipse calc(173px * var(--bw2-thr) * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(28px * var(--bh2-thr) * var(--bgh-thr) * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at calc(74.4% + var(--bx2-thr)) calc(100% + var(--by2-thr)), rgba(170, 170, 170, var(--bop-br-thr)), transparent),
+    radial-gradient(ellipse calc(80px * var(--bw3-thr) * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(22px * var(--bh3-thr) * var(--bgh-thr) * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at calc(55% + var(--bx3-thr)) calc(100% + var(--by3-thr)), rgba(150, 150, 150, var(--bop-br-thr)), transparent),
+    radial-gradient(ellipse calc(69px * var(--bw1-thr) * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(28px * var(--bh1-thr) * var(--bgh-thr) * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at calc(93.9% + var(--bx1-thr)) calc(0% + var(--by1-thr)), rgba(190, 190, 190, var(--bop-tr-thr)), transparent),
+    radial-gradient(ellipse calc(22px * var(--bw2-thr) * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(38px * var(--bh2-thr) * var(--bgh-thr) * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at calc(100% + var(--bx2-thr)) calc(27.1% + var(--by2-thr)), rgba(145, 145, 145, var(--bop-tr-thr)), transparent),
+    radial-gradient(ellipse calc(47px * var(--bw3-thr) * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(44px * var(--bh3-thr) * var(--bgh-thr) * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at calc(100% + var(--bx3-thr)) calc(27.1% + var(--by3-thr)), rgba(165, 165, 165, var(--bop-tr-thr)), transparent),
+    radial-gradient(ellipse 60px 60px at 0% 0%, rgba(255, 255, 255, calc(0.18 * var(--bop-tl-thr))), transparent 70%),
+    radial-gradient(ellipse 60px 60px at 100% 0%, rgba(255, 255, 255, calc(0.18 * var(--bop-tr-thr))), transparent 70%),
+    radial-gradient(ellipse 60px 60px at 0% 100%, rgba(255, 255, 255, calc(0.18 * var(--bop-bl-thr))), transparent 70%),
+    radial-gradient(ellipse 60px 60px at 100% 100%, rgba(255, 255, 255, calc(0.18 * var(--bop-br-thr))), transparent 70%);
+  -webkit-mask-image:
+    linear-gradient(white, transparent 28px, transparent calc(100% - 28px), white),
+    linear-gradient(to right, white, transparent 28px, transparent calc(100% - 28px), white);
+  -webkit-mask-composite: source-over;
+  mask-image:
+    linear-gradient(white, transparent 28px, transparent calc(100% - 28px), white),
+    linear-gradient(to right, white, transparent 28px, transparent calc(100% - 28px), white);
+  mask-composite: add;
+  pointer-events: none;
+  z-index: 1;
+  will-change: opacity, filter;
+  opacity: calc(var(--beam-opacity-thr) * 0.22 * var(--beam-inner-opacity, 1) * var(--beam-strength, 1));
+  filter: brightness(0.75) saturate(1.20);
+}
+
+[data-beam="thr"] [data-beam-bloom] {
+  display: none;
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  clip-path: inset(0 round 10px);
+  background: radial-gradient(ellipse calc(84px * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(48px * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at 33% -7.4%, rgba(180, 180, 180, 0.76), transparent),
+    radial-gradient(ellipse calc(72px * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(42px * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at 12% -5%, rgba(140, 140, 140, 0.76), transparent),
+    radial-gradient(ellipse calc(48px * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(84px * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at 2.1% 68.3%, rgba(160, 160, 160, 0.76), transparent),
+    radial-gradient(ellipse calc(216px * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(38px * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at 74.4% 100%, rgba(170, 170, 170, 0.76), transparent),
+    radial-gradient(ellipse calc(102px * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(31px * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at 55% 100%, rgba(150, 150, 150, 0.76), transparent),
+    radial-gradient(ellipse calc(89px * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(38px * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at 93.9% 0%, rgba(190, 190, 190, 0.76), transparent),
+    radial-gradient(ellipse calc(62px * var(--pulse-glow-sx, 1) * var(--pulse-glow-boost, 1)) calc(58px * var(--pulse-glow-sy, 1) * var(--pulse-glow-boost, 1)) at 100% 27.1%, rgba(165, 165, 165, 0.76), transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  padding: 1px;
+  pointer-events: none;
+  z-index: 3;
+  will-change: opacity;
+  opacity: 0;
+}
+
+[data-beam="thr"][data-active] [data-beam-bloom] {
+  display: block;
+  opacity: calc(var(--beam-opacity-thr) * 0.33 * var(--beam-bloom-opacity, 1) * var(--beam-strength, 1));
+  filter: blur(8px) brightness(0.75) saturate(1.20);
+}
+
+@keyframes beam-fade-in-thr { to { --beam-opacity-thr: 1; } }
+@keyframes beam-fade-out-thr { from { --beam-opacity-thr: 1; } to { --beam-opacity-thr: 0; } }
+
+
+[data-beam="thr"][data-active]{animation:beam-fade-in-thr 0.6s ease forwards, o-bw1 1.170s cubic-bezier(.37,0,.63,1) 0.000s infinite alternate, o-bh1 1.638s cubic-bezier(.37,0,.63,1) 0.000s infinite alternate, o-bx1 1.520s cubic-bezier(.37,0,.63,1) 0.000s infinite alternate, o-by1 1.520s cubic-bezier(.37,0,.63,1) 0.000s infinite alternate, o-bw2 1.430s cubic-bezier(.37,0,.63,1) 0.000s infinite alternate, o-bh2 1.053s cubic-bezier(.37,0,.63,1) 0.000s infinite alternate, o-bx2 1.786s cubic-bezier(.37,0,.63,1) 0.000s infinite alternate, o-by2 1.786s cubic-bezier(.37,0,.63,1) 0.000s infinite alternate, o-bw3 1.274s cubic-bezier(.37,0,.63,1) 0.000s infinite alternate, o-bh3 1.820s cubic-bezier(.37,0,.63,1) 0.000s infinite alternate, o-bx3 1.377s cubic-bezier(.37,0,.63,1) 0.000s infinite alternate, o-by3 1.377s cubic-bezier(.37,0,.63,1) 0.000s infinite alternate, o-bgh 1.200s cubic-bezier(.37,0,.63,1) 0.000s infinite alternate, o-bop-tl 0.950s cubic-bezier(.37,0,.63,1) 0.000s infinite alternate, o-bop-tr 1.254s cubic-bezier(.37,0,.63,1) 0.532s infinite alternate, o-bop-bl 0.798s cubic-bezier(.37,0,.63,1) 1.045s infinite alternate, o-bop-br 1.501s cubic-bezier(.37,0,.63,1) 1.577s infinite alternate}
+@keyframes o-bw1{from{--bw1-thr:0.72}to{--bw1-thr:1.308}}
+@keyframes o-bh1{from{--bh1-thr:1.252}to{--bh1-thr:0.762}}
+@keyframes o-bx1{from{--bx1-thr:-33px}to{--bx1-thr:29.7px}}
+@keyframes o-by1{from{--by1-thr:18.15px}to{--by1-thr:-23.1px}}
+@keyframes o-bw2{from{--bw2-thr:1.28}to{--bw2-thr:0.762}}
+@keyframes o-bh2{from{--bh2-thr:0.776}to{--bh2-thr:1.294}}
+@keyframes o-bx2{from{--bx2-thr:26.4px}to{--bx2-thr:-29.7px}}
+@keyframes o-by2{from{--by2-thr:-33px}to{--by2-thr:21.45px}}
+@keyframes o-bw3{from{--bw3-thr:0.832}to{--bw3-thr:1.322}}
+@keyframes o-bh3{from{--bh3-thr:1.21}to{--bh3-thr:0.72}}
+@keyframes o-bx3{from{--bx3-thr:-19.8px}to{--bx3-thr:33px}}
+@keyframes o-by3{from{--by3-thr:-28.05px}to{--by3-thr:14.85px}}
+@keyframes o-bgh{from{--bgh-thr:0.66}to{--bgh-thr:1.34}}
+@keyframes o-bop-tl{from{--bop-tl-thr:0.52}to{--bop-tl-thr:1}}
+@keyframes o-bop-tr{from{--bop-tr-thr:0.52}to{--bop-tr-thr:1}}
+@keyframes o-bop-bl{from{--bop-bl-thr:0.52}to{--bop-bl-thr:1}}
+@keyframes o-bop-br{from{--bop-br-thr:0.52}to{--bop-br-thr:1}}
+@media (prefers-reduced-motion:reduce){[data-beam="thr"][data-active],[data-beam="thr"][data-active]::after,[data-beam="thr"][data-active]::before,[data-beam="thr"] [data-beam-bloom]{animation:none!important;opacity:0}}
+
+.search input:hover{border-color:#34343a}
+.search input:focus{outline:none;border-color:var(--ink-3)}
+.search ul{position:absolute;z-index:var(--z-pop);left:0;right:0;top:calc(100% + 6px);margin:0;padding:var(--s2);
+  list-style:none;background:#161619;border:1px solid var(--rule);border-radius:var(--r);
+  box-shadow:var(--sh);max-height:46vh;overflow:auto}
+.search li{padding:8px var(--s2);border-radius:var(--r-s);cursor:pointer;display:flex;flex-direction:column;gap:2px;
+  font-size:12.5px;line-height:1.35;transition:background var(--t)}
+.search li:hover,.search li[aria-selected="true"]{background:var(--surface-2)}
+.search li small{color:var(--ink-3);font-variant-numeric:tabular-nums;font-size:10.5px}
+
+/* legend */
+.key{display:flex;flex-direction:column;font-size:12px;color:var(--ink-2);line-height:1.5}
+.key .lod-area span:first-child{display:flex;align-items:flex-start;gap:var(--s3)}
+.key>span>span{flex:1;min-width:0}
+.key i{width:8px;height:8px;border-radius:50%;background:var(--ink-3);display:block;flex:none;margin-top:6px}
+.key i.sq{border-radius:2px}
+.key i.ar{background:var(--area)}
+.key i.b-good{background:var(--sev-good)} .key i.b-poor{background:var(--sev-poor)}
+.key i.b-bad{background:var(--sev-bad)} .key i.b-none{background:#5c5b58}
+.key i.sm{width:3px;height:3px;background:#33333a;margin:8px 0 0 2.5px}
+.key b{color:var(--ink);font-weight:500}
+.key .kg{display:flex;flex-direction:column;gap:7px}
+.key .kg>span{display:flex;align-items:flex-start;gap:var(--s3);font-size:11.5px}
+.key .kg i{margin-top:4px}
+.key .kt{font-size:11px;color:var(--ink-3);margin-bottom:2px}
+.key .lod-area,.key .lod-ll{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .32s ease,opacity .26s ease;overflow:hidden}
+.key .lod-area>*,.key .lod-ll>*{min-height:0;overflow:hidden}
+.key[data-lod="area"] .lod-area,.key[data-lod="ll"] .lod-ll{grid-template-rows:1fr;opacity:1}
+.key .kg{gap:0}
+.key .kg>span,.key .kt{margin-bottom:7px}
+.key .kg>*:last-child{margin-bottom:0}
+.foot{margin:0;flex:1;min-width:0;display:grid;align-content:center;font-size:10.5px;line-height:1.55;color:var(--ink-3);
+  background:rgba(15,15,16,.62);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.07);border-radius:var(--r);padding:var(--s2) var(--s3)}
+.src.withheld{color:var(--ink-2);border-left:2px solid var(--sev-poor);padding-left:10px;margin-bottom:var(--s5)}
+.foot a{color:var(--ink-3)} .foot a:hover{color:var(--ink-2)}
+
+/* zoom, alone bottom left */
+.corner{position:fixed;left:var(--s5);bottom:var(--s5);z-index:var(--z-chrome);display:flex;align-items:stretch;gap:var(--s4);
+  width:min(46vw,376px);                                   /* same width as the brand panel, so the two right edges line up */
+  pointer-events:none;transition:bottom .32s cubic-bezier(.4,0,.2,1)}
+.corner>*{pointer-events:auto}
+.zoom{display:flex;flex-direction:column;background:rgba(15,15,16,.62);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
+.zoom button:first-child{border-radius:9px 9px 0 0} .zoom button:last-child{border-radius:0 0 9px 9px}
+.zoom button{width:32px;height:32px;flex:1 0 32px;font-size:14px;line-height:1;color:var(--ink-2);
+  transition:background var(--t),color var(--t)}
+.zoom button+button{border-top:1px solid var(--rule)}
+.zoom button:hover{background:var(--surface-2);color:var(--ink)}
+.zoom button:active{background:var(--surface)}
+.zoom button.fit{font-size:10px;letter-spacing:.01em}
+
+/* tooltip */
+.tip{position:fixed;z-index:var(--z-tip);pointer-events:none;display:none;background:rgba(23,23,26,.78);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--rule);border-radius:var(--r);padding:var(--s2) var(--s3);
+  box-shadow:var(--sh);max-width:264px}
+.tip b{display:block;font-size:13px;font-weight:600;letter-spacing:-.012em;line-height:1.3}
+.tip span{display:block;color:var(--ink-3);font-size:11px;line-height:1.45;margin-top:3px}
+.tip u{text-decoration:none;color:var(--ink-2)}
+.tip .num{color:var(--ink-2)}
+
+/* ---------- card ----------
+   Reading order: who, then the verdict, then the four measures, then the fold.
+   One comparison device: a position bar, worse left, better right, always. */
+.card{position:fixed;right:var(--s5);bottom:var(--s5);z-index:var(--z-card);width:min(40vw,436px);
+  top:var(--s5);max-height:none;background:rgba(15,15,16,.66);backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--r-lg);box-shadow:0 22px 60px rgba(0,0,0,.58);display:flex;flex-direction:column;overflow:hidden}
+.card .hd{padding:var(--s5) var(--s5) var(--s5);display:flex;gap:var(--s3);justify-content:space-between;align-items:flex-start}
+.card .hd h2{font-size:20px;line-height:1.25;letter-spacing:-.024em;font-weight:600}
+.card .hd .sub{margin-top:var(--s2);font-size:12px;line-height:1.55;color:var(--ink-2)}
+.card .hd .hsc{margin-top:var(--s3);display:flex;align-items:center;gap:var(--s3)}
+.card .hd .hsc small{font-size:11px;line-height:1.45;color:var(--ink-3)}
+.card .hd .who{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ink-3);
+  margin-right:6px;vertical-align:1px}
+.card.k-la .hd .who{border-radius:2px}
+.card.k-area .hd .who{background:var(--area)}
+.card .hd i.who.w-good,.llist i.who.w-good{background:var(--sev-good)}
+.card .hd i.who.w-poor,.llist i.who.w-poor{background:var(--sev-poor)}
+.card .hd i.who.w-bad,.llist i.who.w-bad{background:var(--sev-bad)}
+.card .hd i.who.w-none,.llist i.who.w-none{background:#5c5b58}
+.card .bd{overflow-y:auto;overscroll-behavior:contain}
+/* Moving between the England card, a borough and a landlord replaces the card's contents in
+   place. Without this the swap is instant and reads as a flicker; a short fade makes it one
+   card changing its mind rather than two cards trading places. The body follows the header by
+   a beat, which is enough to suggest the order they arrive in. */
+@keyframes cardIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.card .hd.swap{animation:cardIn 200ms cubic-bezier(.2,.6,.2,1) both}
+.card .bd.swap{animation:cardIn 240ms cubic-bezier(.2,.6,.2,1) 40ms both}
+@media (prefers-reduced-motion:reduce){.card .hd.swap,.card .bd.swap{animation:none}}
+.x{font-size:14px;color:var(--ink-3);line-height:1;padding:6px 7px;border-radius:50%;flex:none;
+  transition:background var(--t),color var(--t)}
+.x:hover{color:var(--ink);background:var(--surface-2)}
+.hdb{display:flex;align-items:center;gap:2px;flex:none}
+.chev{display:none;align-items:center;justify-content:center;color:var(--ink-3);padding:6px;border-radius:50%;
+  transition:transform var(--t),background var(--t),color var(--t)}
+.chev:hover{color:var(--ink);background:var(--surface-2)}
+
+
+/* the answer, no box, no badge, just the sentence */
+.hero{padding:0 var(--s5) var(--s5);font-size:15px;line-height:1.45;letter-spacing:-.009em;font-weight:500;color:var(--ink)}
+.hero .hs{margin-top:var(--s2);font-size:11px;line-height:1.55;color:var(--ink-3);font-weight:400;letter-spacing:0}
+.sev-good{color:var(--sev-good)} .sev-mid{color:var(--sev-mid)}
+.sev-poor{color:var(--sev-poor)} .sev-bad{color:var(--sev-bad)} .sev-none{color:var(--ink-3)}
+
+/* the two things a tenant can actually do, pinned under the headline */
+.acts{display:flex;flex-wrap:wrap;gap:var(--s2);padding:0 var(--s5) var(--s5)}
+.acts a{flex:1 1 180px;min-width:0;display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:9px 8px;border-radius:var(--r-s);font-size:12px;font-weight:500;line-height:1.3;
+  text-align:center;white-space:nowrap;text-decoration:none;border-bottom:0;
+  transition:background var(--t),border-color var(--t),color var(--t)}
+.acts a.pri{background:var(--surface-2);color:var(--ink);border:1px solid var(--rule)}
+.acts a.pri:hover{background:var(--surface);border-color:var(--ink-3)}
+.acts a.sec2{border:1px solid var(--rule-soft);color:var(--ink-2)}
+.acts a.sec2:hover{border-color:var(--rule);color:var(--ink)}
+.sec .acts{padding:0}
+.acts .ic{opacity:.65;flex:none}
+
+.search li.ask span{color:var(--ink-2)}
+/* a question is a title, not a paragraph: one line, trimmed with an ellipsis */
+.card.k-q .hd>div:first-child{min-width:0;flex:1}
+.card.k-q .hd h2{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.back{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;color:var(--ink-2);margin-bottom:var(--s2);
+  padding:3px 8px 3px 6px;border-radius:var(--r-s);border:1px solid var(--rule-soft);transition:color var(--t),border-color var(--t)}
+.back:hover{color:var(--ink);border-color:var(--rule)}
+/* an answer to a question: prose first, then the rows it was built from */
+.ans p{font-size:13.5px;line-height:1.65;color:var(--ink);margin:0 0 var(--s3)}
+.ans p:last-child{margin-bottom:0}
+.ans strong{font-weight:600;color:var(--ink)}
+.ans em{font-style:italic}
+.ans ul,.ans ol{margin:0 0 var(--s3);padding-left:17px}
+.ans ul:last-child,.ans ol:last-child{margin-bottom:0}
+.ans li{font-size:13.5px;line-height:1.65;color:var(--ink);margin-bottom:5px}
+.ans li:last-child{margin-bottom:0}
+.ans li::marker{color:var(--ink-3);font-variant-numeric:tabular-nums}
+/* while an answer is being made: the lookups as they happen, the current one pulsing */
+.steps{display:flex;flex-direction:column;gap:9px;font-size:13px;color:var(--ink-2)}
+.step{display:flex;align-items:flex-start;gap:10px;line-height:1.45;transition:color .3s}
+.step i{width:7px;height:7px;margin-top:6px;border-radius:50%;background:var(--ink-3);flex:none}
+.step.cur i{animation:pulse 1.1s ease-in-out infinite}
+.step.done{color:var(--ink-3)}
+.step.done i{opacity:.45}
+@keyframes pulse{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}
+.err{color:var(--sev-poor);font-size:13px}
+
+.sec{padding:var(--s5);border-top:1px solid var(--rule-soft)}
+.sec.summary{border-top:1px solid var(--rule-soft)}
+.sec.summary p{font-size:13px;line-height:1.6;color:var(--ink-2)}
+.sec h3{font-size:13px;font-weight:700;letter-spacing:-.008em;margin-bottom:var(--s4);
+  display:flex;justify-content:space-between;align-items:baseline;gap:var(--s2)}
+.sec h3 small{font-variant-numeric:tabular-nums;font-size:10px;color:var(--ink-3);font-weight:400;letter-spacing:0}
+.src{font-size:10.5px;line-height:1.6;color:var(--ink-3);margin-top:var(--s3)}
+.src:first-child{margin-top:0}
+.src a{color:var(--ink-3)} .src a:hover{color:var(--ink-2)}
+.nd{color:var(--ink-3);font-family:Inter,sans-serif;font-size:12px;letter-spacing:0}
+
+/* ---- the four headline measures ---- */
+.big+.big{margin-top:var(--s6)}
+.big .bh{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s4)}
+.big .bl{font-size:13px;line-height:1.4;color:var(--ink);font-weight:600;letter-spacing:-.006em;display:flex;flex-direction:column;gap:3px;min-width:0}
+.big .bn{font-variant-numeric:tabular-nums;font-size:24px;font-variant-numeric:tabular-nums;font-weight:400;
+  line-height:1;letter-spacing:-.04em;white-space:nowrap}
+.big .bn u{text-decoration:none;font-family:Inter,sans-serif;font-size:13px;font-weight:450;letter-spacing:0;margin-left:1px}
+.big .br{font-size:11.5px;line-height:1.5;color:var(--ink-2);font-weight:400;letter-spacing:0}
+.big .bh{align-items:flex-start}
+.big .pos{margin-top:var(--s3)}
+
+/* one comparison device */
+.pos{position:relative;height:14px;margin-top:var(--s3)}
+.pos .tr{position:absolute;left:0;right:0;top:6px;height:3px;border-radius:2px;background:#26262b}
+.pos .iqr{position:absolute;top:6px;height:3px;border-radius:2px;background:#43434b}
+.pos .med{position:absolute;top:2px;width:2px;height:11px;border-radius:1px;background:var(--ink-3)}
+.pos .me{position:absolute;top:1px;width:12px;height:12px;border-radius:50%;transform:translateX(-6px);
+  border:2.5px solid var(--bg)}
+.pos .cap{position:absolute;top:16px;font-size:10px;color:var(--ink-3);letter-spacing:.01em}
+.pos .cap.l{left:0} .pos .cap.r{right:0}
+.pos.lab{height:30px}
+.pos.cost .me{background:var(--ink-2)}
+/* where the money went: a ring in five tones of grey, no colour to read as a verdict, legend beside it */
+.splitwrap{display:flex;align-items:center;gap:var(--s6);margin-top:var(--s5)}
+.pie{width:96px;height:96px;flex:none}
+.pie path{fill:none;stroke-width:13;stroke-linecap:butt}
+.pie circle{fill:none;stroke-width:13}
+.sp-rm,.sp-rmd{stroke:#b3b2ad;background:#b3b2ad} .sp-works{stroke:#8e8d88;background:#8e8d88} .sp-mgmt{stroke:#6a6965;background:#6a6965} .sp-svc{stroke:#4d4c52;background:#4d4c52} .sp-oth{stroke:#37363d;background:#37363d}
+.splitk{display:flex;flex-direction:column;gap:8px;margin:0;font-size:12px;flex:1;min-width:0}
+.splitk div{display:flex;justify-content:space-between;align-items:center;gap:var(--s3);min-width:0}
+.splitk dt{color:var(--ink-2);display:flex;align-items:center;gap:8px;min-width:0}
+.splitk dt i{width:8px;height:8px;border-radius:50%;flex:none}
+.splitk dd{margin:0;font-variant-numeric:tabular-nums;color:var(--ink);white-space:nowrap;display:flex;align-items:center;gap:6px}
+.splitk dd .pc{display:inline-flex;padding:2px 7px;border-radius:4px;font-size:11px;font-weight:500;color:var(--ink-2);background:rgba(255,255,255,.07);min-width:38px;justify-content:center}
+.m-good{background:var(--sev-good)} .m-mid{background:var(--sev-mid)}
+.m-poor{background:var(--sev-poor)} .m-bad{background:var(--sev-bad)} .m-none{background:var(--ink-3)}
+
+/* ---- regulator grades ---- */
+.grades{display:flex;flex-direction:column}
+.grow{display:flex;gap:var(--s4);align-items:flex-start;padding:var(--s4) 0;border-top:1px solid var(--rule)}
+.grow:first-child{border-top:0;padding-top:0}
+.gtile{flex:0 0 46px;height:46px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums;background:rgba(255,255,255,.07);color:var(--ink-3)}
+.gtile.g-good{background:color-mix(in srgb,var(--sev-good) 16%,transparent);color:var(--sev-good)}
+.gtile.g-mid{background:color-mix(in srgb,var(--sev-mid) 16%,transparent);color:var(--sev-mid)}
+.gtile.g-poor{background:color-mix(in srgb,var(--sev-poor) 16%,transparent);color:var(--sev-poor)}
+.gtile.g-bad{background:color-mix(in srgb,var(--sev-bad) 16%,transparent);color:var(--sev-bad)}
+.gbody{flex:1;min-width:0}
+.gbody .gl{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);font-size:13px;font-weight:600;color:var(--ink);letter-spacing:-.006em}
+.gbody .gl small{font-size:10.5px;font-weight:400;color:var(--ink-3);white-space:nowrap;font-variant-numeric:tabular-nums}
+.gbody .gx{font-size:12px;line-height:1.5;color:var(--ink-2);margin-top:3px}
+.gscale{display:flex;align-items:center;gap:3px;margin-top:7px}
+.gscale i{display:block;width:22px;height:4px;border-radius:2px;background:rgba(255,255,255,.08)}
+.gscale i.g-good{background:var(--sev-good)} .gscale i.g-mid{background:var(--sev-mid)} .gscale i.g-poor{background:var(--sev-poor)} .gscale i.g-bad{background:var(--sev-bad)}
+.gscale small{font-size:9.5px;color:var(--ink-3);margin-left:4px}
+
+/* ---- label / figure pairs ---- */
+.pairs{display:grid;grid-template-columns:1fr auto;gap:var(--s3) var(--s4);align-items:baseline;margin:0}
+.pairs dt{font-size:12px;color:var(--ink-2);margin:0}
+.pairs dd{margin:0;font-variant-numeric:tabular-nums;font-size:13px;font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em;text-align:right;white-space:nowrap}
+
+/* ---- the fold ---- */
+details{border-top:1px solid var(--rule-soft)}
+summary{list-style:none;cursor:pointer;padding:var(--s4) var(--s5);font-size:12.5px;font-weight:500;color:var(--ink-2);
+  display:flex;align-items:center;gap:var(--s3);transition:color var(--t),background var(--t)}
+summary::-webkit-details-marker{display:none}
+summary:hover{color:var(--ink);background:rgba(255,255,255,.035)}
+summary small{font-variant-numeric:tabular-nums;font-size:10px;color:var(--ink-3);font-weight:400;margin-left:auto}
+summary::after{content:"";width:5px;height:5px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;
+  transform:rotate(45deg) translate(-2px,-2px);flex:none;transition:transform var(--t)}
+details[open] summary{color:var(--ink)}
+details[open] summary::after{transform:rotate(-135deg) translate(-2px,-2px)}
+details .sec:first-of-type{border-top:1px solid var(--rule-soft)}
+
+/* ---- the full table, inside the fold ---- */
+.stat{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px var(--s4);padding:var(--s3) 0;
+  border-top:1px solid var(--rule-soft);align-items:baseline}
+.stat:first-of-type{border-top:0;padding-top:0}
+.stat .k{font-size:12px;color:var(--ink-2);line-height:1.45}
+.stat .v{font-variant-numeric:tabular-nums;font-size:13px;font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em;text-align:right;white-space:nowrap}
+.stat .v u{text-decoration:none;font-family:Inter,sans-serif;font-size:10.5px;color:inherit;opacity:.8;margin-left:1px}
+.stat .vd{grid-column:1/-1;font-size:10.5px;color:var(--ink-3);display:flex;gap:var(--s2);flex-wrap:wrap}
+.stat .v{display:inline-flex;align-items:baseline;justify-self:end;padding:2px 9px;border-radius:4px;font-size:12px;font-weight:500;background:rgba(255,255,255,.07)}
+.stat.s-good .v{color:var(--sev-good);background:color-mix(in srgb,var(--sev-good) 16%,transparent)}
+.stat.s-mid .v{color:var(--sev-mid);background:color-mix(in srgb,var(--sev-mid) 14%,transparent)}
+.stat.s-poor .v{color:var(--sev-poor);background:color-mix(in srgb,var(--sev-poor) 16%,transparent)}
+.stat.s-bad .v{color:var(--sev-bad);background:color-mix(in srgb,var(--sev-bad) 16%,transparent)}
+.dl{font-variant-numeric:tabular-nums;font-size:10px;font-variant-numeric:tabular-nums;color:var(--ink-3)}
+.big .bnw{display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex-shrink:0}
+.yoy{font-size:10.5px;font-variant-numeric:tabular-nums;color:var(--ink-3);white-space:nowrap}
+.yoy.y-good{color:var(--sev-good)} .yoy.y-bad{color:var(--sev-poor)}
+.pairs dt small .yoy{display:inline}
+.gbody .gl small .mv.up{color:var(--sev-good)} .gbody .gl small .mv.down{color:var(--sev-bad)}
+p.warn{font-size:12px;line-height:1.5;margin:0 0 var(--s4);padding:8px 10px;border-radius:4px;background:color-mix(in srgb,var(--sev-bad) 12%,transparent);color:var(--ink)}
+
+/* pills: a figure or a short fact that should read as one object */
+.pill{display:inline-flex;align-items:center;padding:2px 9px;border-radius:4px;font-size:11.5px;font-weight:500;line-height:1.5;
+  font-variant-numeric:tabular-nums;background:rgba(255,255,255,.07);color:var(--ink-2);white-space:nowrap;letter-spacing:-.004em}
+.pill.p-good{background:color-mix(in srgb,var(--sev-good) 16%,transparent);color:var(--sev-good)}
+.pill.p-mid{background:color-mix(in srgb,var(--sev-mid) 16%,transparent);color:var(--sev-mid)}
+.pill.p-poor{background:color-mix(in srgb,var(--sev-poor) 16%,transparent);color:var(--sev-poor)}
+.pill.p-bad{background:color-mix(in srgb,var(--sev-bad) 16%,transparent);color:var(--sev-bad)}
+summary .pills{margin-left:auto;display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.pairs dd{justify-self:end}
+.pairs dd.sev-good,.pairs dd.sev-mid,.pairs dd.sev-poor,.pairs dd.sev-bad,.pairs dd.sev-none{
+  display:inline-flex;padding:2px 9px;border-radius:4px;font-size:12px;font-weight:500}
+.pairs dd.sev-good{background:color-mix(in srgb,var(--sev-good) 16%,transparent)}
+.pairs dd.sev-mid{background:color-mix(in srgb,var(--sev-mid) 16%,transparent)}
+.pairs dt small{display:block;font-size:10.5px;color:var(--ink-3);margin-top:1px}
+.pairs dd.sev-poor{background:color-mix(in srgb,var(--sev-poor) 16%,transparent)}
+.pairs dd.sev-bad{background:color-mix(in srgb,var(--sev-bad) 16%,transparent)}
+.pairs dd.sev-none{background:rgba(255,255,255,.07);color:var(--ink-2)}
+.pairs dd .sub{color:var(--ink-3);margin-left:6px;padding-left:6px;border-left:1px solid rgba(255,255,255,.12);font-weight:400}
+.llist .g{border-radius:4px;padding:1px 8px;border:0;background:rgba(255,255,255,.07)}
+.strip{display:inline-flex;gap:3px;align-items:center}
+.strip i{width:8px;height:8px;border-radius:2px;display:block}
+.m-none{background:#5c5b58}
+.llist .g.c1{background:color-mix(in srgb,var(--sev-good) 16%,transparent)}
+.llist .g.c2{background:color-mix(in srgb,var(--sev-mid) 16%,transparent);color:var(--sev-mid)}
+.llist .g.c3{background:color-mix(in srgb,var(--sev-poor) 16%,transparent)}
+.llist .g.c4{background:color-mix(in srgb,var(--sev-bad) 16%,transparent)}
+
+/* ---- borough: landlord list ---- */
+.llist{list-style:none;margin:0;padding:0}
+.llist li{display:grid;grid-template-columns:1fr auto;gap:var(--s1) var(--s3);padding:var(--s3) var(--s2);
+  margin:0 calc(var(--s2) * -1);border-top:1px solid var(--rule-soft);border-radius:var(--r-s);cursor:pointer;
+  transition:background var(--t)}
+.llist li:first-child{border-top:0}
+.llist li[data-l]:hover{background:var(--surface-2)}
+.llist .nm{font-size:12.5px;font-weight:500;letter-spacing:-.004em}
+.llist .hm{font-variant-numeric:tabular-nums;font-size:10.5px;font-variant-numeric:tabular-nums;
+  color:var(--ink-3);text-align:right;white-space:nowrap}
+.llist .vd{grid-column:1/-1;font-size:11px;color:var(--ink-3);display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap}
+.llist .g{font-variant-numeric:tabular-nums;font-size:9.5px;padding:1px 5px;border:1px solid var(--rule);
+  border-radius:var(--r-s);white-space:nowrap;color:var(--ink-2)}
+.llist .g.c1{border-color:#2e4a3c;color:var(--sev-good)}
+.llist .g.c2{border-color:#4a4230;color:var(--sev-mid)}
+.llist .g.c3{border-color:#4d3a29;color:var(--sev-poor)}
+.llist .g.c4{border-color:#55302c;color:var(--sev-bad)}
+.llist .who{width:7px;height:7px;border-radius:50%;background:var(--ink-3);display:inline-block;margin-right:7px;vertical-align:1px}
+.llist .who.la{border-radius:2px}
+.llist .rk{display:inline-block;min-width:24px;color:var(--ink-3);font-variant-numeric:tabular-nums;font-size:10.5px;font-weight:400}
+.sec>details.more{border-top:1px solid var(--rule-soft);margin-top:var(--s4)}
+.sec>details.more>summary{padding:var(--s3) 0;font-size:11px}
+
+/* ---- ombudsman detail ---- */
+.cases{list-style:none;margin:0;padding:0}
+.cases li{display:grid;grid-template-columns:auto 1fr auto;gap:var(--s3);padding:var(--s3) 0;
+  border-top:1px solid var(--rule-soft);align-items:baseline}
+.cases li:first-child{border-top:0;padding-top:0}
+.cases .m{font-variant-numeric:tabular-nums;font-size:10px;color:var(--ink-3);white-space:nowrap}
+.cases .c{color:var(--ink-2);font-size:11.5px;line-height:1.45}
+.cases a{font-variant-numeric:tabular-nums;font-size:10px;white-space:nowrap;color:var(--ink-3);text-decoration:none}
+.cases a:hover{color:var(--ink);text-decoration:underline}
+.mix{display:flex;flex-direction:column;gap:var(--s2);margin-top:var(--s4)}
+.mix>div{display:grid;grid-template-columns:128px 1fr auto;gap:var(--s3);align-items:center;font-size:11.5px;color:var(--ink-2)}
+.mix i{display:block;height:5px;border-radius:3px;background:var(--prp);opacity:.85;min-width:5px}
+.card.k-la .mix i{background:var(--council)}
+.mix span:last-child{font-variant-numeric:tabular-nums;font-size:10px;font-variant-numeric:tabular-nums;color:var(--ink-3)}
+
+/* ---- borough headline figures: rows, not a dashboard grid ---- */
+.kpis{margin:0}
+.kpis>div{display:grid;grid-template-columns:1fr auto;gap:var(--s4);align-items:baseline;
+  padding:var(--s3) 0;border-top:1px solid var(--rule-soft)}
+.kpis>div:first-child{border-top:0;padding-top:0}
+.kpis .l{font-size:12px;color:var(--ink-2);line-height:1.45}
+.kpis .l .ic{color:var(--ink-3);margin-top:1px;align-self:flex-start}
+.kpis .l.hrow{align-items:flex-start}
+.kpis .n{font-variant-numeric:tabular-nums;font-size:18px;font-variant-numeric:tabular-nums;
+  line-height:1;letter-spacing:-.035em;white-space:nowrap}
+.kpis .n u{text-decoration:none;font-family:Inter,sans-serif;font-size:11px;font-weight:450;letter-spacing:0;margin-left:1px}
+.kpis .k-good .n{color:var(--sev-good)} .kpis .k-mid .n{color:var(--sev-mid)}
+.kpis .k-poor .n{color:var(--sev-poor)} .kpis .k-bad .n{color:var(--sev-bad)}
+
+.note{font-size:11.5px;line-height:1.6;color:var(--ink-3)}
+.sec.qi{padding-top:var(--s4);padding-bottom:var(--s4)}
+.sr{position:absolute;left:-9999px}
+
+/* icons: drawn on one 24 grid at one stroke weight so they read as a set.
+   They label a row, they never decorate one. */
+.ic{width:16px;height:16px;flex:none;stroke:currentColor;fill:none;stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round;display:block}
+.ic-s{width:14px;height:14px;stroke-width:1.7}
+.sec h3 .ic,summary .ic{color:var(--ink-3)}
+.hrow{display:flex;align-items:center;gap:var(--s2);min-width:0}
+.big .bl{align-items:flex-start}
+.big .bl .ic{margin-top:2px}
+.sec h3>span{display:flex;align-items:center;gap:var(--s2)}
+.search .si{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--ink-3);pointer-events:none;z-index:4}
+.search input{padding-left:34px}
+.cases a{display:inline-flex;align-items:center;gap:4px}
+
+/* loading and failure */
+.boot{padding:var(--s5)}
+.boot .ln{height:8px;background:linear-gradient(90deg,#1c1c20 0%,#26262b 50%,#1c1c20 100%);
+  background-size:220% 100%;animation:sweep 1.5s linear infinite;margin-bottom:var(--s3)}
+.boot .ln:nth-child(2){width:76%} .boot .ln:nth-child(3){width:52%;margin-bottom:0}
+@keyframes sweep{to{background-position:-220% 0}}
+.fail{padding:var(--s5)}
+.fail p{font-size:12px;line-height:1.6;color:var(--ink-2)}
+.fail button{margin-top:var(--s4);font-size:12px;padding:7px var(--s3);border:1px solid var(--rule);
+  border-radius:var(--r);color:var(--ink);transition:background var(--t)}
+.fail button:hover{background:var(--surface-2)}
+.mono{background:var(--surface-2);border-radius:var(--r-s);padding:1px 5px;font-size:11.5px}
+
+@media (max-width:820px){
+  .brand{top:var(--s3);left:var(--s3);right:var(--s3);width:auto;padding:var(--s4);z-index:calc(var(--z-card) + 1)}   /* search results sit over the sheet */
+  .brand p{display:none}
+  .search input{font-size:16px}     /* under 16px iOS zooms the page in on focus */
+  /* same gutter as the brand panel, and never taller than the room below it.
+     The sheet collapses by sliding, not by resizing: animating its height would
+     re-lay out every row inside it and force the backdrop blur to resample over a
+     changing shape each frame, which is what made it stutter. A transform is
+     handled by the compositor alone. */
+  .card{right:var(--s3);left:var(--s3);bottom:var(--s3);top:auto;width:auto;
+    max-height:var(--cardmax,72dvh);
+    transform:translateY(0);transition:transform .34s cubic-bezier(.32,.72,0,1)}
+  .card.collapsed{transform:translateY(var(--hide,0px))}
+  .card .hd{padding:var(--s4) var(--s4) var(--s3);gap:var(--s2);cursor:pointer}
+  .acts{padding-left:var(--s4);padding-right:var(--s4)}
+  /* A tap target should look like one. On a phone both header controls sit in the same
+     circle at all times, rather than borrowing a background from a hover state — a finger
+     leaves that state stuck on whichever button was last tapped, so one got a circle and
+     the other did not. */
+  .card .hdb{gap:var(--s2)}
+  .card .chev,.card .x{display:flex;align-items:center;justify-content:center;
+    width:32px;height:32px;padding:0;background:var(--surface-2);color:var(--ink-2)}
+  .card .chev:hover,.card .x:hover{background:var(--surface-2);color:var(--ink-2)}
+  .card .chev:active,.card .x:active{background:var(--rule);color:var(--ink)}
+  .card.collapsed .chev{transform:rotate(180deg)}
+  .hero{padding:0 var(--s4) var(--s4)}
+  .sec,summary{padding-left:var(--s4);padding-right:var(--s4)}
+  /* the zoom buttons stay put; the sheet slides over them */
+  .corner{left:var(--s3);right:auto;bottom:calc(var(--peek,64px) + var(--s3) + var(--s3));transition:none}
+  .key,.foot,.brand hr{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3.5 19 6.2v5.1c0 4.3-2.9 7.4-7 8.9-4.1-1.5-7-4.6-7-8.9V6.2z"/><path d="m9 12 2.2 2.2L15.5 10"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5"/><path d="M6.5 9.6V19h11V9.6"/><path d="M10.3 19v-4.3h3.4V19"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7.4V12l3 1.8"/></symbol>
+<symbol id="i-flag" viewBox="0 0 24 24"><path d="M6.4 4.2v15.6"/><path d="M6.4 5.6h11.4l-2.4 3.8 2.4 3.8H6.4z"/></symbol>
+<symbol id="i-badge" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.6"/><path d="m8.8 12.1 2.3 2.3 4.1-4.5"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 12.4c0 3.6-3.6 6.5-8 6.5-1 0-2-.14-2.9-.4L4.6 20l1.1-3.1C4.6 15.7 4 14.1 4 12.4 4 8.8 7.6 5.9 12 5.9s8 2.9 8 6.5z"/></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M4 7.6A1.6 1.6 0 0 1 5.6 6h3.1l1.8 2h7.9A1.6 1.6 0 0 1 20 9.6v7.8a1.6 1.6 0 0 1-1.6 1.6H5.6A1.6 1.6 0 0 1 4 17.4z"/></symbol>
+<symbol id="i-list" viewBox="0 0 24 24"><path d="M9 7h11M9 12h11M9 17h11"/><path d="M4.6 7h.01M4.6 12h.01M4.6 17h.01"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 11.2v4.6"/><path d="M12 8.3h.01"/></symbol>
+<symbol id="i-out" viewBox="0 0 24 24"><path d="M14 5h5v5"/><path d="M19 5l-7.4 7.4"/><path d="M17 14.4V18a1.5 1.5 0 0 1-1.5 1.5H6A1.5 1.5 0 0 1 4.5 18V8.5A1.5 1.5 0 0 1 6 7h3.6"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m15.4 15.4 4.1 4.1"/></symbol>
+<symbol id="i-rent" viewBox="0 0 24 24"><path d="M4.5 9.5h15v9a1.5 1.5 0 0 1-1.5 1.5H6a1.5 1.5 0 0 1-1.5-1.5z"/><path d="M4.5 9.5 12 4l7.5 5.5"/><path d="M9.5 20v-5h5v5"/></symbol>
+<symbol id="i-coins" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M13.9 9.1a2.1 2.1 0 0 0-3.9 1.1v5.4"/><path d="M8.6 12.6h4.1M8.6 15.6h6.6"/></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="M9 5 4 7v12l5-2 6 2 5-2V5l-5 2z"/><path d="M9 5v12M15 7v12"/></symbol>
+</defs></svg>
+
+<a class="skip" href="#q">Skip to search</a>
+<main>
+  <canvas id="map" role="img" aria-label="Map of England showing every large social landlord's homes by borough. Use the search field for a keyboard-accessible route to the same data."></canvas>
+</main>
+<div class="vignette"></div>
+<div class="grain"></div>
+
+<header class="brand panel">
+  <h1>The Housing Records</h1>
+  <p>Records of how social landlords perform. Select a landlord or borough, search the data, or ask a question.</p>
+  <div class="search">
+    <label class="sr" for="q">Search a landlord or borough</label>
+    <div class="field" data-beam="thr" data-active>
+      <svg class="ic si" aria-hidden="true"><use href="#i-search"/></svg>
+      <input id="q" type="search" placeholder="Search or ask anything…" autocomplete="off" spellcheck="false">
+      <span data-beam-bloom></span>
+    </div>
+    <ul id="sugg" hidden role="listbox" aria-label="Search results"></ul>
+  </div>
+  <hr>
+  <div class="key" id="key" data-lod="area">
+    <div class="lod-area"><div class="kg">
+      <p class="kt">Bigger dot, more social homes. Colour shows how many of a borough's social homes sit with a landlord in the worst 10% for safety checks, home condition, repairs or complaints</p>
+      <span><i class="b-good"></i>Under 10% of the homes here</span>
+      <span><i class="b-poor"></i>Between 10% and 50%</span>
+      <span><i class="b-bad"></i>Over 50% of the homes here</span>
+      <span><i class="b-none"></i>Nothing published for these landlords</span>
+      <p class="kt" style="margin-top:var(--s3)">Zoom in to split a borough into its landlords</p>
+    </div></div>
+    <div class="lod-ll"><div class="kg">
+      <p class="kt">Colour shows how the landlord does on four categories: safety checks, home condition, repairs and complaints</p>
+      <span><i class="b-good"></i>No serious weaknesses in any category</span>
+      <span><i class="b-poor"></i>In the worst 25% for at least one category</span>
+      <span><i class="b-bad"></i>In the worst 10% for at least one category</span>
+      <span><i class="b-none"></i>Too small to have to publish figures</span>
+      <p class="kt" style="margin-top:var(--s3)">Shape shows who the landlord is</p>
+      <span><i class="b-none"></i>A housing association</span>
+      <span><i class="b-none sq"></i>The local council</span>
+    </div></div>
+  </div>
+</header>
+
+<aside class="corner">
+  <nav class="zoom" aria-label="Map zoom">
+    <button id="zin" title="Zoom in" aria-label="Zoom in">+</button>
+    <button id="zout" title="Zoom out" aria-label="Zoom out">&#8722;</button>
+    <button id="zres" class="fit" title="Fit England" aria-label="Fit England">fit</button>
+  </nav>
+  <p class="foot" id="foot"></p>
+</aside>
+
+<div class="tip" id="tip" role="tooltip"></div>
+<aside class="card" id="card" aria-live="polite" aria-label="Details"><div class="hd"></div><div class="bd"></div></aside>
+
+<script>
+(async()=>{
+const cardEl=document.getElementById('card');
+const hdEl=cardEl.querySelector('.hd'), bdEl=cardEl.querySelector('.bd');
+let D;
+// The bundle is about 2 MB. Show the shape of what is coming rather than an empty screen.
+hdEl.innerHTML='<div><h2>The Housing Records</h2>'
+  +'<div class="sub">Reading the joined register of every large social landlord in England.</div></div>';
+bdEl.innerHTML='<div class="sec boot"><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>';
+try{ D = window.__DATA__ || await fetch('./data.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}); }
+catch(err){
+  hdEl.innerHTML='<div><h2>The data did not load</h2></div>';
+  bdEl.innerHTML='<div class="fail"><p>The map needs <span class="mono">data.json</span> and the request failed with '
+    +'<span class="mono">'+String(err.message).replace(/[<&]/g,'')+'</span>. '
+    +'If you opened this file straight from disk, the browser will have blocked that request. Serve the folder, '
+    +'or use the single file build in <span class="mono">dist/</span>.</p>'
+    +'<button id="retry">Try again</button></div>';
+  const rb=document.getElementById('retry'); if(rb)rb.onclick=()=>location.reload();
+  return; }
+
+const L=D.landlords, LAS=D.las, Q=D.q, N=D.meta.n_landlords, SM=D.small||{};
+const [MW,MH]=D.viewBox;
+const fmt=(v,dp=1)=>v==null?'n/a':Number(v).toLocaleString('en-GB',{maximumFractionDigits:dp});
+const fmtInt=v=>v==null?'n/a':Math.round(v).toLocaleString('en-GB');
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const monthName=m=>{if(!m)return '';const[y,mm]=m.split('-');return new Date(+y,+mm-1,1).toLocaleString('en-GB',{month:'short',year:'numeric'})};
+
+/* ================= basemap: rasterise districts, then stipple ================= */
+const codes=Object.keys(D.paths);
+const idx=new Map(codes.map((c,i)=>[c,i+1]));
+const IDS=1.6;                                  // id-raster oversample
+const iw=Math.round(MW*IDS), ih=Math.round(MH*IDS);
+const idc=document.createElement('canvas'); idc.width=iw; idc.height=ih;
+const ictx=idc.getContext('2d',{willReadFrequently:true});
+function tracePath(ctx,rings,s){ ctx.beginPath(); for(const r of rings){ for(let i=0;i<r.length;i+=2){ i?ctx.lineTo(r[i]*s,r[i+1]*s):ctx.moveTo(r[i]*s,r[i+1]*s);} ctx.closePath(); } }
+codes.forEach((c,i)=>{ const n=i+1; ictx.fillStyle=`rgb(${n&255},${n>>8},0)`; ictx.strokeStyle=ictx.fillStyle; ictx.lineWidth=1;
+  tracePath(ictx,D.paths[c],IDS); ictx.fill(); ictx.stroke(); });
+const ID=ictx.getImageData(0,0,iw,ih).data;
+const idAt=(x,y,loose)=>{ const px=Math.round(x*IDS), py=Math.round(y*IDS); if(px<0||py<0||px>=iw||py>=ih)return 0;
+  const o=(py*iw+px)*4; if(ID[o+3]<(loose?60:255))return 0;   // blended edge pixels are not a reliable id
+  const n=ID[o]|(ID[o+1]<<8); return (n>0&&n<=codes.length)?n:0; };
+
+// grey stipple, one dot per STEP map units, plus per-district interior candidates
+const STEP=2.85;
+const stip=[], stipDim=[];
+for(let y=STEP/2;y<MH;y+=STEP){ for(let x=STEP/2;x<MW;x+=STEP){ const n=idAt(x,y); if(!n)continue;
+  (LAS[codes[n-1]]?stip:stipDim).push(x,y); } }
+
+// Bounding box of the matrix, for the cached bitmap
+let SB=[1e9,1e9,-1e9,-1e9];
+for(const a of [stip,stipDim]) for(let i=0;i<a.length;i+=2){ if(a[i]<SB[0])SB[0]=a[i]; if(a[i]>SB[2])SB[2]=a[i]; if(a[i+1]<SB[1])SB[1]=a[i+1]; if(a[i+1]>SB[3])SB[3]=a[i+1]; }
+let stipCache=null;
+function stipBitmap(){
+  // one bucket per 1.35x of zoom; the bitmap is rendered at device resolution for that zoom,
+  // capped so it never exceeds ~6M pixels on a phone
+  const want=Math.pow(1.35,Math.round(Math.log(view.s)/Math.log(1.35)));
+  if(stipCache&&stipCache.s===want&&stipCache.dpr===dpr) return stipCache;
+  const pad=2, w=SB[2]-SB[0]+pad*2, h=SB[3]-SB[1]+pad*2;
+  let res=want*dpr; const cap=6e6; if(w*h*res*res>cap) res=Math.sqrt(cap/(w*h));
+  const c=document.createElement('canvas'); c.width=Math.ceil(w*res); c.height=Math.ceil(h*res);
+  const g=c.getContext('2d'); g.scale(res,res); g.translate(pad-SB[0],pad-SB[1]);
+  const rDim=Math.min(1.5,(1.05/want)*1.45);   // the radius the live path would use at this zoom
+  const dotsOf=(arr,col)=>{ g.fillStyle=col; g.beginPath();
+    for(let i=0;i<arr.length;i+=2){ g.moveTo(arr[i]+rDim,arr[i+1]); g.arc(arr[i],arr[i+1],rDim,0,6.2832); } g.fill(); };
+  dotsOf(stipDim,'#1b1b1e'); dotsOf(stip,'#33333a');
+  stipCache={c,s:want,dpr,res,x0:SB[0]-pad,y0:SB[1]-pad};
+  return stipCache;
+}
+
+// Interior points per district, from that district's own mask rendered at its own scale. The shared
+// raster above is too coarse for small boroughs — City of London and Kensington and Chelsea fell
+// through it entirely — so each district is rasterised on its own and upscaled to fit.
+const mc=document.createElement('canvas'), mctx=mc.getContext('2d',{willReadFrequently:true});
+const cand=new Map();
+for(const code of codes){
+  const rings=D.paths[code]; let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  for(const r of rings) for(let i=0;i<r.length;i+=2){ if(r[i]<x0)x0=r[i]; if(r[i]>x1)x1=r[i]; if(r[i+1]<y0)y0=r[i+1]; if(r[i+1]>y1)y1=r[i+1]; }
+  const w=Math.max(x1-x0,.01), h=Math.max(y1-y0,.01), sc=Math.min(60/Math.max(w,h),40);
+  const cw=Math.max(3,Math.ceil(w*sc)+3), ch=Math.max(3,Math.ceil(h*sc)+3);
+  mc.width=cw; mc.height=ch; mctx.clearRect(0,0,cw,ch);
+  mctx.setTransform(sc,0,0,sc,1.5-x0*sc,1.5-y0*sc); mctx.fillStyle='#fff';
+  mctx.beginPath(); for(const r of rings){ for(let i=0;i<r.length;i+=2){ i?mctx.lineTo(r[i],r[i+1]):mctx.moveTo(r[i],r[i+1]); } mctx.closePath(); }
+  mctx.fill(); mctx.setTransform(1,0,0,1,0,0);
+  const px=mctx.getImageData(0,0,cw,ch).data, a=[];
+  for(let j=0;j<ch;j++)for(let i=0;i<cw;i++){ if(px[(j*cw+i)*4+3]>140) a.push(x0+(i+.5-1.5)/sc, y0+(j+.5-1.5)/sc); }
+  if(!a.length){ let sx=0,sy=0,n=0; for(const r of rings)for(let i=0;i<r.length;i+=2){sx+=r[i];sy+=r[i+1];n++;} a.push(sx/n,sy/n); }
+  cand.set(code,a);
+}
+
+// Four bands on one ramp: better than typical, a little worse, worst quarter,
+// worst tenth. Every band is coloured, and the position bar repeats the same
+// information by position, so the colour is never the only signal.
+// Card bands: worst 10% red, worst 25% orange, middle half yellow, best 25% green. The
+// map collapses the top two into green, so a dot only ever says "no serious weakness".
+const bandOfPct=p=>p==null?'none':p<0.10?'bad':p<0.25?'poor':p<0.75?'mid':'good';
+const level=r=>{ if(r==null)return 'none'; const p=r/N;
+  return p<=0.10?'bad':p<=0.25?'poor':p<0.75?'mid':'good'; };
+const levelSafety=v=>v==null?'none':v>=99.95?'good':v>=99?'mid':v>=95?'poor':'bad';
+// Where a value sits in the published distribution of all reporting landlords. This compares
+// real figures, it does not invent one: q is [10th, 25th, median, 75th, 90th] percentile.
+function qLevelHigh(v,q){ if(v==null||!q)return 'none';   // a bigger number is worse
+  return v>=q[4]?'bad':v>=q[3]?'poor':v>q[1]?'mid':'good'; }
+function qLevelLow(v,q){ if(v==null||!q)return 'none';    // a smaller number is worse
+  return v<=q[0]?'bad':v<=q[1]?'poor':v<q[3]?'mid':'good'; }
+
+// The same four measures the card leads with, collapsed to one band. Worst tenth on
+// any of them is red, worst quarter is orange, otherwise green. A landlord with
+// nothing published stays grey: that is a finding, not a blank.
+const SAFEK=['fire_risk_assessment_pct','gas_safety_pct','asbestos_pct','legionella_pct','lift_pct'];
+const STANDING=new Map();
+function standingOf(code){
+  if(STANDING.has(code))return STANDING.get(code);
+  const x=L[code]; let b='none';
+  if(x){
+    const sv=SAFEK.map(k=>x.m[k]).filter(v=>v!=null);
+    const bands=[levelSafety(sv.length?Math.min(...sv):null),
+                 qLevelHigh(x.m.non_decent_pct,Q.non_decent_pct),
+                 qLevelLow(x.m.non_emergency_repairs_on_time_pct,Q.non_emergency_repairs_on_time_pct),
+                 qLevelHigh(x.ho.ho_maladministration_per_10k_12m,Q.ho_maladministration_per_10k_12m)];
+    if(bands.some(v=>v!=='none')) b = bands.includes('bad')?'bad' : bands.includes('poor')?'poor' : 'good';
+  }
+  STANDING.set(code,b); return b; }
+
+const PCELL=3, pgrid=new Map();
+for(const [code,a] of cand){ for(let i=0;i<a.length;i+=2){
+  const k=((a[i]/PCELL)|0)+','+((a[i+1]/PCELL)|0); let g=pgrid.get(k); if(!g)pgrid.set(k,g=new Set()); g.add(code); } }
+function districtNear(x,y,tol){
+  let best=null,bd=tol*tol; const span=Math.ceil(tol/PCELL);
+  const cx=(x/PCELL)|0, cy=(y/PCELL)|0;
+  for(let i=cx-span;i<=cx+span;i++)for(let j=cy-span;j<=cy+span;j++){
+    const g=pgrid.get(i+','+j); if(!g)continue;
+    for(const code of g){ const a=cand.get(code);
+      for(let k=0;k<a.length;k+=2){ const dx=a[k]-x, dy=a[k+1]-y, d2=dx*dx+dy*dy;
+        if(d2<bd){ bd=d2; best=code; } } } }
+  return best; }
+// idAt for the fast common case, the candidate grid when it comes up empty
+function districtAt(x,y){
+  const n=idAt(x,y,1); if(n&&LAS[codes[n-1]])return codes[n-1];
+  const c=districtNear(x,y,Math.max(1.2,4/view.s)); if(c&&LAS[c])return c;
+  return n?codes[n-1]:null; }
+
+/* ================= dots: one per landlord's holding in a borough ================= */
+// Positions are spread deterministically inside the borough. They mark WHERE A LANDLORD HOLDS HOMES,
+// not the address of a building — no public dataset maps social homes to addresses yet.
+function hash(s){ let h=2166136261; for(let i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,16777619);} return (h>>>0)/4294967296; }
+const dots=[];
+for(const [laCode,la] of Object.entries(LAS)){
+  const a=cand.get(laCode); if(!a||!a.length)continue;
+  const n=a.length/2;
+  la.landlords.forEach((h,j)=>{
+    const t=(hash(h.code+laCode)+j*0.6180339887)%1;   // low-discrepancy spread inside the borough
+    const p=Math.floor(t*n)*2;
+    dots.push({x:a[p],y:a[p+1],r:Math.max(1.05,Math.min(7,Math.sqrt(h.homes)/34)),code:h.code,la:laCode,homes:h.homes,name:h.name,
+      council:!!(h.council||(L[h.code]&&L[h.code].type==='LA')), band:standingOf(h.code)});
+  });
+}
+dots.sort((a,b)=>b.r-a.r);
+// At country scale 8,000 holdings collapse into one red mass, so the wide view shows one dot per
+// borough (a real figure: its total social homes) and zooming in reveals the individual landlords.
+const GROUPS=new Map();
+function dotsByGroup(band,council){
+  const k=band+(council?'-c':'-p'); let g=GROUPS.get(k);
+  if(!g){ g=dots.filter(d=>d.band===band&&!!d.council===council); GROUPS.set(k,g); }
+  return (hoverDot&&hoverDot.band===band&&!!hoverDot.council===council)||(selDot&&selDot.band===band&&!!selDot.council===council)
+    ? g.filter(d=>d!==hoverDot&&d!==selDot) : g; }
+const laDots=[];
+for(const [code,la] of Object.entries(LAS)){ const a=cand.get(code); if(!a||!a.length)continue;
+  let sx=0,sy=0; for(let i=0;i<a.length;i+=2){sx+=a[i];sy+=a[i+1];}
+  laDots.push({x:sx/(a.length/2),y:sy/(a.length/2),r:Math.max(1.3,Math.min(7.5,Math.sqrt(la.total)/34)),la:code}); }
+laDots.sort((a,b)=>b.r-a.r);
+// A borough has no verdict of its own - it is a mixture of landlords. What it has is
+// exposure: the share of its social homes whose landlord is in the worst 10% for at least
+// one category. Averaging the landlords would let one failing landlord hide behind nine
+// good ones, which is the whole thing this map exists to prevent.
+function laBandOf(code){ const la=LAS[code]; if(!la)return 'none';
+  let tot=0,known=0,bad=0;
+  for(const h of la.landlords){ tot+=h.homes; const b=standingOf(h.code);
+    if(b!=='none'){ known+=h.homes; if(b==='bad')bad+=h.homes; } }
+  if(!tot||!known)return 'none';
+  const sh=bad/tot;
+  return sh<0.10?'good':sh<0.50?'poor':'bad'; }
+for(const d of laDots){ d.band=laBandOf(d.la); d.rnd=Math.random(); }
+const LA_GROUPS=['none','good','poor','bad'].map(b=>[b,laDots.filter(d=>d.band===b)]);
+// One threshold, no crossfade. Below it a dot is a borough, above it a dot is a landlord.
+// Any blend of the two layers read as mud, so the map simply changes level of detail
+// at this zoom, the way every map does.
+const LOD=2.3;
+const LOD0=LOD, LOD1=LOD;
+// When the zoom crosses LOD the two layers swap with a short scale animation rather than a cut.
+let lodState=-1, lodAnim=null;               // lodAnim: {t0, to}
+const LOD_MS=380;
+const easeOut=t=>1-Math.pow(1-t,3), easeIn=t=>t*t*t;
+const backOut=t=>{ const c1=1.70158, c3=c1+1; return 1+c3*Math.pow(t-1,3)+c1*Math.pow(t-1,2); };
+// First paint. The grey matrix fades in as one; once it is there the borough dots pop in,
+// in random order, each with a little overshoot; the camera settles from slightly wide to
+// the fit. Two seconds, and nothing for a reader who has asked for less motion.
+const BOOT_MS=2000; let bootT0=0;
+const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const bootP=()=>(!bootT0||reducedMotion)?1:Math.min(1,(performance.now()-bootT0)/BOOT_MS);
+const clamp01=t=>t<0?0:t>1?1:t;
+let REV=null;                                   // per-dot size factor while the map is drawing in
+// spatial index for hit-testing
+const CELL=12, grid=new Map();
+dots.forEach((d,i)=>{ const k=((d.x/CELL)|0)+','+((d.y/CELL)|0); let g=grid.get(k); if(!g)grid.set(k,g=[]); g.push(i); });
+function laDotAt(x,y,tol){ let best=null,bd=1e9;
+  for(const d of laDots){ const dd=Math.hypot(d.x-x,d.y-y); if(dd<Math.max(d.r/view.s,tol)&&dd<bd){bd=dd;best=d;} }
+  return best; }
+// A circle is a housing association, a rounded square is a council. Shape carries the
+// kind now that colour carries the performance.
+const HAS_RR = typeof CanvasRenderingContext2D !== 'undefined'
+            && typeof CanvasRenderingContext2D.prototype.roundRect === 'function';
+let SQ_R=0.6;   // corner radius for a council square, in map units; set per frame to ~1 screen px
+function shape(c,x,y,r,council){
+  if(!council){ c.moveTo(x+r,y); c.arc(x,y,r,0,6.2832); return; }
+  const s=r*0.9;
+  if(HAS_RR) c.roundRect(x-s,y-s,s*2,s*2,Math.min(SQ_R,s*0.25));
+  else c.rect(x-s,y-s,s*2,s*2);
+}
+const BAND={
+  good:{c:'#3ecf8e', lift:'#8ae6bb'},
+  poor:{c:'#ff9f2e', lift:'#ffc47a'},
+  bad :{c:'#ff4d4d', lift:'#ff8f8f'},
+  none:{c:'rgba(122,120,115,.5)', lift:'#a3a19c'},
+  area:{c:'#f5c451', lift:'#ffdb8a'}};
+function addDots(ctx,list,sizeK,px,band,alpha,council){
+  ctx.globalAlpha=alpha; ctx.fillStyle=band.c; ctx.beginPath();
+  for(const d of list){ const r=d.r*sizeK*px*(REV?REV(d):1); if(r<=0.001)continue; shape(ctx,d.x,d.y,r,council||d.council); }
+  ctx.fill(); ctx.globalAlpha=1;
+}
+const detailed=()=>view.s/fitS>=LOD;
+// individual dots start fading in at LOD0, so they must be clickable from LOD0, not from the
+// midpoint. Anything drawn on screen has to respond to a click.
+const dotsLive=()=>view.s/fitS>=LOD;
+function dotAt(x,y,tol){ if(!dotsLive())return null; let best=null,bd=1e9;
+  const cx=(x/CELL)|0, cy=(y/CELL)|0, span=Math.max(1,Math.ceil((7/view.s)/CELL));
+  for(let i=cx-span;i<=cx+span;i++)for(let j=cy-span;j<=cy+span;j++){ const g=grid.get(i+','+j); if(!g)continue;
+    for(const k of g){ const d=dots[k]; const dd=Math.hypot(d.x-x,d.y-y); if(dd<Math.max(d.r/view.s,tol)&&dd<bd){bd=dd;best=d;} } }
+  return best; }
+
+/* ================= view transform ================= */
+const cv=document.getElementById('map'), ctx=cv.getContext('2d');
+let view={s:1,x:0,y:0}, dpr=1, fitS=1;
+let AVAIL={x:0,y:0,w:1,h:1};
+// The fit is to England's own extent, in the space between the two panels. Scotland and
+// Wales are drawn as context and are allowed to run off the top and the left.
+let ENG=[0,0,MW,MH];
+{ let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  for(const code of Object.keys(LAS)){ for(const r of D.paths[code]) for(let i=0;i<r.length;i+=2){
+    if(r[i]<x0)x0=r[i]; if(r[i]>x1)x1=r[i]; if(r[i+1]<y0)y0=r[i+1]; if(r[i+1]>y1)y1=r[i+1]; } }
+  if(x1>x0) ENG=[x0,y0,x1,y1]; }
+// measure() updates the free space and the panel variables. It deliberately does NOT touch
+// fitS: the level-of-detail threshold is view.s/fitS, so recomputing fitS when a panel
+// merely changes height silently reinterprets the reader's current zoom and flips the whole
+// map to the other level. Only a real window resize may move fitS.
+function measure(){
+  const wide=innerWidth>820;
+  const brand=document.querySelector('.brand'), card=document.getElementById('card');
+  const bl=wide&&brand?brand.getBoundingClientRect().right+24:10;
+  const cr=wide&&card?innerWidth-card.getBoundingClientRect().left+24:10;
+  let ch=90;
+  if(!wide&&card&&!card.hidden){ const st=document.documentElement.style;
+    // cap the card at the free space under the brand panel so the two never overlap
+    const bb=brand?brand.getBoundingClientRect().bottom:120;
+    st.setProperty('--cardmax',Math.max(150,Math.round(innerHeight-bb-40))+'px');
+    const hdh=hd.offsetHeight;                       // reads back with the new cap applied
+    // The England card is peeked, not closed. A header alone reads as a shut drawer, so the
+    // first figure shows under it and the rest waits behind the tap. The stop is measured
+    // off that first figure rather than guessed in pixels, so it lands on the row's own
+    // dividing line at any text size. A card the reader collapsed themselves they wanted out
+    // of the way, so that one keeps to its header.
+    let extra=0;
+    if(card.classList.contains('k-home')){
+      const k1=bd.querySelector('.kpis>*');       // translateY shifts both ends alike, so a
+      if(k1){                                     // collapsed card measures the same as an open one
+        extra=Math.round(k1.getBoundingClientRect().bottom-card.getBoundingClientRect().top-hdh);
+        extra=Math.max(0,Math.min(extra,card.offsetHeight-hdh)); } }
+    const peek=hdh+extra;
+    st.setProperty('--peek',Math.round(peek)+'px');
+    st.setProperty('--hide',Math.max(0,Math.round(card.offsetHeight-peek))+'px');
+    // the map's share is what the card VISIBLY occupies, which is the peeked part
+    // once the sheet has slid down
+    ch=(card.classList.contains('collapsed')?peek:card.offsetHeight)+14; }
+  const pad=wide?{l:bl,r:cr,t:24,b:24}:{l:10,r:10,t:animationFrameTop(),b:ch};
+  AVAIL={x:pad.l,y:pad.t,w:Math.max(140,innerWidth-pad.l-pad.r),h:Math.max(140,innerHeight-pad.t-pad.b)}; }
+function resize(){ dpr=Math.min(window.devicePixelRatio||1,2);
+  const w=Math.floor(innerWidth*dpr), h=Math.floor(innerHeight*dpr);
+  // setting width or height clears the canvas, so only do it when it really changed
+  if(cv.width!==w||cv.height!==h){ cv.width=w; cv.height=h;
+    cv.style.width=innerWidth+'px'; cv.style.height=innerHeight+'px'; }
+  measure();
+  const EW=ENG[2]-ENG[0], EH=ENG[3]-ENG[1];
+  fitS=Math.min(AVAIL.w/EW,AVAIL.h/EH)*0.94;
+  if(!view.user){ view={s:fitS,x:AVAIL.x+(AVAIL.w-EW*fitS)/2-ENG[0]*fitS,y:AVAIL.y+(AVAIL.h-EH*fitS)/2-ENG[1]*fitS,user:0}; }
+  draw(); }
+function animationFrameTop(){ const b=document.querySelector('.brand'); return (b?b.getBoundingClientRect().bottom:120)+12; }
+const toScreen=(x,y)=>[x*view.s+view.x, y*view.s+view.y];
+const toMap=(px,py)=>[(px-view.x)/view.s,(py-view.y)/view.s];
+function zoomAt(px,py,f){ const [mx,my]=toMap(px,py); view.s=Math.max(fitS*0.85,Math.min(fitS*120,view.s*f));
+  view.x=px-mx*view.s; view.y=py-my*view.s; view.user=1; draw(); }
+
+let hoverDot=null, hoverLA=0, selDot=null, selLA=null;
+function draw(){
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.fillStyle='#0f0f10'; ctx.fillRect(0,0,innerWidth,innerHeight);
+  const bp=bootP();
+  if(bp<1) requestAnimationFrame(draw);
+  ctx.save();
+  if(bp<1){ const k=0.93+0.07*easeOut(bp), cx=AVAIL.x+AVAIL.w/2, cy=AVAIL.y+AVAIL.h/2;
+    ctx.translate(cx,cy); ctx.scale(k,k); ctx.translate(-cx,-cy); }
+  // the matrix fades in over the first third; the borough dots then pop in, in random order
+  const bootA=bp<1?easeOut(clamp01(bp/0.34)):1;
+  REV=bp<1?d=>Math.max(0,backOut(clamp01((bp-0.4-(d.rnd||0)*0.46)/0.14))):null;
+  ctx.translate(view.x,view.y); ctx.scale(view.s,view.s);
+  ctx.lineJoin='round'; ctx.lineCap='round';
+  const px=1/view.s, z=view.s/fitS; SQ_R=1.1*px;
+
+  // One level switch for everything. Below LOD the map is the dot matrix and one amber dot
+  // per borough; above it, filled districts and one coloured dot per landlord. Crossing it
+  // runs a short scale animation, and nothing is ever half-drawn in between.
+  const want=z>=LOD?1:0;
+  if(lodState<0) lodState=want;                                 // first frame: no animation
+  else if(want!==lodState){ lodState=want; lodAnim={t0:performance.now(),to:want}; }
+  let p=1;                                                      // progress of the swap, 1 = settled
+  if(lodAnim){ p=Math.min(1,(performance.now()-lodAnim.t0)/LOD_MS); if(p>=1)lodAnim=null; else requestAnimationFrame(draw); }
+  const detail=lodState;
+  const kOut=lodAnim?1-easeIn(p):0, kIn=lodAnim?easeOut(p):1;
+  // the country layer (dot matrix, borough dots) and the region layer (filled districts,
+  // landlord dots) each get a scale factor; at rest one is 1 and the other is 0
+  const countryK = detail===0 ? kIn : kOut;
+  const regionK  = detail===1 ? kIn : kOut;
+  const fillA=regionK, stipK=countryK;
+
+  if(fillA>0.01){
+    for(const code of codes){
+      ctx.fillStyle=LAS[code]?`rgba(32,32,36,${fillA})`:`rgba(22,22,25,${fillA})`;
+      tracePath(ctx,D.paths[code],1); ctx.fill();
+      ctx.strokeStyle=`rgba(58,58,65,${fillA*0.9})`; ctx.lineWidth=1*px;
+      ctx.lineJoin='round'; ctx.lineCap='round'; ctx.stroke();
+    }
+  }
+  if(stipK>0.02){
+    // The matrix is a bitmap, re-rendered only when the zoom has moved a third of the way to
+    // the next bucket, and drawn with one drawImage. On a phone the 15,000 arcs a frame were
+    // the difference between smooth and clunky.
+    const bm=stipBitmap(); ctx.globalAlpha=stipK*bootA;
+    ctx.drawImage(bm.c,bm.x0,bm.y0,bm.c.width/bm.res,bm.c.height/bm.res); ctx.globalAlpha=1;
+  }
+  // hovered / selected borough lifts, and gets an outline so you can see where it ends
+  for(const [n,col,line] of [[hoverLA,'#26262a','rgba(150,148,142,.24)'],[selLA?idx.get(selLA):0,'#2c2c30','rgba(190,185,176,.5)']]){
+    if(!n)continue; const code=codes[n-1];
+    tracePath(ctx,D.paths[code],1);
+    ctx.fillStyle=col; ctx.globalAlpha=fillA>0.01?fillA:0.5; ctx.fill(); ctx.globalAlpha=1;
+    if(stipK>0.02){ const rDim=Math.min(1.5,1.05*px*1.45)*stipK; const a=cand.get(code);
+      if(a){ ctx.fillStyle=col; ctx.beginPath();
+        for(let i=0;i<a.length;i+=2){ ctx.moveTo(a[i]+rDim,a[i+1]); ctx.arc(a[i],a[i+1],rDim,0,6.2832); } ctx.fill(); } }
+    ctx.strokeStyle=line; ctx.lineWidth=1.3*px; ctx.lineJoin='round'; tracePath(ctx,D.paths[code],1); ctx.stroke();
+  }
+  // dots are sized in screen pixels, so zooming spreads them apart rather than inflating them
+  const sizeK=Math.max(.45,Math.min(1.3,Math.pow(view.s/0.85,0.38)));
+  // the borough layer fades out over the first half of the window and the landlord layer
+  // fades in over the second, so they are never both on screen at the same strength
+  // outgoing layer at scale kOut, incoming at scale kIn. With no animation running kOut is
+  // 0 and kIn is 1, so exactly one layer is drawn.
+  const boroughK = countryK, landlordK = regionK;
+  if(boroughK>0.01)
+    for(const [b,set] of LA_GROUPS)                      // worst on top, never hidden
+      if(set.length) addDots(ctx,set,sizeK*boroughK,px,BAND[b],1,false);
+  if(landlordK>0.01){
+    for(const band of ['none','good','poor','bad'])      // worst on top, never hidden
+      for(const council of [false,true]){
+        const set=dotsByGroup(band,council);
+        if(set.length) addDots(ctx,set,sizeK*landlordK,px,BAND[band],1,council);
+      }
+  }
+  for(const [d,white] of [[hoverDot,false],[selDot,true]]){
+    if(!d)continue; const r=Math.max(2.8*px,d.r*sizeK*px);
+    const col=white?'#ffffff':(BAND[d.band]||BAND.none).lift;
+    ctx.fillStyle=col; ctx.beginPath(); shape(ctx,d.x,d.y,r,d.council); ctx.fill();
+    ctx.strokeStyle=col; ctx.globalAlpha=.5; ctx.lineWidth=1.3*px;
+    ctx.beginPath(); ctx.arc(d.x,d.y,r+6.5*px,0,6.2832); ctx.stroke(); ctx.globalAlpha=1;
+  }
+  ctx.restore();
+  const kt=document.getElementById('keytxt');
+  const kk=document.getElementById('key');
+  if(kk){ const m=detail>0.5?'ll':'area'; if(kk.dataset.lod!==m)kk.dataset.lod=m; }
+}
+
+/* ================= interaction ================= */
+const tip=document.getElementById('tip');
+let drag=null, moved=false;
+// A finger is not a mouse. One pointer pans, two pinch; without the pinch the only way to
+// zoom on a phone is the +/- buttons. A finger is also fatter than a cursor, so a tap gets a
+// wider catchment than a click does.
+const pts=new Map(); let pinch=null;
+const pair=()=>{ const a=[...pts.values()]; return [a[0],a[1]]; };
+function beginPinch(){ const [a,b]=pair();
+  pinch={d:Math.max(1,Math.hypot(a.x-b.x,a.y-b.y)),cx:(a.x+b.x)/2,cy:(a.y+b.y)/2,s:view.s,vx:view.x,vy:view.y}; }
+function endPointer(id){ pts.delete(id); if(pts.size<2)pinch=null;
+  if(pts.size===1){ const p=[...pts.values()][0]; drag={px:p.x,py:p.y,x:view.x,y:view.y}; } }
+cv.addEventListener('pointerdown',e=>{
+  pts.set(e.pointerId,{x:e.clientX,y:e.clientY}); cv.setPointerCapture(e.pointerId);
+  if(pts.size>=2){ drag=null; moved=true; beginPinch(); tip.style.display='none'; return; }
+  drag={px:e.clientX,py:e.clientY,x:view.x,y:view.y}; moved=false; cv.classList.add('drag'); });
+cv.addEventListener('pointercancel',e=>{ endPointer(e.pointerId); cv.classList.remove('drag'); });
+cv.addEventListener('pointerup',e=>{
+  endPointer(e.pointerId);
+  if(pts.size>0) return;                               // still pinching or panning
+  cv.classList.remove('drag'); const wasDrag=moved; drag=null; if(wasDrag)return;
+  const touch=e.pointerType!=='mouse';
+  const [mx,my]=toMap(e.clientX,e.clientY);
+  const d=dotAt(mx,my,(touch?15:7)/view.s);
+  if(d){ showLandlord(d.code,d); return; }
+  const ld=!detailed()?laDotAt(mx,my,(touch?17:8)/view.s):null;
+  if(ld){ showLA(ld.la); return; }
+  const code=districtAt(mx,my);
+  if(code&&LAS[code])showLA(code); else hide(); });   // same as clicking its dot: open the borough and fly to it
+cv.addEventListener('dblclick',e=>{ e.preventDefault(); zoomAt(e.clientX,e.clientY,2); });
+cv.addEventListener('pointermove',e=>{
+  if(pts.has(e.pointerId)) pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pinch&&pts.size>=2){ const [a,b]=pair();
+    const d=Math.max(1,Math.hypot(a.x-b.x,a.y-b.y)), cx=(a.x+b.x)/2, cy=(a.y+b.y)/2;
+    const mx0=(pinch.cx-pinch.vx)/pinch.s, my0=(pinch.cy-pinch.vy)/pinch.s;
+    view.s=Math.max(fitS*0.85,Math.min(fitS*120,pinch.s*(d/pinch.d)));
+    view.x=cx-mx0*view.s; view.y=cy-my0*view.s; view.user=1; draw(); return; }
+  if(drag){ const dx=e.clientX-drag.px, dy=e.clientY-drag.py;
+    if(Math.abs(dx)+Math.abs(dy)>(e.pointerType==='mouse'?3:8))moved=true;
+    view.x=drag.x+dx; view.y=drag.y+dy; view.user=1; draw(); tip.style.display='none'; return; }
+  if(e.pointerType!=='mouse') return;                  // no hover state on a touchscreen
+  const [mx,my]=toMap(e.clientX,e.clientY);
+  let d=dotAt(mx,my,7/view.s); const ld=(!d&&!detailed())?laDotAt(mx,my,8/view.s):null;
+  const nc=(d||ld)?null:districtAt(mx,my); const n=nc?(idx.get(nc)||0):0;
+  if(ld&&!d){ hoverDot=null; if(hoverLA!==idx.get(ld.la)){hoverLA=idx.get(ld.la);draw();}
+    const la=LAS[ld.la]; tip.innerHTML=`<b>${esc(la.name)}</b><span><u>Borough</u> · <span class="num">${fmtInt(la.total)}</span> social homes shared between ${la.n_landlords} landlords. Zoom in to see each one.</span>`;
+    let x2=e.clientX+14,y2=e.clientY+14; if(x2>innerWidth-262)x2=e.clientX-262; if(y2>innerHeight-90)y2=e.clientY-72;
+    tip.style.left=x2+'px'; tip.style.top=y2+'px'; tip.style.display='block'; cv.classList.add('over'); return; }
+  if(d!==hoverDot||n!==hoverLA){ hoverDot=d; hoverLA=n; draw(); }
+  cv.classList.toggle('over',!!d||!!(n&&LAS[codes[n-1]]));
+  if(d){ const nm=L[d.code]?L[d.code].name:(d.name||d.code);
+    const w={good:'No serious weaknesses in any of the four categories',poor:'In the worst 25% of landlords for at least one category',
+             bad:'In the worst 10% of landlords for at least one category',none:'Too small to have to publish figures'}[d.band];
+    tip.innerHTML=`<b>${esc(nm)}</b><span><u>${d.council?'Council':'Housing association'}</u> · <span class="num">${fmtInt(d.homes)}</span> homes in ${esc(LAS[d.la].name)}<br><span class="sev-${d.band}">${w}</span></span>`; }
+  else if(n&&LAS[codes[n-1]]){ const la=LAS[codes[n-1]];
+    tip.innerHTML=`<b>${esc(la.name)}</b><span><u>Borough</u> · <span class="num">${fmtInt(la.total)}</span> social homes shared between ${la.n_landlords} landlords</span>`; }
+  else if(n){ tip.innerHTML=`<b>${esc(D.nodata[codes[n-1]]||'')}</b><span>Not covered yet</span>`; }
+  else { tip.style.display='none'; return; }
+  let x=e.clientX+14,y=e.clientY+14; if(x>innerWidth-262)x=e.clientX-262; if(y>innerHeight-90)y=e.clientY-72;
+  tip.style.left=x+'px'; tip.style.top=y+'px'; tip.style.display='block';
+});
+cv.addEventListener('pointerleave',()=>{ tip.style.display='none'; if(hoverDot||hoverLA){hoverDot=null;hoverLA=0;draw();} });
+// deltaY means different things on a trackpad (a few units per event), a mouse wheel (100 per
+// notch) and in line mode. Without normalising, two-finger scrolling barely moves the zoom.
+cv.addEventListener('wheel',e=>{ e.preventDefault();
+  const unit=e.deltaMode===1?16:e.deltaMode===2?innerHeight:1;
+  const dy=e.deltaY*unit, gain=e.ctrlKey?0.014:0.005;      // ctrlKey is a trackpad pinch
+  const f=Math.max(0.72,Math.min(1.39,Math.exp(-dy*gain)));
+  zoomAt(e.clientX,e.clientY,f); },{passive:false});
+document.getElementById('zin').onclick=()=>zoomAt(AVAIL.x+AVAIL.w/2,AVAIL.y+AVAIL.h/2,1.5);
+document.getElementById('zout').onclick=()=>zoomAt(AVAIL.x+AVAIL.w/2,AVAIL.y+AVAIL.h/2,1/1.5);
+document.getElementById('zres').onclick=()=>{ view.user=0; resize(); };
+// Fly, do not cut: zoom is interpolated in log space and the centre in map space, so a
+// long move reads as one motion rather than a snap. 620ms, eased.
+let flyAnim=null;
+function flyTo(x,y,s,instant){
+  const sTo=Math.min(fitS*120,s);
+  const cx0=(AVAIL.x+AVAIL.w/2-view.x)/view.s, cy0=(AVAIL.y+AVAIL.h/2-view.y)/view.s;   // current centre, map units
+  view.user=1;
+  if(instant||Math.abs(Math.log(sTo/view.s))<0.02&&Math.hypot(x-cx0,y-cy0)*view.s<2){
+    view.s=sTo; view.x=AVAIL.x+AVAIL.w/2-x*sTo; view.y=AVAIL.y+AVAIL.h/2-y*sTo; draw(); return; }
+  flyAnim={t0:performance.now(),ms:620,s0:view.s,s1:sTo,x0:cx0,y0:cy0,x1:x,y1:y};
+  requestAnimationFrame(flyStep);
+}
+function flyStep(){
+  if(!flyAnim)return;
+  const a=flyAnim, p=Math.min(1,(performance.now()-a.t0)/a.ms), e=1-Math.pow(1-p,3);
+  const sN=Math.exp(Math.log(a.s0)+(Math.log(a.s1)-Math.log(a.s0))*e);
+  const cx=a.x0+(a.x1-a.x0)*e, cy=a.y0+(a.y1-a.y0)*e;
+  view.s=sN; view.x=AVAIL.x+AVAIL.w/2-cx*sN; view.y=AVAIL.y+AVAIL.h/2-cy*sN; draw();
+  if(p<1) requestAnimationFrame(flyStep); else flyAnim=null;
+}
+// any manual pan or zoom cancels a fly in progress
+cv.addEventListener('pointerdown',()=>{flyAnim=null;});
+cv.addEventListener('wheel',()=>{flyAnim=null;},{passive:true});
+const BBOX=new Map();
+for(const code of codes){ let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  for(const r of D.paths[code]) for(let i=0;i<r.length;i+=2){ if(r[i]<x0)x0=r[i]; if(r[i]>x1)x1=r[i]; if(r[i+1]<y0)y0=r[i+1]; if(r[i+1]>y1)y1=r[i+1]; }
+  BBOX.set(code,[x0,y0,x1,y1]); }
+function centroidOf(code){ const a=cand.get(code); if(!a||!a.length)return null; let sx=0,sy=0;
+  for(let i=0;i<a.length;i+=2){sx+=a[i];sy+=a[i+1];} return [sx/(a.length/2),sy/(a.length/2)]; }
+function zoomForBBox(code){ const b=BBOX.get(code); if(!b)return fitS*4;
+  return Math.max(fitS*1.2,Math.min(fitS*110,
+    Math.min(AVAIL.w*0.78/Math.max(b[2]-b[0],.01), AVAIL.h*0.78/Math.max(b[3]-b[1],.01)))); }
+
+/* ================= card ================= */
+const card=document.getElementById('card'), hd=card.querySelector('.hd'), bd=card.querySelector('.bd');
+function hide(){ selDot=null; selLA=null; lastAnswer=null; fromAnswer=false; showHome(); }
+function toggleSheet(){ if(innerWidth>820)return;
+  card.classList.toggle('collapsed');
+  // The map is left alone while the sheet slides; only the free space is recomputed,
+  // once, after it settles.
+  card.addEventListener('transitionend',function h(ev){ if(ev.target!==card||ev.propertyName!=='transform')return;
+    card.removeEventListener('transitionend',h); measure(); }); }
+hd.addEventListener('click',()=>{ if(innerWidth<=820) toggleSheet(); });
+function open(title,sub,body,home,kind){
+  card.classList.remove('k-ll','k-la','k-area','k-q'); card.classList.add('k-'+(kind?kind[0]:'area'));
+  card.classList.toggle('k-home',!!home);   // the standing England card, which peeks rather than shuts
+  const back=fromAnswer&&lastAnswer?`<button class="back" id="cback"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M10 3.5L5.5 8 10 12.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Back to answer</button>`:'';
+  fromAnswer=false;
+  hd.innerHTML=`<div>${back}<h2 title="${title}">${title}</h2>${sub?`<div class="sub">${kind&&kind[0]!=='q'?`<i class="who w-${kind[2]||'none'}"></i>`:''}${sub}</div>`:''}</div>`
+    +`<div class="hdb"><button class="chev" id="cchev" aria-label="Collapse or expand"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M4 6.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`
+    +`${home?'':'<button class="x" id="cx" aria-label="Back to England">✕</button>'}</div>`;
+  bd.innerHTML=body; card.hidden=false; bd.scrollTop=0;
+  // restart the animation: the elements persist across cards, so the class has to come off,
+  // the layout be flushed, and the class go back on
+  for(const el of [hd,bd]){ el.classList.remove('swap'); void el.offsetWidth; el.classList.add('swap'); }
+  // A card the reader asked for opens up. The standing England card stays peeked on a phone
+  // so the map keeps the screen.
+  card.classList.toggle('collapsed', innerWidth<=820 && !!home);
+  const cx=document.getElementById('cx'); if(cx)cx.onclick=ev=>{ ev.stopPropagation(); hide(); };
+  const cc=document.getElementById('cchev'); if(cc)cc.onclick=ev=>{ ev.stopPropagation(); toggleSheet(); };
+  const cb=document.getElementById('cback'); if(cb)cb.onclick=ev=>{ ev.stopPropagation(); if(lastAnswer)renderAnswer(lastAnswer.question,lastAnswer.body,null); };
+  measure(); setTimeout(measure,340);   // again once the sheet has settled
+  bd.querySelectorAll('[data-l],[data-la]').forEach(el=>{
+    // A landlord picked from a borough list means THAT landlord's homes in THAT borough.
+    // Without the context we would fall through to its largest holding, which for a national
+    // landlord can be the other end of the country.
+    const go=()=>{ const fromQ=card.classList.contains('k-q'); if(fromQ) fromAnswer=true;
+      if(!el.dataset.l) return showLA(el.dataset.la);
+      const ctx=el.dataset.laCtx;
+      const d=ctx?dots.find(q=>q.code===el.dataset.l&&q.la===ctx):null;
+      // From a borough card the reader is already looking at the place. From an answer they
+      // are not, so go to the holding the row points at.
+      if(fromQ&&d){ selLA=d.la; flyTo(d.x,d.y,fitS*9); }
+      showLandlord(el.dataset.l,d||undefined); };
+    el.tabIndex=0; el.setAttribute('role','button');
+    el.onclick=go;
+    el.onkeydown=ev=>{ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); go(); } }; }); }
+
+const MEAS={
+ gas_safety_pct:{l:'Gas safety checks in date',u:'%',safety:1}, fire_risk_assessment_pct:{l:'Fire risk assessments in date',u:'%',safety:1},
+ asbestos_pct:{l:'Asbestos surveys in date',u:'%',safety:1}, legionella_pct:{l:'Water (legionella) assessments in date',u:'%',safety:1},
+ lift_pct:{l:'Lift safety checks in date',u:'%',safety:1},
+ non_decent_pct:{l:'Homes failing the Decent Homes Standard',u:'%'}, non_emergency_repairs_on_time_pct:{l:'Non-emergency repairs on time',u:'%',hib:1},
+ emergency_repairs_on_time_pct:{l:'Emergency repairs on time',u:'%',hib:1}, stage1_complaints_per_1000:{l:'Complaints per 1,000 homes',u:''},
+ stage1_complaints_on_time_pct:{l:'Complaints answered in time',u:'%',hib:1}, asb_cases_per_1000:{l:'Anti-social behaviour cases per 1,000 homes',u:'',neutral:1},
+ sat_overall:{l:'Satisfied with the overall service',u:'%',hib:1}, sat_repairs:{l:'Satisfied with repairs',u:'%',hib:1},
+ sat_repair_time:{l:'Satisfied with time taken to repair',u:'%',hib:1}, sat_well_maintained:{l:'Home is well maintained',u:'%',hib:1},
+ sat_safe:{l:'Home is safe',u:'%',hib:1}, sat_listens:{l:'Landlord listens and acts',u:'%',hib:1}, sat_informed:{l:'Keeps tenants informed',u:'%',hib:1},
+ sat_fair_respect:{l:'Treats tenants fairly and with respect',u:'%',hib:1}, sat_complaints:{l:'Satisfied with complaint handling',u:'%',hib:1},
+ sat_communal:{l:'Communal areas well maintained',u:'%',hib:1}, sat_neighbourhood:{l:'Positive contribution to the neighbourhood',u:'%',hib:1},
+ sat_asb:{l:'Satisfied with handling of anti-social behaviour',u:'%',hib:1}};
+// Two rungs of the ladder, in the order the law requires you to use them: the landlord's own
+// complaints process starts the clock, and only once it is exhausted does the Ombudsman take it.
+const HO_COMPLAIN='https://www.housing-ombudsman.org.uk/residents/make-a-complaint/';
+const outIc='<svg class="ic ic-s" aria-hidden="true"><use href="#i-out"/></svg>';
+const acts=x=>`<div class="acts">${x.cx?`<a class="pri" href="${esc(x.cx)}" target="_blank" rel="noopener">Make a complaint${outIc}</a>`:''}<a class="${x.cx?'sec2':'pri'}" href="${HO_COMPLAIN}" target="_blank" rel="noopener">Contact Ombudsman${outIc}</a></div>`;
+
+const ordinal=n=>{n=Math.round(n);const s=['th','st','nd','rd'],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0])};
+// Mid-rank percentiles from the values themselves. The published ranks give every landlord
+// in a tie the same worst rank, which makes a perfect 100% on safety look mediocre.
+const ALL=Object.values(L);
+const minSafeOf=x=>{ const v=SAFEK.map(k=>x.m[k]).filter(v=>v!=null); return v.length?Math.min(...v):null; };
+const DIST={};
+for(const k of Object.keys(MEAS)) DIST[k]=ALL.map(x=>x.m[k]).filter(v=>v!=null);
+DIST.safe=ALL.map(minSafeOf).filter(v=>v!=null);
+DIST.ho=ALL.map(x=>x.ho.ho_maladministration_per_10k_12m).filter(v=>v!=null);
+// lettings-account figures across every housing association in the accounts, used as the comparison
+// where a landlord's own segment (supported housing, older people) has too few providers to rank within
+for(const k of ['margin','void','arrears','baddebt']) DIST['fl_'+k]=ALL.map(x=>x.vfm&&x.vfm.flow?x.vfm.flow[k]:null).filter(v=>v!=null);
+// share of landlords this one is better than, ties split down the middle
+function betterThan(vals,v,higherBetter){ if(v==null||!vals||!vals.length)return null;
+  let worse=0,eq=0; for(const u of vals){ if(u===v)eq++; else if(higherBetter?u<v:u>v)worse++; }
+  return (worse+eq/2)/vals.length; }
+// one sentence for where that lands, as a plain percentage
+function standing(pct){ if(pct==null)return 'Not reported';
+  const b=Math.min(99,Math.max(1,Math.round(pct*100))), w=100-b;
+  return b>=50?`Better than ${b}% of landlords in England`:`Worse than ${w}% of landlords in England`; }
+const ICON={good:'i-badge',mid:'i-info',poor:'i-info',bad:'i-info',none:'i-info'};
+
+// The position bar. Always worse on the left and better on the right, whichever
+// direction the underlying number runs, so one glance means the same thing every time.
+// Track spans the 10th to the 90th percentile of the sector; the darker band is the
+// middle half; the tick is the median; the filled dot is this landlord.
+function posBar(v,q,higherWorse,lv,withCaps){
+  if(v==null||!q)return '';
+  // The track is the 10th to the 90th percentile, so the bulk of the sector uses the whole
+  // width instead of being squashed by one outlier. A landlord past either end sits on the
+  // end stop and is marked as beyond it; the sentence underneath says which end.
+  const lo=q[0], hi=q[4], span=(hi-lo)||1;
+  const at=t=>{ let f=(t-lo)/span; f=Math.max(0,Math.min(1,f));
+    return (3+(higherWorse?1-f:f)*94).toFixed(1); };
+  const a=+at(q[1]), b=+at(q[3]), l=Math.min(a,b), w=Math.abs(b-a);
+  const off=v<lo||v>hi;
+  return `<div class="pos${withCaps?' lab':''}"><div class="tr"></div>
+    <div class="iqr" style="left:${l}%;width:${w}%"></div>
+    <div class="med" style="left:${at(q[2])}%"></div>
+    <div class="me m-${lv}" style="left:${at(v)}%"></div>
+    ${withCaps?'<span class="cap l">Worse</span><span class="cap r">Better</span>':''}</div>`; }
+
+// A headline measure: label, figure, position, plain reading.
+const pill=(txt,lv)=>`<span class="pill${lv&&lv!=='none'?' p-'+lv:''}">${txt}</span>`;
+const GRADE_LV={C1:'good',C2:'mid',C3:'poor',C4:'bad',G1:'good',G2:'mid',G3:'poor',G4:'bad',V1:'good',V2:'mid',V3:'poor',V4:'bad'};
+// A two-to-three sentence summary composed from the figures on the card. Deliberately
+// rule-based rather than model-written: every clause is traceable to a number below it,
+// and a public record of named landlords cannot afford a plausible-sounding invention.
+const joinList=a=>a.length<=1?a.join(''):a.slice(0,-1).join(', ')+' and '+a[a.length-1];
+function summaryOf(x,bands,isLA){
+  const NAMES={safe:'safety checks',nd:'home condition',rep:'repairs',ho:'Ombudsman complaints'};
+  const keys=['safe','nd','rep','ho'];
+  const bad=keys.filter((k,i)=>bands[i]==='bad').map(k=>NAMES[k]);
+  const poor=keys.filter((k,i)=>bands[i]==='poor').map(k=>NAMES[k]);
+  const good=keys.filter((k,i)=>bands[i]==='good').map(k=>NAMES[k]);
+  const known=bands.filter(b=>b!=='none').length;
+  const name=esc(x.name.replace(/^(London Borough of|Royal Borough of|The) /,'').replace(/ (Limited|Ltd)\.?$/,'')), it=isLA?'the council':'it';
+  const out=[];
+  // Where the Regulator withheld the management return, three of the four measures are simply absent. Saying
+  // a landlord is "not in the worst 25% on any of them" would be reading a clean bill of health out of a gap.
+  const wh=(x.withheld||{}).mi;
+  if(wh&&known<3) out.push(`The Regulator withheld ${name}'s management information, so ${it} cannot be compared with other landlords on safety checks, home condition or repairs.`);
+  else if(!known) out.push(`Too little is published about ${name} to compare it with other landlords.`);
+  else if(!bad.length&&!poor.length){
+    out.push(good.length===4?`${name} does better than most English landlords on safety checks, repairs, home condition and complaints.`
+      :`${name} is not in the worst 25% of English landlords on any of safety checks, repairs, home condition or complaints${good.length?`, and does better than most on ${joinList(good)}`:''}.`); }
+  else {
+    let s1=`${name} is in the worst `;
+    if(bad.length&&poor.length) s1+=`10% of English landlords for ${joinList(bad)}, and the worst 25% for ${joinList(poor)}.`;
+    else if(bad.length) s1+=`10% of English landlords for ${joinList(bad)}.`;
+    else s1+=`25% of English landlords for ${joinList(poor)}.`;
+    if(good.length) s1+=` ${isLA?'It':'It'} does better than most on ${joinList(good)}.`;
+    out.push(s1); }
+  const C=x.grades.C?x.grades.C.replace('*',''):null;
+  const CM={C1:'meets the standards tenants are owed',C2:'some weaknesses, improvement needed',
+            C3:'serious failings, significant improvement needed',C4:'very serious failings, fundamental change required'};
+  out.push(C?`The Regulator grades ${it} ${C}: ${CM[C]||''}.`:`The Regulator has not yet inspected ${it}.`);
+  const ho=x.ho;
+  if(ho.ho_cases_12m) out.push(`The Ombudsman found against ${it} in ${ho.ho_maladministration_12m} of ${ho.ho_cases_12m} case${ho.ho_cases_12m===1?'':'s'} in the last year${ho.ho_severe_12m?`, ${ho.ho_severe_12m} of them severe`:''}.`);
+  else out.push(`The Ombudsman published no decisions about ${it} in the last year.`);
+  return out.join(' ');
+}
+// Direction since the previous year's return, with the arrow coloured by whether the move is good news.
+function yoy(v,pv,higherWorse,unit){ if(v==null||pv==null)return '';
+  const d=v-pv; if(Math.abs(d)<0.05) return `<span class="yoy">— No change on ${D.meta.tsm_prev}</span>`;
+  const good=higherWorse?d<0:d>0;
+  return `<span class="yoy ${good?'y-good':'y-bad'}">${d>0?'▲':'▼'} ${d>0?'+':'−'}${fmt(Math.abs(d))}${unit==='%'?' pts':''} on ${D.meta.tsm_prev}</span>`; }
+function bigRow(icon,label,v,unit,q,higherWorse,lv,reading,note,pv,nullTxt){
+  const num=v==null?pill(nullTxt||'Not reported')
+    :`${fmt(v)}${unit?`<u>${unit}</u>`:''}`;
+  return `<div class="big"><div class="bh"><div class="bl"><span>${label}</span><span class="br">${reading}</span></div><div class="bnw"><div class="bn sev-${lv}">${num}</div></div></div>
+    ${posBar(v,q,higherWorse,lv,!!note)}</div>`; }
+
+function verdict(k,v,r){ const m=MEAS[k]; if(v==null)return 'Not reported';
+  if(m.safety){ if(v>=99.95)return 'Every home checked, as the standard requires';
+    return `The standard is 100%${r?`. ${ordinal(r)} worst of ${N}`:''}`; }
+  if(m.neutral)return `${ordinal(r)} highest of ${N}`;
+  if(r==null)return '';
+  return standing(betterThan(DIST[k],v,!!m.hib)); }
+
+// The compact table inside the fold. Figure, one short reading, no chrome.
+function statRow(k,x){ const m=MEAS[k],v=x.m[k],r=x.rank[k],pv=x.prev[k];
+  const lv=m.safety?levelSafety(v):(m.neutral?'none':bandOfPct(betterThan(DIST[k],v,!!m.hib)));
+  const dl=pv!=null&&v!=null?`<span class="dl">${v-pv>=0?'+':''}${fmt(v-pv)} on ${D.meta.tsm_prev}</span>`:'';
+  return `<div class="stat s-${lv}"><span class="k">${esc(m.l)}</span><span class="v">${v==null?'<span class="nd">n/a</span>':fmt(v)}${v==null||!m.u?'':`<u>${m.u}</u>`}</span>
+    <span class="vd">${esc(verdict(k,v,r))}${dl}</span></div>`; }
+// What each grade means, in the words a resident would use. Paraphrased from the
+// Regulator's own definitions; the Regulator's wording is linked in the sources.
+const GRADE_TXT={
+  C1:'Meets the standards tenants are owed, and fixes problems when they happen.',
+  C2:'Some weaknesses in what tenants get. Improvement is needed.',
+  C3:'Serious failings in what tenants get. Significant improvement is needed.',
+  C4:'Very serious failings. Fundamental changes are required.',
+  G1:'Well run. Meets the Regulator\u2019s requirements for how it is governed.',
+  G2:'Meets the requirements, but some aspects of how it is run need to improve.',
+  G3:'Not meeting the requirements. Serious concerns; working with the Regulator to fix them.',
+  G4:'Not meeting the requirements. Serious concerns and the Regulator has stepped in.',
+  V1:'Financially sound, with room to absorb a wide range of shocks.',
+  V2:'Financially sound, but with material risks it has to manage.',
+  V3:'Not meeting the financial requirements. Serious concerns; working with the Regulator.',
+  V4:'Not meeting the financial requirements. Serious concerns and the Regulator has stepped in.'};
+const GRADE_WHAT={C:'How it treats tenants',G:'How well it is run',V:'Whether its finances are sound'};
+// Dates arrive as ISO strings, or occasionally as an Excel serial number stored as text.
+function niceDate(d){ if(!d)return '';
+  let t; if(/^\d{5}$/.test(d)) t=new Date((+d-25569)*86400000); else t=new Date(d);
+  if(isNaN(t))return d; return t.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}); }
+const gradeRow=(g,k,d,isLA,chg,showDate,showCap)=>{ const key=g?g.replace('*',''):'', lv=key?GRADE_LV[key]||'none':'none', n=key?+key.slice(1):0;
+  const mv=chg==='up'?'<span class="mv up">▲ up</span>':chg==='down'?'<span class="mv down">▼ down</span>':'';
+  const meta=[showDate&&d?niceDate(d):'',mv].filter(Boolean).join(' · ');
+  const scale=key?`<div class="gscale">${[1,2,3,4].map(i=>`<i class="${i===n?'g-'+lv:''}"></i>`).join('')}${k==='C'||!showCap?'<small>1 best · 4 worst</small>':''}</div>`:'';
+  return `<div class="grow"><div class="gtile g-${lv}">${g||'—'}</div><div class="gbody">
+    <div class="gl"><span>${GRADE_WHAT[k]}</span>${meta?`<small>${meta}</small>`:''}</div>
+    <div class="gx${key?'':' nd'}">${key?(GRADE_TXT[key]||''):(isLA&&k!=='C'?'Councils are not graded on this.':'Not yet inspected.')}</div>${scale}</div></div>`; };
+const srcTSM=()=>`Regulator of Social Housing, Tenant Satisfaction Measures ${D.meta.tsm_year}. Positions are among the ${N} landlords with 1,000+ homes. Figures are reported by landlords themselves.`;
+const srcHO=()=>`Housing Ombudsman published determinations, ${D.meta.ho_cases.toLocaleString()} cases from Dec 2020 to ${monthName(D.meta.ho_latest_month)}. "Last 12 months" = ${monthName(D.meta.ho_window_from)} onward.`;
+const srcRSH=()=>`Regulator of Social Housing, regulatory judgements published ${niceDate(D.meta.grades_date)}. C = consumer standards (C1 best, C4 worst), G = governance, V = viability. Upgraded and downgraded are the Regulator's own description of what moved at the latest judgement; the route (inspection, stability check, responsive engagement), gradings under review and enforcement notices are from the same published list.`;
+const srcLAHS=()=>{ const m=D.lahs_meta; if(!m)return '';
+  return `MHCLG, Local Authority Housing Statistics ${m.year} open data: each council’s own annual return on the homes it owns — stock, empty homes, re-let times, arrears and collection, evictions, capital works, Decent Homes inspections, homes built, bought, sold (including Right to Buy) and demolished. Cell codes are decoded from the published LAHS form and guidance; money in the rents section is in pounds and in the condition and sales sections in thousands of pounds, checked against the form’s own derived cells. Positions are among the ${m.n} councils that own homes; councils are never compared with housing associations here.`; };
+const srcRent=()=>{ const m=D.rent_meta; if(!m)return '';
+  return `Regulator of Social Housing, Statistical Data Return ${m.year}: average weekly net rent for general-needs homes, excluding service charges, Affordable Rent and intermediate rent, weighted by the homes behind each figure and rolled up to the parent that reports TSMs. Social rents follow a national formula built on local earnings and property values, so the comparison offered is with the other housing associations in the same boroughs, never across England (the England units-weighted figure is £${fmt(m.england_gn,0)} a week). Arrears, debt and write-offs are from the Global Accounts 2025 datafile: arrears are what current tenants owed at year end as a share of the year's rent and service charge income; debt is short- and long-term borrowing per home owned or managed; write-offs are the year's bad-debt charge per home. Arrears, void losses, margin and write-offs are positioned within the landlord's own segment, or among all housing associations where that segment has fewer than eight providers.`; };
+const srcVFM=()=>{ const m=D.vfm_meta; if(!m)return ''; const g=m.segments.GN;
+  return `Regulator of Social Housing, Value for Money metrics ${m.year} (annex to the Global Accounts, published ${m.published.slice(0,7).replace('-',' ')}). Headline Social Housing Cost per unit for every housing association in the Global Accounts; positions are among the ${g.n} general-needs providers, or among supported-housing or older-people providers where the Regulator classes a landlord so. Councils are outside the Global Accounts. The split between repairs, management, service charges and other costs is from the Global Accounts 2025 datafile (consolidated group figures, £'000, divided by social homes owned or managed), shown only where the parts reproduce the Regulator's published headline within 1%. The lettings account (rent collected, void losses, operating surplus, interest) and the year's stock movement are read from the same return and divided by the homes it reports. Cost is shown as a position, never a colour.`; };
+
+// The method, in one place, on the card the site opens with. A reader who has not clicked a
+// landlord still needs to know what is counted, what is missing and what the figures cannot say.
+function methodSection(nLL,nPRP,nLA,homes,share,nLAs,holds){
+  const M=D.vfm_meta, R=D.rent_meta, LM=D.lahs_meta;
+  return `<details><summary><svg class="ic ic-s" aria-hidden="true"><use href="#i-info"/></svg>Where These Figures Come From</summary>
+    <div class="sec">
+      <h3>What Is On This Map</h3>
+      <p class="src">Every social landlord in England that owns 1,000 homes or more and reports to the Regulator: ${nLL} of them, ${nPRP} housing associations and ${nLA} councils. Between them they hold ${fmtInt(homes)} homes — ${fmt(share)}% of England’s social homes — across ${nLAs} local authority districts and ${fmtInt(holds)} separate holdings.</p>
+      <p class="src">Homes added in the year is a net figure: every landlord’s own reported building and buying, less what it sold, demolished or otherwise lost. Homes moved between landlords in the same group are left out, because they are not new homes.</p>
+      <p class="src">What is not on it: of England’s 1,578 registered providers, 1,219 own fewer than 1,000 homes and do not report these measures, and 26 councils own no homes at all. Scotland, Wales and Northern Ireland have their own regulators and are outside this record.</p>
+    </div>
+    <div class="sec">
+      <h3>The Seven Sources</h3>
+      <p class="src"><b>1.</b> ${srcTSM()}</p>
+      <p class="src"><b>2.</b> ${srcRSH()}</p>
+      <p class="src"><b>3.</b> ${srcHO()}</p>
+      <p class="src"><b>4.</b> ${srcVFM()}</p>
+      <p class="src"><b>5.</b> ${srcRent()}</p>
+      <p class="src"><b>6.</b> ${srcLAHS()}</p>
+      <p class="src"><b>7.</b> Office for National Statistics, Local Authority District boundaries December 2024, for the map itself. Contains public sector information licensed under the Open Government Licence v3.0.</p>
+    </div>
+    <div class="sec">
+      <h3>How Landlords Are Compared</h3>
+      <p class="src">A position is a percentile among the landlords that report that measure, not a pass mark: “worst 10%” means ten per cent of reporting landlords did worse, not that a threshold was crossed. Green means better than most, orange the worst quarter, red the worst tenth.</p>
+      <p class="src">Money and lettings figures are compared only within the Regulator’s own segments — general needs, supported housing, and housing for older people — because their costs differ several-fold; where a segment holds fewer than eight providers the comparison falls back to all housing associations, and the card says so. Councils are only ever compared with councils, because the Regulator’s accounts do not cover them.</p>
+    </div>
+    <div class="sec">
+      <h3>What This Record Cannot Tell You</h3>
+      <p class="src">Safety checks, home condition, repairs and satisfaction are reported by landlords themselves to the Regulator. Ombudsman decisions and regulatory grades are independent of the landlord. Where a landlord’s own figure looks implausible, that is worth knowing too — it is what they filed.</p>
+      <p class="src">It records what is happening, not why. It holds nothing on funding, stock age, building type or management, so it cannot explain a figure, only show it. Cost per home is a cost and not a grade: London and older stock cost more to run, and a low figure can mean efficiency or under-investment.</p>
+      <p class="src">Every figure on this site traces to a published official file, named on the card it appears on. Nothing is modelled, estimated, or filled in where a landlord did not report.</p>
+    </div></details>`;
+}
+
+// What the landlord spent per home, from the Regulator's accounts. A figure and a position, and
+// on purpose no colour: dear is not bad and cheap is not good, and the section says so. Its worth
+// is the sentence that sets it beside the repairs figure above, which the reader can then weigh.
+const SEG_WORD={GN:'general-needs housing associations',SH:'supported-housing providers',HOP:'providers of housing for older people'};
+// What happens to the rent: the lettings account and the year's stock movement, from the same
+// return. Plain figures with the Regulator's own margin position. 'Kept' is struck after
+// depreciation, not after major works, so it is never shown as rent minus the cost figure above.
+// The council card, from the council's own Local Authority Housing Statistics return. Councils are
+// compared only with the other stock-owning councils (the Regulator's accounts do not cover them), and
+// only the figures with a direction a tenant would agree with are coloured: arrears, the collection
+// rate, rent lost to empty homes, homes standing empty, and how long an empty home takes to re-let.
+const LM=()=>D.lahs_meta&&D.lahs_meta.m;
+const lahsLv=(pb,higherBetter)=>pb==null?'none':bandOfPct(higherBetter?pb/100:1-pb/100);
+const medOf=(k,dp=1,pre='',suf='')=>{ const m=LM()&&LM()[k]; return m&&m.median!=null?`${pre}${fmt(m.median,dp)}${suf}`:''; };
+function councilRentSection(x,ic){
+  const C=x.lahs, M=D.lahs_meta;
+  if(!C||!M) return `<details><summary>${ic}Rent Management<span class="pills">${pill('Not In The Council Return')}</span></summary>
+    <div class="sec"><p class="src">This council did not report owned housing stock in the ${M?M.year:'2024/25'} Local Authority Housing Statistics return.</p></div></details>`;
+  const colLv=lahsLv(C.collection_rate_pct_below,true);
+  const pills=[C.collection_rate!=null?pill(fmt(C.collection_rate,1)+'% Collected',colLv):''].join('');
+  return `<details><summary>${ic}Rent Management<span class="pills">${pills||pill('Council Return')}</span></summary>
+    <div class="sec">
+      <dl class="pairs">
+        ${C.rent_per_home!=null?`<dt>Rent due, per home, per year<small>Rent collectable into the housing account${medOf('rent_per_home',0,' · council median £')}</small></dt><dd class="sev-none">£${fmtInt(C.rent_per_home)}</dd>`:''}
+        ${C.arrears_pct!=null?`<dt>Owed by current tenants at year end<small>As a share of the rent roll${medOf('arrears_pct',1,' · council median ','%')}</small></dt><dd class="sev-${lahsLv(C.arrears_pct_pct_below,false)}">${fmt(C.arrears_pct,1)}%</dd>`:''}
+        ${C.collection_rate!=null?`<dt>Rent collected in the year</dt><dd class="sev-${colLv}">${fmt(C.collection_rate,1)}%</dd>`:''}
+        ${C.void_per_home!=null?`<dt>Lost to empty homes, per home</dt><dd class="sev-${lahsLv(C.void_per_home_pct_below,false)}">£${fmtInt(C.void_per_home)}</dd>`:''}
+        ${C.written_off_per_home!=null?`<dt>Written off as uncollectable, per home</dt><dd class="sev-${lahsLv(C.written_off_per_home_pct_below,false)}">£${fmtInt(C.written_off_per_home)}</dd>`:''}
+        ${C.vacant_pct!=null?`<dt>Homes standing empty at 31 March<small>${fmtInt(C.vacant)} homes${C.vacant_over_6m?`, ${fmtInt(C.vacant_over_6m)} of them for over six months`:''}</small></dt><dd class="sev-${lahsLv(C.vacant_pct_pct_below,false)}">${fmt(C.vacant_pct,1)}%</dd>`:''}
+        ${C.relet_days!=null?`<dt>Days to re-let an empty home</dt><dd class="sev-${lahsLv(C.relet_days_pct_below,false)}">${fmt(C.relet_days,0)}</dd>`:''}
+        ${C.evictions!=null?`<dt>Evictions in the year</dt><dd class="sev-none">${fmtInt(C.evictions)}</dd>
+        <dt>Evictions per 1,000 homes</dt><dd class="sev-none">${fmt(C.evictions_per_1000,1)}</dd>`:''}
+      </dl>
+      <p class="src" style="margin-top:var(--s4)">From the council’s own ${M.year} housing statistics return; positions are among the ${M.n} councils that own homes. Weekly rents for councils are now collected by the Regulator rather than in this return, so they are not shown yet.</p>
+    </div></details>`;
+}
+function councilCostSection(x,ic){
+  const C=x.lahs, M=D.lahs_meta;
+  if(!C||!M) return `<details><summary>${ic}What It Costs To Run<span class="pills">${pill('Not In The Council Return')}</span></summary>
+    <div class="sec"><p class="src">This council did not report owned housing stock in the ${M?M.year:'2024/25'} Local Authority Housing Statistics return.</p></div></details>`;
+  const pills=[C.capital_works_per_home!=null?pill('£'+fmtInt(C.capital_works_per_home)+' Works Per Home'):''].join('');
+  return `<details><summary>${ic}What It Costs To Run<span class="pills">${pills||pill('Council Return')}</span></summary>
+    <div class="sec">
+      <dl class="pairs">
+        ${C.capital_works_per_home!=null?`<dt>Major works on existing homes, per home<small>Kitchens, roofs, windows, boilers and the like${medOf('capital_works_per_home',0,' · council median £')}</small></dt><dd class="sev-none">£${fmtInt(C.capital_works_per_home)}</dd>`:''}
+        ${C.capital_works_homes_pct!=null?`<dt>Homes that had major works in the year</dt><dd class="sev-none">${fmt(C.capital_works_homes_pct,0)}%</dd>`:''}
+        ${C.cost_to_decent_per_home!=null?`<dt>Outstanding bill to make every home decent, per home<small>The council’s own estimate for its ${fmtInt(C.nondecent_n||0)} non-decent homes, spread over all its homes</small></dt><dd class="sev-none">£${fmtInt(C.cost_to_decent_per_home)}</dd>`:''}
+        ${C.dhs_inspected_pct!=null?`<dt>Homes physically inspected for the Decent Homes Standard in the last five years</dt><dd class="sev-${lahsLv(C.dhs_inspected_pct_pct_below,true)}">${fmt(C.dhs_inspected_pct,0)}%</dd>`:''}
+      </dl>
+      <p class="src" style="margin-top:var(--s4)">Not the Regulator’s cost-per-home figure, which councils do not report: this is capital spending on existing homes from the council’s ${M.year} housing statistics return, so it is not comparable with the housing association figure and is shown without a colour.</p>
+    </div></details>`;
+}
+// Homes built, bought, sold and demolished in the year, for every landlord: housing associations from
+// the Global Accounts, councils from their LAHS return. Counts are shown with their share of the homes
+// owned at year end, so 900 homes reads differently for a landlord with 90,000 than for one with 9,000.
+function homesSection(x,isLA){
+  const ic='<svg class="ic ic-s" aria-hidden="true"><use href="#i-home"/></svg>', T='Homes Built And Sold';
+  const F=x.vfm&&x.vfm.flow, C=x.lahs, S=x.stock;
+  const none=(why,pillTxt)=>`<details><summary>${ic}${T}<span class="pills">${pill(pillTxt)}</span></summary><div class="sec"><p class="src">${why}</p></div></details>`;
+  if(isLA&&!C) return none('This council did not report owned housing stock in the Local Authority Housing Statistics return.','Not In The Council Return');
+  if(!isLA&&!S&&(!F||F.owned==null)) return none('This landlord does not appear in the Regulator’s stock return, so its stock movement is not on the record.','Not In The Stock Return');
+  const base=isLA?C.homes:S?S.end:F.owned;
+  const share=(n,sign)=>n&&base&&100*n/base>=0.05?`<span class="sub">${sign}${fmt(100*n/base,100*n/base<10?1:0)}%</span>`:'';
+  const row=(l,v,sub)=>v==null?'':`<dt>${l}${sub?`<small>${sub}</small>`:''}</dt><dd class="sev-none">${v}</dd>`;
+  let rows, net;
+  if(isLA){
+    net=(C.built||0)+(C.acquired||0)-(C.sales_total||0)-(C.demolished||0);
+    rows=row('Homes built',`${fmtInt(C.built||0)}${share(C.built,'+')}`)+row('Homes bought',`${fmtInt(C.acquired||0)}${share(C.acquired,'+')}`)
+      +row('Homes sold',`${fmtInt(C.sales_total||0)}${share(C.sales_total,'−')}`)+row('Homes demolished',`${fmtInt(C.demolished||0)}${share(C.demolished,'−')}`)
+      +(C.rtb_sales!=null?row('Sold under Right to Buy',fmtInt(C.rtb_sales)):'')
+      +(C.rtb_avg_price?row('Right to Buy average sale price','£'+fmtInt(C.rtb_avg_price)):'')
+      +(C.rtb_avg_discount?row('Right to Buy average discount','£'+fmtInt(C.rtb_avg_discount)):'')
+      +(C.rtb_applications!=null?row('Right to Buy applications received',fmtInt(C.rtb_applications)):'')
+      +row('Homes owned at 31 March',fmtInt(C.homes));
+  } else if(S){
+    net=S.built+S.bought+S.other_gains-S.sold_tenants-S.sold_social-S.sold_out-S.to_shared_ownership-S.demolished-S.other_losses;   // real gains and losses; moves within the group are not new homes
+    rows=row('Homes at the start of the year',fmtInt(S.start))
+      +row('Newly built',`${fmtInt(S.built)}${share(S.built,'+')}`)
+      +row('Bought from other landlords',`${fmtInt(S.bought)}${share(S.bought,'+')}`)
+      +(S.other_gains?row('Other homes gained',`${fmtInt(S.other_gains)}${share(S.other_gains,'+')}`):'')
+      +row('Sold to tenants',`${fmtInt(S.sold_tenants)}${share(S.sold_tenants,'−')}`,'Right to Buy, Right to Acquire and similar')
+      +row('Sold to other social landlords',`${fmtInt(S.sold_social)}${share(S.sold_social,'−')}`)
+      +row('Sold out of social housing',`${fmtInt(S.sold_out)}${share(S.sold_out,'−')}`,'Open market and other buyers')
+      +(S.to_shared_ownership?row('Converted to shared ownership',`${fmtInt(S.to_shared_ownership)}${share(S.to_shared_ownership,'−')}`):'')
+      +row('Demolished',`${fmtInt(S.demolished)}${share(S.demolished,'−')}`)
+      +(S.other_losses?row('Other homes lost',`${fmtInt(S.other_losses)}${share(S.other_losses,'−')}`,'Leases ending and the like'):'')
+      +(S.intra_group_net?row('Moved within the group, net',`${S.intra_group_net>0?'+':'−'}${fmtInt(Math.abs(S.intra_group_net))}`):'')
+      +row('Homes at the end of the year',fmtInt(S.end));
+  } else {
+    net=(F.built||0)-(F.sold||0);
+    rows=row('Social homes built or bought',`${fmtInt(F.built||0)}${share(F.built,'+')}`)+row('Social homes sold or demolished',`${fmtInt(F.sold||0)}${share(F.sold,'−')}`)+row('Social homes owned at year end',fmtInt(F.owned));
+  }
+  // The pill has a direction a tenant would agree with: more social homes at the end of the year than
+  // the start is good news, fewer is not.
+  return `<details><summary>${ic}${T}<span class="pills">${pill((net>=0?'+':'−')+fmtInt(Math.abs(net))+' Homes',net>0?'good':net<0?'poor':'none')}</span></summary>
+    <div class="sec"><dl class="pairs">${rows}</dl>${S?`<p class="src" style="margin-top:var(--s4)">Regulator of Social Housing, Statistical Data Return ${D.rent_meta?D.rent_meta.year:'2024/25'}: the low cost rental stock the landlord owns, all rent types together.</p>`:''}</div></details>`;
+}
+function rentSection(x,isLA,dot){
+  const ic='<svg class="ic ic-s" aria-hidden="true"><use href="#i-rent"/></svg>';
+  const M=D.vfm_meta, F=x.vfm&&x.vfm.flow, R=x.rent;
+  if(isLA) return councilRentSection(x,ic);
+  if((!F||F.rent==null||!M)&&!R) return `<details><summary>${ic}Rent Management<span class="pills">${pill('Not In The 2025 Accounts')}</span></summary>
+    <div class="sec"><p class="src">This landlord does not appear in the Regulator’s 2025 Global Accounts, so its lettings account is not on the record.</p></div></details>`;
+  // What tenants pay, from the Statistical Data Return. Social rents follow a national formula built on
+  // local earnings and property values, so the only fair comparison is with the other landlords in the
+  // same borough — which is what the 'here' row and the neighbours figure do. Never coloured.
+  let pay='';
+  if(R&&R.gn!=null){
+    const la=dot&&LAS[dot.la], here=dot&&(LAS[dot.la].landlords.find(r=>r.code===dot.code)||{}).rent, bor=la&&la.rent;
+    pay=`<dt>Average weekly rent<small>General needs</small></dt><dd class="sev-none">£${fmt(R.gn,0)}</dd>
+      ${R.sh!=null?`<dt>Average weekly rent<small>Supported and older people’s housing</small></dt><dd class="sev-none">£${fmt(R.sh,0)}</dd>`:''}
+      ${here!=null&&bor?`<dt>Weekly rent here in ${esc(la.name)}<small>${bor.n>1?`The ${bor.n} housing associations here average £${fmt(bor.gn,0)}`:'The only housing association here'}</small></dt><dd class="sev-none">£${fmt(here,0)}</dd>`:''}
+      ${R.svc!=null&&R.svc_share>=0.2?`<dt>Average weekly service charge</dt><dd class="sev-none">£${fmt(R.svc,0)}</dd>`:''}`;
+  }
+  const pills=[];
+  if(!F||F.rent==null||!M) return `<details><summary>${ic}Rent Management<span class="pills">${pills.join('')}${pill('Not In The 2025 Accounts')}</span></summary>
+    <div class="sec"><dl class="pairs">${pay}</dl><p class="src" style="margin-top:var(--s4)">This landlord does not appear in the Regulator’s 2025 Global Accounts, so its lettings account is not on the record.</p></div></details>`;
+  const seg=M.segments[x.vfm.seg]||M.segments.GN;
+  const loss=F.surplus<0, mp=F.margin_pct_below;
+  // Three of these have a direction a tenant would agree with, and only those are coloured: less rent
+  // lost to empty homes is better, less owed in arrears is better, and a thinner margin means less room
+  // to invest — a loss is red. Rent collected, interest and debt are left grey; all three are set by
+  // geography and by how much is being built.
+  // position within the landlord's own segment where it has 8+ providers, otherwise among all housing associations
+  const lv=(k,pb,n,hib)=>pb!=null&&n>=8?bandOfPct(hib?pb/100:1-pb/100):F[k]!=null?bandOfPct(betterThan(DIST['fl_'+k],F[k],hib)):'none';
+  const keptLv=loss?'bad':lv('margin',mp,seg.margin_n,true);
+  const voidLv=lv('void',F.void_pct_below,seg.void_n,false);
+  const arrLv=lv('arrears',F.arrears_pct_below,seg.arrears_n,false);
+  pills.push(pill(loss?'Ran At A Loss':fmt(F.margin,1)+'% Margin',keptLv));
+  return `<details><summary>${ic}Rent Management<span class="pills">${pills.join('')}</span></summary>
+    <div class="sec">
+      <dl class="pairs">
+        ${pay}
+        <dt>Rent and service charges collected<small>Per home, per year</small></dt><dd class="sev-none">£${fmtInt(F.rent)}</dd>
+        ${F.arrears!=null?`<dt>Owed by current tenants at year end<small>As a share of a year’s rent${seg.arrears_median!=null&&seg.arrears_n>=8?` · median ${fmt(seg.arrears_median,1)}%`:''}</small></dt><dd class="sev-${arrLv}">${fmt(F.arrears,1)}%</dd>`:''}
+        <dt>Lost to empty homes, per home</dt><dd class="sev-${voidLv}">£${fmtInt(F.void)}</dd>
+        ${F.baddebt!=null?`<dt>Written off as uncollectable, per home</dt><dd class="sev-${lv('baddebt',F.baddebt_pct_below,seg.baddebt_n,false)}">${F.baddebt<0?'−':''}£${fmtInt(Math.abs(F.baddebt))}</dd>`:''}
+        <dt>Kept after running costs, per home</dt><dd class="sev-${keptLv}">${loss?'−':''}£${fmtInt(Math.abs(F.surplus))}</dd>
+        <dt>Interest to lenders, per home</dt><dd class="sev-none">£${fmtInt(F.interest)}</dd>
+        ${F.debt!=null?`<dt>Owed to lenders, per home</dt><dd class="sev-none">£${fmtInt(F.debt)}</dd>`:''}
+      </dl>
+    </div></details>`;
+}
+
+function costSection(x,isLA,repPct){
+  const ic='<svg class="ic ic-s" aria-hidden="true"><use href="#i-coins"/></svg>';
+  const M=D.vfm_meta;
+  if(isLA) return councilCostSection(x,ic);
+  const v=x.vfm;
+  if(!v||v.hshc==null||!M) return `<details><summary>${ic}What It Costs To Run<span class="pills">${pill('Not In The 2025 Accounts')}</span></summary>
+    <div class="sec"><p class="src">This landlord does not appear in the Regulator’s Value for Money tables for ${M?M.year:'2024/25'}. That is usually because it reports inside a group under another name, is a newer or for-profit provider outside the Global Accounts, or merged during the year.</p></div></details>`;
+  const seg=M.segments[v.seg]||M.segments.GN, word=SEG_WORD[v.seg]||SEG_WORD.GN;
+  // pct_below counts the OTHER providers in the segment that cost less, so the two ends are the
+  // extremes themselves and are named as such rather than as "lower than 100%".
+  const pb=v.pct_below, tail=`of ${word}`;
+  const pos=pb==null?'':pb<=0?`The lowest cost of any ${word.replace(/s$/,'')}`:pb>=100?`The highest cost of any ${word.replace(/s$/,'')}`
+           :pb>=50?`Higher than ${fmt(pb,0)}% ${tail}`:`Lower than ${fmt(100-pb,0)}% ${tail}`;
+  const delta=v.hshc_prev!=null?(v.hshc-v.hshc_prev):null;
+  const change=delta==null?'':delta===0?'Unchanged on the year before.'
+    :`${delta>0?'Up':'Down'} £${fmtInt(Math.abs(delta))} on last year.`;
+  // repPct is a 0-1 share, as betterThan returns it; standing() clamps the same way so the two sentences agree
+  const rp=repPct==null?null:Math.min(99,Math.max(1,Math.round(repPct*100)));
+  const beside=rp!=null?` Routine repairs were finished on time ${rp>=50?'more':'less'} often than ${rp>=50?rp:100-rp}% of landlords.`:'';
+  // Where the money went, from the landlord's own accounts in the Regulator's datafile. Shown only when
+  // the four parts reproduce the published headline, so nothing here is at odds with the figure above.
+  let split='', rmLine='';
+  const P=v.parts;
+  if(P){
+    const tot=P.rm+P.mgmt+P.svc+P.oth;
+    const segs=P.works!=null?[['rmd','Day-to-day repairs',P.rm-P.works],['works','Major works',P.works],['mgmt','Management',P.mgmt],['svc','Service charges',P.svc],['oth','Other',P.oth]]
+                              :[['rm','Repairs & maintenance',P.rm],['mgmt','Management',P.mgmt],['svc','Service charges',P.svc],['oth','Other',P.oth]];
+    // A ring rather than a filled pie: each part is an arc of a thick stroke, with a hair of
+    // background between parts so they read as separate without outlines.
+    let acc=0; const R=38, C=48, GAP=0.035;
+    const pt=a=>[C+R*Math.sin(a),C-R*Math.cos(a)];
+    const arc=(a0,a1)=>{ const [x0,y0]=pt(a0),[x1,y1]=pt(a1); const big=a1-a0>Math.PI?1:0;
+      return `M${x0.toFixed(2)},${y0.toFixed(2)} A${R},${R} 0 ${big} 1 ${x1.toFixed(2)},${y1.toFixed(2)}`; };
+    const arcs=segs.filter(([,,a])=>a>0).map(([k,l,a])=>{ const a0=acc/tot*2*Math.PI; acc+=a; const a1=acc/tot*2*Math.PI;
+      if(a/tot>=0.9999) return `<circle class="sp-${k}" cx="${C}" cy="${C}" r="${R}"/>`;
+      const g=Math.min(GAP,(a1-a0)*0.3); return `<path class="sp-${k}" d="${arc(a0+g/2,a1-g/2)}"/>`; }).join('');
+    split=`<div class="splitwrap"><svg class="pie" viewBox="0 0 96 96" role="img" aria-label="Where the money went">${arcs}</svg>
+      <dl class="splitk">${segs.map(([k,l,a])=>`<div><dt><i class="sp-${k}"></i>${l}</dt><dd>£${fmtInt(a)}<small class="pc">${(a/tot*100).toFixed(0)}%</small></dd></div>`).join('')}</dl></div>`;
+    const rb=v.rm_pct_below, showPos=rb!=null&&seg.rm_n>=8;
+    const rmPos=!showPos?'':rb<=0?`the lowest of any ${word.replace(/s$/,'')}`:rb>=100?`the highest of any ${word.replace(/s$/,'')}`
+                :rb>=50?`higher than ${fmt(rb,0)}% of similar landlords`:`lower than ${fmt(100-rb,0)}% of similar landlords`;
+    rmLine=`£${fmtInt(P.rm)} of that went on repairs and maintenance${rmPos?` — ${rmPos}`:''}.${beside}`;
+  }
+  const noSplit=!P&&v.hshc!=null?' The Regulator’s total leaves out some items in the accounts, so no split is shown.':'';
+  return `<details><summary>${ic}What It Costs To Run<span class="pills">${pill('£'+fmtInt(v.hshc)+' Per Home')}</span></summary>
+    <div class="sec">
+      <div class="big"><div class="bh"><div class="bl"><span>Spent Per Home, ${M.year}</span><span class="br">${pos}${pos?` (median £${fmtInt(seg.median)}).`:''} Not a grade: London and older stock cost more, and a low figure can mean efficient or under-spent.</span></div>
+        <div class="bn sev-none">£${fmtInt(v.hshc)}</div></div>
+        ${seg.q?posBar(v.hshc,seg.q,false,'none',false).replace('<div class="pos"','<div class="pos lab cost"').replace('</div>\n','<span class="cap l">Lower cost</span><span class="cap r">Higher cost</span></div>\n'):''}</div>
+      ${split}
+      ${noSplit?`<p class="src">${noSplit.trim()}</p>`:''}
+    </div></details>`;
+}
+
+function showHome(){
+  selDot=null; selLA=null; draw();
+  const arr=Object.values(L);
+  let laTotal=0; for(const la of Object.values(LAS)) laTotal+=la.total;   // council stock + housing-association stock, every provider
+  const homesBy={good:0,poor:0,bad:0,none:0}; let homesAll=0;
+  for(const d of dots){ homesBy[d.band]+=d.homes; homesAll+=d.homes; }
+  // The year's movement, summed from each landlord's own return: housing associations from the
+  // Regulator's stock balance sheet, councils from their LAHS return. Homes moved within a group
+  // are not new homes and are left out, as they are on the landlord cards.
+  let netAdd=0;
+  for(const x of arr){ const S=x.stock, C=x.lahs;
+    if(S) netAdd+=S.built+S.bought+S.other_gains-S.sold_tenants-S.sold_social-S.sold_out-S.to_shared_ownership-S.demolished-S.other_losses;
+    if(x.type==='LA'&&C) netAdd+=(C.built||0)+(C.acquired||0)-(C.sales_total||0)-(C.demolished||0); }
+  const fmtM=n=>(n/1e6).toFixed(2)+'<u>m</u>';
+  // Every ranked landlord in order, on the same four measures the landlord card leads with.
+  // Each measure becomes a position from 0 (worst in England) to 1 (best); the score is their
+  // mean. Only landlords with 1,000+ homes and all four figures are ranked, which is the
+  // threshold the Regulator itself reports at and the one the rest of the site compares on.
+  // The whole list is published rather
+  // than a best-five and worst-five, because the cut at five is arbitrary — first and second
+  // place can be a tenth of a point apart — and a complete table asserts only what it shows.
+  // Mid-rank percentiles computed from the values, because the published ranks give every
+  // landlord in a tie the same worst rank, which makes a perfect 100% look mediocre.
+  const ranked=arr.filter(x=>x.homes>=1000).map(x=>[x,posOf(x)]).filter(([,p])=>p!=null).sort((a,b)=>b[1]-a[1]);
+  const rows=ranked.map(([x],i)=>llRow(x,codeOf(x),fmtInt(x.homes)+' homes',null,{rank:i+1}));
+  open('Overview','',
+   `<div class="sec"><div class="kpis">
+      <div><div class="l">Social homes on this map</div><div class="n">${fmtM(homesAll)}</div></div>
+      <div class="k-good"><div class="l">Homes whose landlord has no serious weaknesses</div><div class="n">${fmtM(homesBy.good)}</div></div>
+      <div class="k-bad"><div class="l">Homes whose landlord has 1+ serious weakness</div><div class="n">${fmtM(homesBy.poor+homesBy.bad)}</div></div>
+      <div><div class="l">Share of England’s social homes on this map</div><div class="n">${fmt(homesAll/laTotal*100)}<u>%</u></div></div>
+      <div class="k-${netAdd>0?'good':netAdd<0?'bad':'none'}"><div class="l">Social homes added in ${D.meta.tsm_year}</div><div class="n">${netAdd>=0?'+':'−'}${fmtInt(Math.abs(netAdd))}</div></div>
+    </div></div>
+    <div class="sec"><h3><span>Landlord Ranking</span></h3>
+      <p class="src" style="margin:0 0 var(--s4)">A landlord’s score is its average position across four measures: safety checks, homes below the decent standard, non-emergency repairs on time, and Ombudsman findings. The score is relative to the performances of other landlords in the same measures. Equal weight, no adjustment, and only landlords of 1,000 homes or more that publish all four are ranked.</p>
+      <ul class="llist">${rows.slice(0,10).join('')}</ul>
+      ${rows.length>10?`<details class="more"><summary>Show all ${fmtInt(rows.length)}</summary><ul class="llist">${rows.slice(10).join('')}</ul></details>`:''}</div>
+    ${methodSection(N,arr.filter(x=>x.type!=='LA').length,arr.filter(x=>x.type==='LA').length,homesAll,homesAll/laTotal*100,Object.keys(LAS).length,dots.length)}`,true);
+}
+const codeIndex=new Map(Object.entries(L).map(([c,x])=>[x,c])), codeOf=x=>codeIndex.get(x);
+
+// A landlord's overall standing on the four headline measures, and the row that shows it. Both live
+// here rather than inside one card so a landlord reads identically wherever it is listed. Each
+// measure becomes a position from 0 (worst in England) to 1 (best) and the score is their mean.
+const posOf=x=>{ const sv=minSafeOf(x), nd=x.m.non_decent_pct, rp=x.m.non_emergency_repairs_on_time_pct, ho=x.ho.ho_maladministration_per_10k_12m;
+  if([sv,nd,rp,ho].some(v=>v==null))return null;
+  return (betterThan(DIST.safe,sv,true)+betterThan(DIST.non_decent_pct,nd,false)
+        + betterThan(DIST.non_emergency_repairs_on_time_pct,rp,true)+betterThan(DIST.ho,ho,false))/4; };
+// Every score in England, so a score can be banded against the spread of scores rather than
+// against the raw percentiles it was averaged from. Averaging four percentiles pulls everything
+// toward the middle - the lowest score in England is 10 - so the old banding could never reach
+// red at all. Bottom quarter red, middle half yellow, top quarter green, computed from the data
+// so the cuts follow it. Rounded first, so two landlords showing the same number always match.
+const SCORES=ALL.map(x=>(x.homes>=1000?posOf(x):null)).filter(v=>v!=null).map(v=>Math.round(v*100)).sort((a,b)=>a-b);
+const scoreBand=n=>{ if(n==null||!SCORES.length)return 'none';
+  return n<SCORES[Math.floor(SCORES.length*0.25)]?'bad':n<SCORES[Math.floor(SCORES.length*0.75)]?'mid':'good'; };
+// four small squares, one per headline measure, in that measure's band
+const bandsOf=x=>[levelSafety(minSafeOf(x)), qLevelHigh(x.m.non_decent_pct,Q.non_decent_pct),
+  qLevelLow(x.m.non_emergency_repairs_on_time_pct,Q.non_emergency_repairs_on_time_pct), qLevelHigh(x.ho.ho_maladministration_per_10k_12m,Q.ho_maladministration_per_10k_12m)];
+const strip=x=>`<span class="strip" title="Safety, decent homes, repairs, Ombudsman">${bandsOf(x).map(b=>`<i class="m-${b}"></i>`).join('')}</span>`;
+// One shape for every landlord row, wherever it appears: the score on the right, the four
+// headline measures as squares, and how many homes. The Regulator's consumer grade is not
+// shown here — it comes from an inspection rather than these four returns, and it belongs on
+// the card, next to the judgement a reader can actually open.
+const llRow=(x,code,homesTxt,laCtx,opt)=>{ const p=posOf(x), n=p==null?null:Math.round(p*100), o=opt||{};
+  return `<li data-l="${esc(code)}"${laCtx?` data-la-ctx="${esc(laCtx)}"`:''}><span class="nm">${o.rank?`<span class="rk">${o.rank}</span>`:''}<i class="who w-${standingOf(code)}${x.type==='LA'?' la':''}"></i>${esc(x.name)}</span><span class="hm">${n!=null?pill(n+'/100',scoreBand(n)):pill('Not ranked')}</span>
+    <span class="vd">${strip(x)}${homesTxt}</span></li>`; };
+
+// ---- Ask the record ----
+// The question goes to /api/ask, where a model with query tools over this same dataset
+// composes an answer from what the tools return. It comes back with the rows it used, and
+// those are rendered here from the client's own copy of the data, so a reader can check
+// every figure against a card. The model never writes a number from memory.
+let askSeq=0, lastAnswer=null, fromAnswer=false;
+// The model writes markdown. Everything is escaped first and only a fixed set of marks is
+// then let back through as tags, so nothing the model types can become markup we did not
+// choose. Anything outside that set stays on the page as the literal characters it is.
+const inl=s=>esc(s)
+  .replace(/\*\*([^*]+?)\*\*/g,'<strong>$1</strong>')
+  .replace(/(^|[\s(\[])\*([^*\n]+?)\*(?=[\s).,;:!?\]]|$)/g,'$1<em>$2</em>')
+  .replace(/(^|[\s(\[])_([^_\n]+?)_(?=[\s).,;:!?\]]|$)/g,'$1<em>$2</em>');
+function paras(t){
+  const lines=String(t||'').split('\n').map(x=>x.trim());
+  let out='', list=null;
+  const shut=()=>{ if(list){ out+=`</${list}>`; list=null; } };
+  for(const ln of lines){
+    if(!ln){ shut(); continue; }
+    let m;
+    if(m=ln.match(/^[-•*]\s+(.+)$/)){ if(list!=='ul'){ shut(); out+='<ul>'; list='ul'; } out+=`<li>${inl(m[1])}</li>`; continue; }
+    if(m=ln.match(/^\d+[.)]\s+(.+)$/)){ if(list!=='ol'){ shut(); out+='<ol>'; list='ol'; } out+=`<li>${inl(m[1])}</li>`; continue; }
+    shut();
+    // a heading it was told not to write: keep the words, drop the hashes
+    out+=`<p>${inl(ln.replace(/^#{1,6}\s+/,''))}</p>`;
+  }
+  shut();
+  return out;
+}
+async function askRecord(question){
+  const my=++askSeq;
+  // The server sends one line per event as it goes: each lookup as the model asks for it,
+  // then the answer a few words at a time. They are shown as they arrive so the wait is
+  // never a blank.
+  const steps=[]; let draft='', stepsEl=null, draftEl=null;
+  const paint=()=>{ if(!stepsEl||my!==askSeq)return;
+    stepsEl.innerHTML=steps.map((t,i)=>`<div class="step ${i===steps.length-1?'cur':'done'}"><i></i>${esc(t)}</div>`).join(''); };
+  const paintDraft=()=>{ if(my!==askSeq)return;
+    if(!draft){                                            // words that turned out to be a preamble: back to the working-out
+      if(draftEl){ draftEl.remove(); draftEl=null; }
+      if(!stepsEl){ bd.innerHTML=`<div class="sec"><div class="steps"></div></div>`; stepsEl=bd.querySelector('.steps'); paint(); }
+      return; }
+    if(!draftEl){ if(stepsEl){ stepsEl.parentNode.remove(); stepsEl=null; }
+      draftEl=document.createElement('div'); draftEl.className='sec ans'; bd.prepend(draftEl); }
+    draftEl.innerHTML=paras(draft); measure(); };
+  const take=line=>{ if(!line.trim())return; let m; try{ m=JSON.parse(line); }catch{ return; }
+    if(m.step){ if(m.replace&&steps.length) steps[steps.length-1]=m.step; else steps.push(m.step); paint(); }
+    if(m.text){ draft+=m.text; paintDraft(); }
+    if(m.discard){ draft=''; for(let i=steps.length-1;i>=0;i--) if(steps[i]==='Writing the answer') steps.splice(i,1); paintDraft(); paint(); }
+    if(m.done) body=m.done; if(m.error) body={error:m.error}; };
+  open(esc(question),'Asked of the record',`<div class="sec"><div class="steps"></div></div>`,false,['q','Question']);
+  stepsEl=bd.querySelector('.steps'); steps.push('Reading the question'); paint();
+  card.classList.remove('collapsed'); measure();
+  let res, body={};
+  try{
+    res=await fetch('/api/ask',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question})});
+    if(/x-ndjson/.test(res.headers.get('content-type')||'')&&res.body){
+      const rd=res.body.getReader(), dec=new TextDecoder(); let buf='';
+      for(;;){ const {value,done}=await rd.read(); if(done)break;
+        buf+=dec.decode(value,{stream:true}); const lines=buf.split('\n'); buf=lines.pop(); lines.forEach(take); }
+      take(buf);
+      if(!body.answer&&!body.error) body={error:'The answer did not arrive in full. Try again.'};
+    } else body=await res.json().catch(()=>({}));
+  }catch(e){ body={error:'The record could not be reached. Check your connection and try again.'}; }
+  if(my!==askSeq) return;                                  // a newer question replaced this one
+  if(!res||!res.ok||body.error){ renderAnswer(question,null,body.error||'Something went wrong answering that.'); return; }
+  renderAnswer(question,body,null);
+}
+function renderAnswer(question,body,err){
+  if(err){ open(esc(question),'Asked of the record',`<div class="sec"><p class="err">${esc(err)}</p></div>`,false,['q','Question']); return; }
+  lastAnswer={question,body};
+  const refs=body.refs||{landlords:[],boroughs:[],scope:[]};
+  // the boroughs the question was about; a landlord row opens where it holds homes there
+  const scope=new Set([...(refs.scope||[]),...(refs.boroughs||[])].filter(c=>LAS[c]));
+  const ctxFor=code=>{ const hs=dots.filter(d=>d.code===code); const inS=scope.size?hs.filter(d=>scope.has(d.la)):[];
+    const d=(inS.length?inS:hs).sort((a,b)=>b.homes-a.homes)[0]; return d?d.la:''; };
+  const lrows=refs.landlords.filter(c=>L[c]).map(c=>{ const x=L[c];
+    return llRow(x,c,x.homes?fmtInt(x.homes)+' homes':'',ctxFor(c)); }).join('');
+  const brows=refs.boroughs.filter(c=>LAS[c]).map(c=>{ const la=LAS[c];
+    return `<li data-la="${esc(c)}"><span class="nm"><i class="who w-${laBandOf(c)}"></i>${esc(la.name)}</span><span class="hm">${fmtInt(la.total)} social homes</span>
+      <span class="vd">${esc(la.region)} · ${la.n_landlords} landlords</span></li>`; }).join('');
+  const used=(body.steps||[]).length?body.steps.map(t=>t.replace(/^(\w)/,(m)=>m.toLowerCase())).join('; ')
+            :(body.calls||[]).map(c=>c.tool.replace(/_/g,' ')).filter((v,i,a)=>a.indexOf(v)===i).join(', ');
+  open(esc(question),'Answered from the published record',
+    `<div class="sec ans">${paras(body.answer)}</div>
+     ${lrows?`<div class="sec"><h3><span><svg class="ic" aria-hidden="true"><use href="#i-list"/></svg>Landlords This Answer Draws On</span></h3><ul class="llist">${lrows}</ul></div>`:''}
+     ${brows?`<div class="sec"><h3><span><svg class="ic" aria-hidden="true"><use href="#i-map"/></svg>Places This Answer Draws On</span></h3><ul class="llist">${brows}</ul></div>`:''}
+     <details><summary><svg class="ic ic-s" aria-hidden="true"><use href="#i-info"/></svg>How This Answer Was Made</summary>
+      <div class="sec"><p class="src">A language model read your question and ran lookups on the record${used?': '+esc(used):''}. It is only allowed to state figures those lookups returned, and every landlord or place it mentions is listed above so you can open its card and check. The record shows what is happening, not why: it holds no information on funding, stock or management.</p>
+      <p class="src">${srcTSM()}</p><p class="src">${srcRSH()}</p><p class="src">${srcHO()}</p><p class="src">${srcVFM()}</p></div></details>`,
+    false,['q','Question']);
+  card.classList.remove('collapsed'); measure();
+  // Show the reader where the answer is. The lookups say which boroughs the question was
+  // about; a landlord named in a London answer is shown where it holds homes in London,
+  // not at its largest holding somewhere else in England.
+  const firstL=refs.landlords.find(c=>L[c]), firstB=refs.boroughs.find(c=>LAS[c]);
+  if(firstL){ const hs=dots.filter(d=>d.code===firstL); const inScope=scope.size?hs.filter(d=>scope.has(d.la)):[];
+    const d=(inScope.length?inScope:hs).sort((a,b)=>b.homes-a.homes)[0];
+    if(d){ selLA=d.la; selDot=d; flyTo(d.x,d.y,fitS*6); draw(); } }
+  else if(firstB){ const c=centroidOf(firstB); if(c)flyTo(c[0],c[1],zoomForBBox(firstB)); }
+}
+window.askRecord=askRecord;
+
+function showLA(code,keepView){
+  const la=LAS[code]; if(!la)return; selLA=code; selDot=null;
+  if(!keepView){ const c=centroidOf(code); if(c)flyTo(c[0],c[1],zoomForBBox(code)); } else draw();
+  const row=h=>{ const x=L[h.code];
+    if(!x)return `<li><span class="nm" style="color:var(--ink-3)"><i class="who w-${standingOf(h.code)}${h.council?' la':''}"></i>${esc(h.name||h.code)}</span><span class="hm">${pill('Not ranked')}</span>
+      <span class="vd"><span class="strip"><i class="m-none"></i><i class="m-none"></i><i class="m-none"></i><i class="m-none"></i></span>${fmtInt(h.homes)} here · under 1,000 homes nationally, so not required to report</span></li>`;
+    return llRow(x,h.code,fmtInt(h.homes)+' here',code); };
+  const all=la.landlords;
+  open('Borough: '+esc(la.name), `${esc(la.region)} · ${fmtInt(la.total)} social homes here. ${fmtInt(la.council_homes)} owned by the council, ${fmtInt(la.prp_homes)} by housing associations`,
+   `<div class="sec"><h3><span>Across Every Landlord Here</span> <small>Weighted by homes</small></h3>
+      <div class="kpis">
+      <div class="k-${qLevelHigh(la.metrics.ho_maladministration_per_10k_12m,Q.ho_maladministration_per_10k_12m)}"><div class="l">Ombudsman findings per 10,000 homes, last 12 months</div><div class="n">${la.metrics.ho_maladministration_per_10k_12m!=null?fmt(la.metrics.ho_maladministration_per_10k_12m):'<span class="nd">n/a</span>'}</div></div>
+      <div class="k-${qLevelHigh(la.metrics.non_decent_pct,Q.non_decent_pct)}"><div class="l">Homes failing the Decent Homes Standard</div><div class="n">${la.metrics.non_decent_pct!=null?fmt(la.metrics.non_decent_pct)+'<u>%</u>':'<span class="nd">n/a</span>'}</div></div>
+      <div class="k-${levelSafety(la.metrics.fire_risk_assessment_pct)}"><div class="l">Homes with an in-date fire risk assessment</div><div class="n">${la.metrics.fire_risk_assessment_pct!=null?fmt(la.metrics.fire_risk_assessment_pct)+'<u>%</u>':'<span class="nd">n/a</span>'}</div></div>
+      <div class="k-${la.metrics.share_homes_c3_c4==null?'none':la.metrics.share_homes_c3_c4>=30?'bad':la.metrics.share_homes_c3_c4>=10?'poor':la.metrics.share_homes_c3_c4>0?'mid':'good'}"><div class="l">Homes whose landlord is graded C3 or C4</div><div class="n">${la.metrics.share_homes_c3_c4!=null?fmt(la.metrics.share_homes_c3_c4)+'<u>%</u>':'<span class="nd">n/a</span>'}</div></div>
+      </div>
+      <p class="src">Weighted by how many homes each landlord owns here. This is not the council's own record: pick a landlord below for that.</p></div>
+    <div class="sec"><h3><span>Landlords With Homes Here</span> <small>${la.n_landlords} in total, largest first</small></h3>
+      <ul class="llist">${all.map(row).join('')}</ul></div>
+
+    <div class="sec"><p class="src">Homes by area: RSH Statistical Data Return ${D.meta.tsm_year} for housing associations, MHCLG Local Authority Housing Statistics ${D.meta.tsm_year} for the council. Borough figures average landlord figures weighted by homes here.</p></div>`,
+   false,['area','Borough',laBandOf(code)]);
+}
+
+const CATL={'responsive-repairs-activity':'Repairs & condition','managing-relations':'Complaint handling','asb-abuse-nuisance':'Anti-social behaviour','financial':'Rent, charges & money','moving-buying-selling-home':'Moving, buying, selling','estate-management':'Estate management','health-and-safety-inc-building-safety':'Health & building safety','information-and-data-management':'Information & data','occupancy-rights':'Occupancy rights','planned-works':'Planned works','enquiry-stage':'Enquiry stage','retired':'Other'};
+const OUTL={'severe-maladministration':'Severe maladministration','maladministration':'Maladministration','partial-maladministration':'Partial maladministration','reasonable-redress':'Reasonable redress','no-maladministration':'No maladministration'};
+function showLandlord(code,dot){
+  const x=L[code]; if(!x)return;
+  // opened from a list or a search rather than from the map: fly to the landlord's largest holding
+  if(!dot){ const d=dots.filter(d=>d.code===code).sort((a,b)=>b.homes-a.homes)[0];
+    if(d){ dot=d; flyTo(d.x,d.y,fitS*9); } }
+  selDot=dot||null;
+  selLA=dot?dot.la:null; draw();
+  const ho=x.ho, rec=D.recent[code]||[], mix=D.catmix[code]||{};
+  const mixMax=Math.max(1,...Object.values(mix));
+  const catL=CATL, outL=OUTL;
+  const isLA=x.type==='LA';
+
+  // The Regulator sometimes publishes one half of a landlord's return and withholds the other, saying why.
+  // A blank would read as "not measured"; the reason is the more useful fact, so it is quoted verbatim.
+  const WH=x.withheld||{};
+  const whNote=(s)=>s?`<p class="src withheld"><b>The Regulator withheld this data.</b> ${esc(s)}</p>`:'';
+
+  /* ---- the four questions a resident actually asks, in that order ---- */
+  const safeKeys=['fire_risk_assessment_pct','gas_safety_pct','asbestos_pct','legionella_pct','lift_pct'];
+  const safeVals=safeKeys.map(k=>x.m[k]).filter(v=>v!=null);
+  const worstSafe=safeVals.length?Math.min(...safeVals):null;
+  const worstSafeKey=safeKeys.filter(k=>x.m[k]!=null).sort((a,b)=>x.m[a]-x.m[b])[0];
+  const safeLv=levelSafety(worstSafe);
+  const ndLv=qLevelHigh(x.m.non_decent_pct,Q.non_decent_pct);
+  const repLv=qLevelLow(x.m.non_emergency_repairs_on_time_pct,Q.non_emergency_repairs_on_time_pct);
+  const hoLv=qLevelHigh(ho.ho_maladministration_per_10k_12m,Q.ho_maladministration_per_10k_12m);
+  const bands=[safeLv,ndLv,repLv,hoLv];
+  const nBad=bands.filter(b=>b==='bad'||b==='poor').length;
+  const known=bands.filter(b=>b!=='none').length;
+  const heroLv=bands.includes('bad')?'bad':nBad>=1?'poor':known?'good':'none';
+  const heroTxt=WH.mi&&known<3?'The Regulator withheld this landlord\'s management information, so it cannot be placed on the four measures.'
+    : !known?'Not enough is published about this landlord to place it.'
+    : nBad===0?'None of the four measures below puts this landlord in the worst quarter of the sector.'
+    : nBad===known?`All ${nBad} measures below put this landlord in the worst quarter of the sector.`
+    : `${nBad} of the ${known} measures below put this landlord in the worst quarter of the sector.`;
+
+  const four=`<div class="sec">
+    ${whNote(WH.mi)}
+    ${bigRow('i-shield','Homes with safety checks in date',worstSafe,'%',worstSafeKey?Q[worstSafeKey]:null,false,safeLv,
+        worstSafe==null?'Not reported':worstSafe>=99.95?'Every home checked, as the standard requires'
+        :`Weakest of the five is ${esc((MEAS[worstSafeKey]||{}).l||'').toLowerCase().replace(' in date','')}. The standard is 100%.`,1,worstSafeKey?x.prev[worstSafeKey]:null)}
+    ${bigRow('i-home','Homes failing the Decent Homes Standard',x.m.non_decent_pct,'%',Q.non_decent_pct,true,ndLv,standing(betterThan(DIST.non_decent_pct,x.m.non_decent_pct,false)),0,x.prev.non_decent_pct)}
+    ${bigRow('i-clock','Routine repairs finished on time',x.m.non_emergency_repairs_on_time_pct,'%',Q.non_emergency_repairs_on_time_pct,false,repLv,standing(betterThan(DIST.non_emergency_repairs_on_time_pct,x.m.non_emergency_repairs_on_time_pct,true)),0,x.prev.non_emergency_repairs_on_time_pct)}
+    ${(()=>{ const rate=ho.ho_maladministration_per_10k_12m, cs=ho.ho_cases_12m||0, mal=ho.ho_maladministration_12m||0,
+        sev=ho.ho_severe_12m?`, <b>${ho.ho_severe_12m} severely</b>`:'',
+        decided=`The Ombudsman decided ${cs} case${cs===1?'':'s'} about this landlord in the last year, ${mal} went against them${sev}.`;
+      const reading=rate!=null?`${standing(betterThan(DIST.ho,rate,false))}. ${cs?`${cs} case${cs===1?'':'s'} decided, ${mal} went against them${sev}.`:'The Ombudsman decided no cases about this landlord in the last year.'}`
+        :!cs?'The Ombudsman decided no cases about this landlord in the last year.'
+        :x.homes!=null?`A rate per 10,000 homes is not calculated below 1,000 homes, because a single case would swing it. ${decided}`
+        :`This landlord publishes no owned-stock figure, so its findings cannot be put on a per-10,000-homes basis. ${decided}`;
+      return bigRow('i-flag','Ombudsman findings per 10k homes',rate,'',Q.ho_maladministration_per_10k_12m,true,hoLv,reading,0,null,
+        cs?'Not comparable':'No decisions'); })()}
+  </div>`;
+
+  const sat=['sat_overall','sat_repairs','sat_safe','sat_listens','sat_complaints'];
+  const tenants=`<div class="sec">
+    ${whNote(WH.tp)}
+    <dl class="pairs">${sat.map(k=>{ const v=x.m[k], pc=betterThan(DIST[k],v,true), lv=bandOfPct(pc);
+      return `<dt>${esc(MEAS[k].l)}${v==null?'':`<small>${standing(pc)} on this question</small>`}</dt><dd class="sev-${lv}">${v==null?'<span class="nd">n/a</span>':fmt(v)+'%'}</dd>`; }).join('')}</dl>
+    <p class="src">Each answer is coloured against other landlords' answers to the same question, not against the other answers here. Tenants everywhere rate complaint handling low, so a modest score on that question can still be among the best.</p>
+    <p class="src">${x.survey.n?fmtInt(x.survey.n)+' tenants responded':'From the landlord\u2019s tenant survey'}${x.survey.method?', mainly '+esc(x.survey.method).toLowerCase():''}.</p></div>`;
+
+  const GR=x.grades, chg=GR.chg||{};
+  // The route to the latest judgement, in the Regulator's own categories: a planned inspection, a
+  // routine stability check, or responsive engagement — the Regulator stepping in after something
+  // was raised with it. Then the two formal flags a tenant should know about.
+  const ROUTE={'Inspection':'after a planned inspection','Stability Check':'after a routine stability check','Responsive Engagement':'after the Regulator stepped in over a concern raised with it',
+    'Stability Check and Responsive Engagement':'after a stability check and the Regulator stepping in over a concern','Inspection and Responsive Engagement':'after an inspection and the Regulator stepping in over a concern','Interim Judgement':'as an interim judgement'};
+  const flags=`${GR.under_review?`<p class="warn">Grading under review since ${niceDate(GR.date)}. ${(GR.C||GR.G||GR.V)?'The Regulator is investigating whether these grades still hold; they may be lowered.':'The Regulator is investigating a matter that may affect how this landlord is graded.'}</p>`:''}
+    ${GR.enforcement?`<p class="warn">Enforcement notice issued ${niceDate(GR.enforcement.date)}${GR.enforcement.about?' — '+esc(GR.enforcement.about):''}. This is the Regulator's formal step beyond a grade.</p>`:''}`;
+  const gdates=[['C',GR.C,GR.C_date],['G',GR.G,GR.G_date],['V',GR.V,GR.V_date]].filter(([,g])=>g).map(([,,d])=>d);
+  const sameDate=gdates.length>0&&gdates.every(d=>d===gdates[0]);
+  const graded=gdates.length?(sameDate?`Graded ${niceDate(gdates[0])}`:'Latest judgement published '+niceDate(GR.date)):(GR.date?'Latest judgement published '+niceDate(GR.date):'');
+  const grades=`<div class="sec">
+    ${flags}
+    <div class="grades">${gradeRow(GR.C,'C',GR.C_date,isLA,chg.C,!sameDate,true)}${gradeRow(GR.G,'G',GR.G_date,isLA,chg.G,!sameDate,!!GR.C)}${gradeRow(GR.V,'V',GR.V_date,isLA,chg.V,!sameDate,!!(GR.C||GR.G))}</div>
+    ${graded?`<p class="src" style="margin-top:var(--s4)">${graded}${ROUTE[GR.route]?', '+ROUTE[GR.route]:''}. The Regulator of Social Housing grades from 1, the best, to 4, the worst.</p>`:''}</div>`;
+
+  const ORD={compensation:'Compensation',apology:'An apology','take-specific-action-non-repair':'Specific action','policy-review':'A policy review',repairs:'Repairs','staff-training':'Staff training','case-review':'A case review','process-change':'A process change',other:'Other action'};
+  const ordered=x.orders?`<div class="sec"><h3><span>What The Ombudsman Ordered</span> <small>Across ${fmtInt(ho.ho_cases_all)} decisions</small></h3>
+      <dl class="pairs">${Object.entries(x.orders).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<dt>${esc(ORD[k]||k)}</dt><dd class="sev-none">${v}</dd>`).join('')}</dl>
+      <p class="src">One decision can carry several orders, so these add up to more than the number of decisions. This is what the landlord was told to put right.</p></div>`:'';
+  const whois=`<div class="sec"><h3><span>Who This Landlord Is</span></h3>
+      <dl class="pairs">
+        ${x.since?`<dt>Registered with the Regulator since</dt><dd class="sev-none">${x.since}</dd>`:''}
+        ${x.profit?`<dt>Status</dt><dd class="sev-none">${x.profit==='Profit'?'For profit':esc(x.profit)}</dd>`:''}
+        ${x.form?`<dt>Legal form</dt><dd class="sev-none">${esc(x.form)}</dd>`:''}
+        ${x.homes?`<dt>Social-rent homes in England</dt><dd class="sev-none">${fmtInt(x.homes)}</dd>`:''}
+        ${x.la_count?`<dt>Boroughs with homes</dt><dd class="sev-none">${fmtInt(x.la_count)}</dd>`:''}
+      </dl>
+      <p class="src">From the Regulator's register of providers. A registration date is the date that registered body was entered on the register, which for a landlord formed by a merger is later than the history of the organisations inside it.</p></div>`;
+  const complaints=`<div class="sec"><h3><span><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg>Ombudsman Record</span> <small>Since Dec 2020</small></h3>
+      <dl class="pairs">
+        <dt>Decisions published</dt><dd class="sev-none">${fmtInt(ho.ho_cases_all)}</dd>
+        <dt>Went against the landlord <span class="nd">(sector 73%)</span></dt><dd class="sev-${ho.ho_maladministration_rate_all==null?'none':ho.ho_maladministration_rate_all>=80?'poor':ho.ho_maladministration_rate_all>=73?'mid':'good'}">${ho.ho_maladministration_rate_all!=null?fmt(ho.ho_maladministration_rate_all)+'%':'n/a'}</dd>
+        <dt>Severe maladministration</dt><dd class="${ho.ho_severe_all?'sev-bad':'sev-none'}">${ho.ho_severe_all||0}</dd>
+        ${ho.ho_compensation_sum_all>0?`<dt>Compensation ordered <span class="nd">(read from ${fmtInt(ho.ho_compensation_known_all)} of ${fmtInt(ho.ho_cases_all)} decisions)</span></dt><dd class="sev-none">at least £${fmtInt(ho.ho_compensation_sum_all)}</dd>`:''}
+      </dl>
+      ${ho.ho_compensation_sum_all>0?`<p class="src">Amounts are read from the text of each decision, which is the only place they are published. Where a decision sets out a total and a breakdown that do not reconcile, or awards a weekly sum, no figure is taken from it — so this is a floor, not a total.</p>`:''}
+      ${Object.keys(mix).length?`<div class="mix" style="margin-top:14px">${Object.entries(mix).slice(0,6).map(([k,v])=>`<div><span>${esc(catL[k]||k)}</span><i style="width:${(v/mixMax*100).toFixed(0)}%"></i><span>${v}</span></div>`).join('')}</div>`:''}
+    </div>
+    ${ordered}
+    ${rec.length?`<div class="sec"><h3><span><svg class="ic" aria-hidden="true"><use href="#i-folder"/></svg>Recent Decisions</span></h3><ul class="cases">${rec.slice(0,6).map(c=>`<li><span class="m">${monthName(c[1])}</span><span class="c">${esc(c[2]?outL[c[2]]||c[2]:'Outcome not tagged')}${c[3]?' · '+esc(c[3].split('|').map(t=>catL[t]||t).join(', ')):''}</span><a href="https://www.housing-ombudsman.org.uk/decisions/${esc(c[4])}/" target="_blank" rel="noopener">read<svg class="ic ic-s" aria-hidden="true"><use href="#i-out"/></svg></a></li>`).join('')}</ul></div>`:''}`;
+
+  const allMeasures=`${WH.mi?`<div class="sec">${whNote(WH.mi)}</div>`:''}<div class="sec"><h3>Safety Checks <small>Share of homes in date</small></h3>${safeKeys.map(k=>statRow(k,x)).join('')}</div>
+    <div class="sec"><h3>Condition And Repairs</h3>${['non_decent_pct','non_emergency_repairs_on_time_pct','emergency_repairs_on_time_pct','sat_repairs','sat_repair_time','sat_well_maintained','sat_safe'].map(k=>statRow(k,x)).join('')}</div>
+    <div class="sec"><h3>Service, Complaints And Respect</h3>${['sat_overall','sat_fair_respect','sat_listens','sat_informed','stage1_complaints_per_1000','stage1_complaints_on_time_pct','sat_complaints','asb_cases_per_1000','sat_asb','sat_communal','sat_neighbourhood'].map(k=>statRow(k,x)).join('')}</div>`;
+
+  const here=dot?`<b>${fmtInt(dot.homes)}</b> homes in ${esc(LAS[dot.la].name)} · `:'';
+  const sc=posOf(x), scn=sc==null?null:Math.round(sc*100);
+  open(esc(x.name),
+    `${here}${isLA?'A council, landlord for its own homes':'Housing association'} · ${x.homes?fmtInt(x.homes)+' social-rent homes in England':x.size}${x.la_count>1?` across ${x.la_count} boroughs`:''}
+     <div class="hsc">${scn!=null?pill(scn+'/100',scoreBand(scn)):pill('Not ranked')}<small>${scn!=null?`Its position across the four measures below, better than ${scn}% of landlords`:'Not enough of the four measures below are published to place this landlord'}</small></div>`,
+   `<div class="sec summary"><p>${summaryOf(x,bands,isLA)}</p></div>
+    ${four}
+    ${costSection(x,isLA,betterThan(DIST.non_emergency_repairs_on_time_pct,x.m.non_emergency_repairs_on_time_pct,true))}
+    ${rentSection(x,isLA,dot)}
+    ${homesSection(x,isLA)}
+    <details><summary><svg class="ic ic-s" aria-hidden="true"><use href="#i-badge"/></svg>The Regulator's Judgement<span class="pills">${(x.grades.C||x.grades.G||x.grades.V)?[x.grades.C,x.grades.G,x.grades.V].filter(Boolean).map(g=>pill(g,GRADE_LV[g])).join(''):pill('Not Yet Inspected')}${GR.under_review?pill('Under Review','poor'):''}${GR.enforcement?pill('Enforcement Notice','bad'):''}</span></summary>${grades}</details>
+    <details><summary><svg class="ic ic-s" aria-hidden="true"><use href="#i-chat"/></svg>What Tenants Say<span class="pills">${x.m.sat_overall!=null?pill(fmt(x.m.sat_overall)+'% Satisfied',bandOfPct(betterThan(DIST.sat_overall,x.m.sat_overall,true))):(WH.tp?pill('Withheld By The Regulator','poor'):pill('Not Reported'))}</span></summary>${tenants}</details>
+    <details><summary><svg class="ic ic-s" aria-hidden="true"><use href="#i-folder"/></svg>Ombudsman Record<span class="pills">${pill(fmtInt(ho.ho_cases_all)+' Cases',hoLv)}${ho.ho_severe_all?pill(ho.ho_severe_all+' Severe','bad'):''}</span></summary>${complaints}</details>
+    <details><summary><svg class="ic ic-s" aria-hidden="true"><use href="#i-list"/></svg>All 22 Published Measures<span class="pills">${pill(D.meta.tsm_year)}</span></summary>${allMeasures}</details>
+    <details><summary><svg class="ic ic-s" aria-hidden="true"><use href="#i-badge"/></svg>Who This Landlord Is<span class="pills">${x.profit==='Profit'?pill('For Profit','poor'):''}${x.since?pill('Since '+x.since):''}</span></summary>${whois}</details>
+    <details><summary><svg class="ic ic-s" aria-hidden="true"><use href="#i-info"/></svg>Where These Figures Come From</summary>
+      <div class="sec"><p class="src">The summary at the top of this card is composed from the figures beneath it by fixed rules, not written by a language model; every clause in it can be checked against a number on the card.</p>
+      ${x.homes_grp?`<p class="src">This landlord’s own stock return records only the homes the parent holds directly — far fewer than the group it covers — so the homes figure used here, and in every rate on this page, is the same field summed across the group. Both are from the Regulator’s Statistical Data Return.</p>`:''}
+      <p class="src">Every landlord is compared with all ${N} English landlords of 1,000 homes or more. Green means better than most landlords, orange the worst 25%, red the worst 10%. The bar under each figure shows the same thing by position: the track runs from the 10th to the 90th percentile, the darker band is the middle half, and the tick is the median.</p>
+      <p class="src">${srcTSM()}</p><p class="src">${srcRSH()}</p><p class="src">${srcHO()}</p>${isLA?`<p class="src">${srcLAHS()}</p>`:`<p class="src">${srcVFM()}</p><p class="src">${srcRent()}</p>`}
+      ${dot?'<p class="src">Dots mark where a landlord holds homes in a borough. They are spread inside it, not placed at real addresses. No public dataset maps social homes to buildings yet.</p>':''}
+      ${x.tsm_url?`<p class="src"><a href="${esc(x.tsm_url)}" target="_blank" rel="noopener">The landlord's own published page</a></p>`:''}</div></details>
+    <details><summary><svg class="ic ic-s" aria-hidden="true"><use href="#i-flag"/></svg>Report</summary><div class="sec">${acts(x)}</div></details>`,
+   false,isLA?['la','Council landlord',standingOf(code)]:['ll','Housing association',standingOf(code)]);
+}
+
+
+/* A landlord too small for the Regulator's returns. The Ombudsman covers every member landlord whatever its
+   size, so there is a record here — a shorter one. Saying so explicitly matters: a blank result would read as
+   "nothing on file", which is the opposite of the truth. */
+function showSmall(code){
+  const x=SM[code]; if(!x)return;
+  selDot=null; selLA=null; draw();
+  const ho=x.ho||{}, rec=(D.smallcases||{})[code]||[], mix=D.catmix[code]||{};
+  const mixMax=Math.max(1,...Object.values(mix));
+  const isLA=x.type==='LA', n=ho.ho_cases_all||0;
+  // Two different reasons a landlord is here, and they must not be confused. Most are below the Regulator's
+  // 1,000-home reporting threshold. A couple filed last year and not this one: those are absent, not small.
+  const absent=!!x.prev_band;
+  const C=x.lahs||null;                       // a council that files LAHS has a full record of its own
+  const ORD={compensation:'Compensation',apology:'An apology','take-specific-action-non-repair':'Specific action','policy-review':'A policy review',repairs:'Repairs','staff-training':'Staff training','case-review':'A case review','process-change':'A process change',other:'Other action'};
+  const rate=ho.ho_maladministration_rate_all;
+  const g=x.grades||null;
+  open(esc(x.name),
+   (isLA?'Council landlord':'Housing association')+(absent?' · Not in the Regulator\'s '+D.meta.tsm_year+' returns':' · Under 1,000 social homes'),
+   `<div class="sec">
+      <p class="lede">The Ombudsman has published <b>${fmtInt(n)}</b> decision${n===1?'':'s'} about this landlord${ho.ho_severe_all?`, <b>${ho.ho_severe_all}</b> of them severe maladministration`:''}. ${C?'Its own council return is published too; the Regulator\'s measures are not.':`Nothing else about it is published${absent?' in this year\'s returns':', because of its size'}.`}</p>
+      ${C?`<p class="src">This council files the Local Authority Housing Statistics return, so its own figures on stock, rent collection, arrears, empty homes and capital works are published and shown below. What is missing is the Regulator's side: the Tenant Satisfaction Measures, tenant survey results and regulatory grades.</p>`:''}
+      <p class="src">${C?'':absent
+        ? `This landlord reported the Tenant Satisfaction Measures for ${D.meta.tsm_prev}, with ${esc(x.prev_band)} homes, but does not appear in the Regulator's ${D.meta.tsm_year} returns. So there is no current safety, condition, repair, rent or cost figure for it — not because it has a clean record, but because this year's returns do not include it.`
+        : `Landlords with fewer than 1,000 social homes do not have to file the Tenant Satisfaction Measures, the Statistical Data Return or Value for Money metrics, and the Regulator does not routinely inspect them. So there are no safety, condition, repair, rent or cost figures for this landlord anywhere — not because it has a clean record, but because nobody collects them at this size.`}
+        ${C?'':n<10?'With so few decisions, treat the count below as a description of those cases and nothing more: it is not a measure of the service.':''}</p>
+      <p class="src">It has no dot on the map because the stock-by-borough return that places the dots is filed by landlords in the Regulator's current returns only.</p>
+    </div>
+    ${g?`<details open><summary><svg class="ic ic-s" aria-hidden="true"><use href="#i-badge"/></svg>The Regulator's Judgement<span class="pills">${[g.C,g.G,g.V].filter(Boolean).map(v=>pill(v,GRADE_LV[v.replace('*','')])).join('')}</span></summary><div class="sec">
+      ${g.C?gradeRow(g.C,'C',g.C_date,isLA,null,true,false):''}${g.G?gradeRow(g.G,'G',g.G_date,isLA,null,true,true):''}${g.V?gradeRow(g.V,'V',g.V_date,isLA,null,true,true):''}
+      <p class="src" style="margin-top:var(--s4)">A landlord this size is normally only graded after something prompts a judgement, so a grade here means the Regulator looked.</p></div></details>`:''}
+    <details open><summary><svg class="ic ic-s" aria-hidden="true"><use href="#i-folder"/></svg>Ombudsman Record<span class="pills">${pill(fmtInt(n)+' Decision'+(n===1?'':'s'))}${ho.ho_severe_all?pill(ho.ho_severe_all+' Severe','bad'):''}</span></summary><div class="sec">
+      <dl class="pairs">
+        <dt>Decisions published</dt><dd class="sev-none">${fmtInt(n)}</dd>
+        <dt>Went against the landlord</dt><dd class="sev-none">${ho.ho_maladministration_all||0}${rate!=null&&n>=10?` <span class="nd">(${fmt(rate)}%)</span>`:''}</dd>
+        <dt>Severe maladministration</dt><dd class="${ho.ho_severe_all?'sev-bad':'sev-none'}">${ho.ho_severe_all||0}</dd>
+        ${ho.ho_compensation_sum_all>0?`<dt>Compensation ordered <span class="nd">(read from ${fmtInt(ho.ho_compensation_known_all)} of ${fmtInt(n)} decisions)</span></dt><dd class="sev-none">at least £${fmtInt(ho.ho_compensation_sum_all)}</dd>`:''}
+      </dl>
+      ${ho.ho_compensation_sum_all>0?`<p class="src">Amounts are read from the text of each decision, the only place they are published. Where a total and its breakdown do not reconcile, or the award is a weekly sum, no figure is taken — so this is a floor, not a total.</p>`:''}
+      ${Object.keys(mix).length?`<div class="mix" style="margin-top:14px">${Object.entries(mix).slice(0,6).map(([k,v])=>`<div><span>${esc(CATL[k]||k)}</span><i style="width:${(v/mixMax*100).toFixed(0)}%"></i><span>${v}</span></div>`).join('')}</div>`:''}
+    </div></details>
+    ${x.orders?`<details><summary><svg class="ic ic-s" aria-hidden="true"><use href="#i-list"/></svg>What The Ombudsman Ordered<span class="pills">${x.orders.compensation?pill(x.orders.compensation+' Compensation'):''}</span></summary><div class="sec">
+      <dl class="pairs">${Object.entries(x.orders).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<dt>${esc(ORD[k]||k)}</dt><dd class="sev-none">${v}</dd>`).join('')}</dl>
+      <p class="src">One decision can carry several orders, so these add up to more than the number of decisions. This is what the landlord was told to put right — at this number of cases it says more than a percentage can.</p></div></details>`:''}
+    ${C?`<details><summary><svg class="ic ic-s" aria-hidden="true"><use href="#i-home"/></svg>The Council's Own Return<span class="pills">${pill(fmtInt(C.homes)+' Homes')}</span></summary><div class="sec">
+      <dl class="pairs">
+        <dt>Homes owned</dt><dd class="sev-none">${fmtInt(C.homes)}</dd>
+        ${C.nondecent_pct!=null?`<dt>Homes not meeting the Decent Homes Standard${C.dhs_inspected_pct!=null?` <span class="nd">(${fmt(C.dhs_inspected_pct,0)}% inspected)</span>`:''}</dt><dd class="sev-none">${fmt(C.nondecent_pct,1)}%</dd>`:''}
+        ${C.arrears_pct!=null?`<dt>Current tenants' arrears${medOf('arrears_pct',1,' <span class="nd">(council median ',
+          '%)</span>')}</dt><dd class="sev-${lahsLv(C.arrears_pct_pct_below,false)}">${fmt(C.arrears_pct,1)}%</dd>`:''}
+        ${C.collection_rate!=null?`<dt>Rent collected</dt><dd class="sev-${lahsLv(C.collection_rate_pct_below,true)}">${fmt(C.collection_rate,1)}%</dd>`:''}
+        ${C.relet_days!=null?`<dt>Days to re-let an empty home</dt><dd class="sev-${lahsLv(C.relet_days_pct_below,false)}">${fmt(C.relet_days,0)}</dd>`:''}
+        ${C.capital_works_per_home!=null?`<dt>Capital works per home</dt><dd class="sev-none">£${fmtInt(C.capital_works_per_home)}</dd>`:''}
+        ${C.evictions_per_1000!=null?`<dt>Evictions per 1,000 homes</dt><dd class="sev-none">${fmt(C.evictions_per_1000,1)}</dd>`:''}
+        ${(C.built!=null||C.demolished!=null)?`<dt>Homes built and demolished in the year</dt><dd class="sev-none">${fmtInt(C.built||0)} · ${fmtInt(C.demolished||0)}</dd>`:''}
+      </dl>
+      <p class="src">${srcLAHS?srcLAHS():''}</p></div></details>`:''}
+    ${rec.length?`<details><summary><svg class="ic ic-s" aria-hidden="true"><use href="#i-folder"/></svg>Every Decision<span class="pills">${pill(rec.length+' Since Dec 2020')}</span></summary><div class="sec"><ul class="cases">${rec.slice(0,20).map(c=>`<li><span class="m">${monthName(c[1])}</span><span class="c">${esc(c[2]?OUTL[c[2]]||c[2]:'Outcome not tagged')}${c[3]?' · '+esc(c[3].split('|').map(t=>CATL[t]||t).join(', ')):''}</span><a href="https://www.housing-ombudsman.org.uk/decisions/${esc(c[4])}/" target="_blank" rel="noopener">read<svg class="ic ic-s" aria-hidden="true"><use href="#i-out"/></svg></a></li>`).join('')}</ul></div></details>`:''}
+    <details><summary><svg class="ic ic-s" aria-hidden="true"><use href="#i-badge"/></svg>Who This Landlord Is<span class="pills">${x.profit==='Profit'?pill('For Profit','poor'):''}${x.since?pill('Since '+x.since):''}</span></summary><div class="sec">
+      <dl class="pairs">
+        <dt>Registered with the Regulator since</dt><dd class="sev-none">${x.since||'—'}</dd>
+        ${x.profit?`<dt>Status</dt><dd class="sev-none">${x.profit==='Profit'?'For profit':esc(x.profit)}</dd>`:''}
+        ${x.form?`<dt>Legal form</dt><dd class="sev-none">${esc(x.form)}</dd>`:''}
+      </dl></div></details>
+    <details><summary><svg class="ic ic-s" aria-hidden="true"><use href="#i-info"/></svg>Where These Figures Come From</summary><div class="sec"><p class="src">${srcHO()}</p><p class="src">Name, registration date and status from the Regulator's register of providers. This landlord is registered but files none of the Regulator's performance returns.</p></div></details>
+    <details><summary><svg class="ic ic-s" aria-hidden="true"><use href="#i-flag"/></svg>Report</summary><div class="sec">${acts({})}</div></details>`,
+   false,isLA?['la','Council landlord','none']:['ll','Housing association','none']);
+}
+
+/* ================= search ================= */
+const q=document.getElementById('q'), sugg=document.getElementById('sugg');
+const items=[...Object.entries(L).map(([c,x])=>({t:'l',c,n:x.name,s:(x.type==='LA'?'Council':'Housing association')+(x.homes?' · '+fmtInt(x.homes)+' homes':'')})),
+             ...Object.entries(LAS).map(([c,la])=>({t:'la',c,n:la.name,s:'Borough · '+fmtInt(la.total)+' social homes'})),
+             // too small for the Regulator's returns, but the Ombudsman has ruled on them
+             ...Object.entries(SM).map(([c,x])=>({t:'s',c,n:x.name,s:(x.type==='LA'?'Council':'Housing association')+' · Under 1,000 homes · '+fmtInt(x.ho.ho_cases_all||0)+' Ombudsman decision'+((x.ho.ho_cases_all||0)===1?'':'s')}))];
+let cur=-1;
+// A question looks different from a name: several words, or a question mark. A name
+// match still comes first; the offer to ask sits under it.
+const looksLikeQuestion=v=>/\?$/.test(v)||v.split(/\s+/).length>=3;
+q.addEventListener('input',()=>{ const raw=q.value.trim(), v=raw.toLowerCase(); cur=-1; if(v.length<2){sugg.hidden=true;return;}
+  const hits=items.filter(i=>i.n.toLowerCase().includes(v)).slice(0,8);
+  let html=hits.map(h=>`<li role="option" data-t="${h.t}" data-c="${esc(h.c)}"><span>${esc(h.n)}</span><small>${esc(h.s)}</small></li>`).join('');
+  if(looksLikeQuestion(raw)&&raw.length>=8) html+=`<li role="option" class="ask" data-t="ask" data-c="${esc(raw)}"><span>Ask “${esc(raw)}”</span></li>`;
+  sugg.innerHTML=html; sugg.hidden=!html; });
+sugg.addEventListener('click',e=>{ const li=e.target.closest('li'); if(li)pick(li); });
+q.addEventListener('keydown',e=>{ const lis=[...sugg.children];
+  if(e.key==='ArrowDown')cur=Math.min(cur+1,lis.length-1); else if(e.key==='ArrowUp')cur=Math.max(cur-1,0);
+  else if(e.key==='Enter'){ if(lis[cur>=0?cur:0])pick(lis[cur>=0?cur:0]); else if(looksLikeQuestion(q.value.trim())&&q.value.trim().length>=8){ const v=q.value.trim(); sugg.hidden=true; q.value=''; q.blur(); askRecord(v); } return; }
+  else if(e.key==='Escape'){ sugg.hidden=true; return; } else return;
+  lis.forEach((l,i)=>l.setAttribute('aria-selected',i===cur)); });
+function pick(li){ sugg.hidden=true; q.value=''; q.blur();
+  if(li.dataset.t==='ask'){ askRecord(li.dataset.c); return; }
+  if(li.dataset.t==='s'){ showSmall(li.dataset.c); return; }
+  if(li.dataset.t==='la')showLA(li.dataset.c);
+  else { const code=li.dataset.c; const d=dots.filter(d=>d.code===code).sort((a,b)=>b.homes-a.homes)[0];
+         if(d){ selLA=d.la; flyTo(d.x,d.y,fitS*9); showLandlord(code,d); } else showLandlord(code); } }
+document.addEventListener('click',e=>{ if(!e.target.closest('.search'))sugg.hidden=true; });
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&!card.hidden){ hide(); return; }
+  if(e.target.closest('input,textarea'))return;
+  const cx=AVAIL.x+AVAIL.w/2, cy=AVAIL.y+AVAIL.h/2;
+  if(e.key==='+'||e.key==='='){ e.preventDefault(); zoomAt(cx,cy,1.5); }
+  else if(e.key==='-'||e.key==='_'){ e.preventDefault(); zoomAt(cx,cy,1/1.5); }
+  else if(e.key==='0'){ e.preventDefault(); view.user=0; resize(); } });
+
+/* ================= boot ================= */
+document.getElementById('foot').innerHTML=`<span><span class="num">${dots.length.toLocaleString()}</span> landlord holdings in <span class="num">${Object.keys(LAS).length}</span> boroughs. Every figure comes from a published official source, named in the card. Contains public sector information licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank" rel="noopener">Open Government Licence v3.0</a>. <a href="mailto:hello@housingrecords.org">Contact us</a></span>`;
+addEventListener('resize',resize);
+showHome();                 // lays the home card out first, so the fit is to the space it leaves
+bootT0=performance.now();
+resize();
+window.THR={showLA,showLandlord,D,dots,__draw:draw,replay:()=>{bootT0=performance.now();draw();},view:()=>view,selDot:()=>selDot,toScreen,toMap,flyTo,fitS:()=>fitS,dotAt,districtAt,laDotAt,dotsLive,lod:()=>({state:lodState,anim:lodAnim})};
+})();
+</script>
