@@ -894,12 +894,13 @@ function pointInDistrict(x, y, code) {
   return inside;
 }
 
-// Accept a raster hit only when the polygon geometry confirms it. Otherwise,
-// fall back to the nearest district interior candidate.
+// Accept a raster hit only when the polygon geometry confirms it, whether or not the
+// district has data (greyed-out Scotland, Wales and Northern Ireland still show their
+// names on hover). Otherwise, fall back to the nearest district interior candidate.
 function districtAt(x, y) {
   const n = idAt(x, y, 1);
   const hit = n ? codes[n - 1] : null;
-  if (hit && LAS[hit] && pointInDistrict(x, y, hit)) return hit;
+  if (hit && pointInDistrict(x, y, hit)) return hit;
 
   const candidate = districtNear(x, y, Math.max(1.2, 4 / view.s));
   if (candidate && LAS[candidate]) return candidate;
