@@ -99,7 +99,8 @@ source publisher (not affiliated). Our own derived data is CC BY 4.0 — see `DA
 ## 4. The pipeline
 
 ```
-pipeline/fetch_sources.sh     # re-download everything into data/raw/
+pipeline/fetch_sources.sh     # re-download the CURRENT official files into data/raw/
+pipeline/fetch_snapshot.sh    # or: the exact files the committed data was built from (GitHub release)
 pipeline/run.sh               # rebuild data/out/ and site/data.json
 ```
 

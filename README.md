@@ -63,15 +63,17 @@ You need Python 3.10+ and, for the "ask anything" feature, Node 20+.
 
 ```bash
 pip install -r requirements.txt
-bash pipeline/fetch_sources.sh   # downloads the official files into data/raw/ (about 60 MB)
+bash pipeline/fetch_snapshot.sh  # the exact official files the published figures were built from (7 MB)
 bash pipeline/run.sh             # rebuilds data/out/, site/data.json and dist/
 python3 -m http.server --directory site 8000    # then open http://localhost:8000
 ```
 
-`data/raw/` is not committed: the files are large and can be downloaded again from the official sources listed
-in [`data/SOURCES.md`](data/SOURCES.md). Government download links change when a publication is updated; if one
-fails, the landing page in `SOURCES.md` has the current link. Once a year a dated copy of the raw files
-will be attached to a GitHub release, so older figures can always be checked.
+`data/raw/` is not committed. Publishers replace and remove old files (the register of providers, for example,
+is reissued every month), so the exact files behind the published figures are archived as a dated GitHub
+release: `fetch_snapshot.sh` downloads them, and rebuilding from them reproduces the committed data exactly.
+To update the data from the **current** official files instead, run `bash pipeline/fetch_sources.sh` (about
+60 MB; the URLs and landing pages are in [`data/SOURCES.md`](data/SOURCES.md)), rebuild, check the figures,
+and publish a new snapshot release.
 
 The Ombudsman snapshot in `data/raw/ho/` **is** committed, because the Ombudsman has no bulk download and a later
 crawl is a different dataset. Re-crawling takes about 45 minutes with `pipeline/crawler.js`, run from a browser.
