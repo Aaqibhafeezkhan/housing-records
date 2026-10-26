@@ -1,0 +1,79 @@
+# Runs on every pull request. Has no access to any secrets.
+name: Checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  syntax:
+    name: Code parses
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Python pipeline compiles
+        run: python -m py_compile pipeline/*.py
+      - name: Ask feature parses
+        run: node --check api/ask.js
+      - name: Site script parses
+        run: |
+          python - <<'PY'
+          import re, pathlib
+          html = pathlib.Path("site/index.html").read_text()
+          blocks = re.findall(r"<script(?![^>]*\bsrc=)[^>]*>(.*?)</script>", html, re.S)
+          pathlib.Path("/tmp/site.js").write_text("\n;\n".join(blocks))
+          PY
+          node --check /tmp/site.js
+      - name: site/data.json is valid JSON
+        run: python -c "import json; json.load(open('site/data.json'))"
+
+  rebuild:
+    # Downloads every official file and rebuilds from scratch, then checks the result is exactly what is
+    # committed. A failure means either the change altered figures (expected for a data change: commit the
+    # rebuilt files) or a publisher has replaced a file (see data/SOURCES.md). Scottish data comes from a
+    # "current" link that changes when the regulator publishes, so expect that table to move.
+    name: Pipeline reproduces the committed data
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Did this change touch the pipeline or the data?
+        id: touched
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || git diff --name-only HEAD~1 HEAD | grep -qE '^(pipeline/|data/|site/data\.json|requirements\.txt)'; then
+            echo "run=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=no" >> "$GITHUB_OUTPUT"; echo "No pipeline or data changes; skipping the rebuild."
+          fi
+      - if: steps.touched.outputs.run == 'yes'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - if: steps.touched.outputs.run == 'yes'
+        run: pip install -r requirements.txt
+      - name: Download the official source files
+        if: steps.touched.outputs.run == 'yes'
+        run: bash pipeline/fetch_sources.sh
+      - name: Rebuild everything
+        if: steps.touched.outputs.run == 'yes'
+        run: bash pipeline/run.sh
+      - name: Compare with what is committed
+        if: steps.touched.outputs.run == 'yes'
+        run: |
+          if ! git diff --exit-code --stat -- site/data.json data/out; then
+            echo "::error::Rebuilding from the official sources does not reproduce the committed data. Either a source file has changed, or the committed data was not produced by the pipeline."
+            exit 1
+          fi
