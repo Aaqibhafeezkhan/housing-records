@@ -21,8 +21,8 @@ Home Group Limited,186,home,L3076,auto
 Haringey London Borough Council,168,haringey london,00AP,auto
 London Borough of Lambeth,164,lambeth,00AY,auto
 Hammersmith and Fulham Council,162,hammersmith and fulham,00AN,auto
-Sovereign Network Group,154,sovereign network,4837,auto
 Leeds City Council,154,leeds,00DA,auto
+Sovereign Network Group,154,sovereign network,4837,auto
 London Borough of Hackney,149,hackney,00AM,auto
 One Housing Group Limited,148,one,L4552,auto
 Islington Council,141,islington,00AU,auto
@@ -33,8 +33,8 @@ Orbit Group Limited,133,orbit,L4123,auto
 Camden Council,130,camden,00AG,auto
 Midland Heart Limited,127,midland heart,L4466,auto
 Wandle Housing Association Limited,120,wandle,L0277,auto
-Torus62 Limited,111,torus62,5065,auto
 Onward Homes Limited,111,onward,4649,auto
+Torus62 Limited,111,torus62,5065,auto
 Westminster City Council,111,westminster,00BK,auto
 LiveWest Homes Limited,110,livewest,4873,auto
 London Borough of Islington,106,islington,00AU,auto
@@ -54,15 +54,15 @@ Metropolitan Housing Trust Limited,77,,L0726,auto
 Royal Borough of Kensington and Chelsea,73,kensington and chelsea,00AW,auto
 London Borough of Lewisham,72,lewisham,00AZ,auto
 Metropolitan Thames Valley Housing,72,thames valley,L0726,auto
+Anchor Hanover Group,71,anchor hanover,LH4095,auto
 Citizen Housing,71,citizen,5075,auto
 ForHousing Limited,71,forhousing,L4528,auto
-Anchor Hanover Group,71,anchor hanover,LH4095,auto
 Yorkshire Housing Limited,69,yorkshire,L4521,auto
 London Borough of Newham,67,newham,00BB,auto
 Lewisham Council,66,lewisham,00AZ,auto
 London Borough of Hammersmith and Fulham,66,hammersmith and fulham,00AN,auto
-Sandwell Metropolitan Borough Council,64,sandwell,00CS,auto
 Longhurst Group Limited,64,longhurst,5060,auto
+Sandwell Metropolitan Borough Council,64,sandwell,00CS,auto
 London Borough of Ealing,63,ealing,00AJ,auto
 Moat Homes Limited,63,moat,L0386,auto
 Bristol City Council,62,bristol,00HB,auto
@@ -70,19 +70,19 @@ Sovereign Housing Association Limited,62,sovereign,4837,manual
 Waltham Forest Council,62,waltham forest,00BH,auto
 Origin Housing Limited,60,origin,L0871,auto
 London Borough of Croydon,59,croydon,00AH,auto
-Harlow District Council,58,harlow,22UJ,auto
 City of Westminster Council,58,westminster,00BK,auto
+Harlow District Council,58,harlow,22UJ,auto
 Bromford Housing Group Limited,56,bromford,L4449,auto
-Optivo,55,optivo,5171,auto
 London Borough of Barnet,55,barnet,00AC,auto
-London Borough of Hounslow,54,hounslow,00AT,auto
-Town and Country Housing,54,town and country,4878,auto
-Shepherds Bush Housing Association Limited,54,shepherds bush,4729,auto
+Optivo,55,optivo,5171,auto
 Accent Housing Limited,54,accent,L4511,auto
-Incommunities Limited,53,incommunities,L4476,auto
+London Borough of Hounslow,54,hounslow,00AT,auto
+Shepherds Bush Housing Association Limited,54,shepherds bush,4729,auto
+Town and Country Housing,54,town and country,4878,auto
 East Midlands Housing Group Limited,53,east midlands,L4530,auto
-Wandsworth Council,53,wandsworth,00BJ,auto
+Incommunities Limited,53,incommunities,L4476,auto
 Jigsaw Homes Group Limited,53,jigsaw,LH4345,auto
+Wandsworth Council,53,wandsworth,00BJ,auto
 Great Places Housing Association,51,great places,L4465,auto
 Rochdale Boroughwide Housing Limited,51,rochdale boroughwide,4607,auto
 One Vision Housing Limited,48,one vision,4804,auto
@@ -92,479 +92,515 @@ Norwich City Council,45,norwich,33UG,auto
 Thames Valley Housing Association Limited,44,thames valley,L0726,auto
 Thirteen Housing Group Limited,44,thirteen,L4522,auto
 West Kent Housing Association,44,west kent,LH3827,auto
-Gentoo Group Limited,43,gentoo,L4313,auto
-Network Homes Limited,43,network,4837,manual
-London Borough of Tower Hamlets,43,tower hamlets,00BG,auto
 Catalyst Housing Limited,43,catalyst,4878,auto
+Gentoo Group Limited,43,gentoo,L4313,auto
+London Borough of Tower Hamlets,43,tower hamlets,00BG,auto
+Network Homes Limited,43,network,4837,manual
 Optivo (now Southern Housing),43,optivo,5171,auto
 Brighton and Hove City Council,42,brighton and hove,00ML,auto
-Paradigm Housing Group Limited,42,paradigm,L4215,auto
 Citizen Housing Group Limited,42,citizen,5075,auto
+Paradigm Housing Group Limited,42,paradigm,L4215,auto
 London Borough of Hillingdon,40,hillingdon,00AS,auto
 Gateshead Metropolitan Borough Council,39,gateshead,00CH,auto
-Your Housing Group Limited,39,your,L4203,auto
-Wolverhampton City Council,39,wolverhampton,00CW,auto
 Leicester City Council,39,leicester,00FN,auto
 One Manchester Limited,39,one manchester,4808,auto
-London Borough of Brent,38,brent,00AE,auto
-London Borough of Barking and Dagenham,38,barking and dagenham,00AB,auto
-Newham Council,38,newham,00BB,auto
-Kingston upon Thames Council,38,kingston upon thames,00AX,auto
-Guinness Housing Association Limited,38,guinness,4729,auto
+Wolverhampton City Council,39,wolverhampton,00CW,auto
+Your Housing Group Limited,39,your,L4203,auto
 Curo Places Limited,38,curo places,LH4336,auto
+Guinness Housing Association Limited,38,guinness,4729,auto
+Kingston upon Thames Council,38,kingston upon thames,00AX,auto
+London Borough of Barking and Dagenham,38,barking and dagenham,00AB,auto
+London Borough of Brent,38,brent,00AE,auto
+Newham Council,38,newham,00BB,auto
 Thurrock Council,38,thurrock,00KG,auto
 London Borough of Enfield,37,enfield,00AK,auto
 Homes Plus Limited,36,plus,L4491,auto
 Manchester City Council,36,manchester,00BN,auto
 Hackney Council,35,hackney,00AM,auto
-Poplar Housing And Regeneration Community Association Limited,35,poplar and regeneration community,L4170,auto
-Octavia Housing,35,octavia,L0717,auto
 London Borough of Waltham Forest,35,waltham forest,00BH,auto
+Octavia Housing,35,octavia,L0717,auto
+Poplar Housing And Regeneration Community Association Limited,35,poplar and regeneration community,L4170,auto
 Basildon Borough Council,34,basildon,22UB,auto
 Haringey Council,34,haringey,00AP,manual
-Magenta Living,34,magenta living,L4435,auto
-London Borough of Wandsworth,34,wandsworth,00BJ,auto
 London Borough of Redbridge,34,redbridge,00BC,auto
+London Borough of Wandsworth,34,wandsworth,00BJ,auto
+Magenta Living,34,magenta living,L4435,auto
 Irwell Valley Housing Association Limited,33,irwell valley,L0061,auto
-Sheffield City Council,33,sheffield,00CG,auto
 MHS Homes Ltd,33,mhs,,unmatched
+Sheffield City Council,33,sheffield,00CG,auto
 East Devon District Council,32,east devon,18UB,auto
 Estuary Housing Association Limited,32,estuary,L3535,auto
-Karbon Homes Limited,32,karbon,4846,auto
-Sovereign Network Homes (Former Network Homes),32,sovereign network,4837,auto
 Flagship Housing Group Limited,32,flagship,4651,auto
+Karbon Homes Limited,32,karbon,4846,auto
 Nottingham Community Housing Association Limited,32,nottingham community,4817,auto
+Sovereign Network Homes (Former Network Homes),32,sovereign network,4837,auto
 Nottingham City Council,31,nottingham,00FY,auto
 South Tyneside Council,30,south tyneside,00CL,auto
 Bolton at Home Limited,29,bolton at home,4568,auto
 Golding Homes Limited,29,golding,LH4402,auto
 Livv Housing Group,29,livv,LH4343,auto
-Walsall Housing Group Limited,29,walsall,L4389,auto
 Stockport Homes Limited,29,stockport,00BS,auto
+Walsall Housing Group Limited,29,walsall,L4389,auto
 Ongo Homes Limited,28,ongo,L4486,auto
 Dudley Metropolitan Borough Council,27,dudley,00CR,auto
 Regenda Limited,27,regenda,4653,auto
 Havering Council,26,havering,00AR,auto
-Plus Dane Housing Limited,26,plus dane,L4556,auto
 Phoenix Community Housing Association (Bellingham and Downham) Limited,26,phoenix community,L4505,auto
+Plus Dane Housing Limited,26,plus dane,L4556,auto
 Believe Housing Limited,25,believe,5071,auto
-Settle Group,25,settle,L4370,auto
 Newcastle City Council,25,newcastle,00CJ,auto
+Settle Group,25,settle,L4370,auto
+Arun District Council,24,arun,45UC,auto
 Habinteg Housing Association Limited,24,habinteg,LH0459,auto
+Salix Homes Limited,24,salix,4609,auto
 Thrive Homes Limited,24,thrive,L4520,auto
 Welwyn Hatfield Borough Council,24,welwyn hatfield,26UL,auto
-Arun District Council,24,arun,45UC,auto
-Salix Homes Limited,24,salix,4609,auto
-North Tyneside Council,23,north tyneside,00CK,auto
 Kirklees Metropolitan Borough Council,23,kirklees,00CZ,auto
+North Tyneside Council,23,north tyneside,00CK,auto
 Tower Hamlets Council,23,tower hamlets,00BG,auto
-Swindon Borough Council,22,swindon,00HX,auto
-Cornwall Housing Limited,22,cornwall,00HE,auto
-Hightown Housing Association Limited,22,hightown,L2179,auto
-Southampton City Council,22,southampton,00MS,auto
-First Choice Homes Oldham Limited,22,first choice oldham,4582,auto
-Stevenage Borough Council,22,stevenage,26UH,auto
-Raven Housing Trust Limited,22,raven,L4334,auto
-Kirklees Council,22,kirklees,00CZ,auto
 Broxtowe Borough Council,22,broxtowe,37UD,auto
+Cornwall Housing Limited,22,cornwall,00HE,auto
+First Choice Homes Oldham Limited,22,first choice oldham,4582,auto
+Hightown Housing Association Limited,22,hightown,L2179,auto
+Kirklees Council,22,kirklees,00CZ,auto
+Raven Housing Trust Limited,22,raven,L4334,auto
+Southampton City Council,22,southampton,00MS,auto
+Southway Housing Trust (Manchester) Limited,22,southway,L4507,auto
+Stevenage Borough Council,22,stevenage,26UH,auto
+Swindon Borough Council,22,swindon,00HX,auto
 Your Housing Limited,22,your,L4203,auto
 bpha Limited,22,bpha,LH3887,auto
-Southway Housing Trust (Manchester) Limited,22,southway,L4507,auto
 Barnsley Metropolitan Borough Council,21,barnsley,00CC,auto
-North West Leicestershire District Council,21,north west leicestershire,31UH,auto
 Chelmer Housing Partnership Limited,21,chelmer partnership,L4331,auto
 Connexus Homes Limited,21,connexus,LH4353,auto
+North West Leicestershire District Council,21,north west leicestershire,31UH,auto
 Nottingham City Homes Registered Provider Limited,21,nottingham registered provider,00FY,auto
 Beyond Housing Limited,20,beyond,LH4401,auto
-NSAH (Alliance Homes) Limited,20,nsah,L4459,auto
 Kingston upon Hull City Council,20,kingston upon hull,00FA,auto
-Gateway Housing Association Limited,19,gateway,L0517,auto
-Waverley Borough Council,19,waverley,43UL,auto
+NSAH (Alliance Homes) Limited,20,nsah,L4459,auto
 Cottsway Housing Association Limited,19,cottsway,L4312,auto
-Tower Hamlets Community Housing,19,tower hamlets community,L4260,auto
 East Riding of Yorkshire Council,19,east riding yorkshire,00FB,auto
-Red Kite Community Housing Limited,18,red kite community,4682,auto
-Milton Keynes City Council,18,milton keynes,00MG,auto
-Watford Community Housing Trust,18,watford community,L4495,auto
-London Borough of Harrow,18,harrow,00AQ,auto
-West Northamptonshire Council,18,west northamptonshire,5130,auto
+Gateway Housing Association Limited,19,gateway,L0517,auto
+Tower Hamlets Community Housing,19,tower hamlets community,L4260,auto
+Waverley Borough Council,19,waverley,43UL,auto
 Cobalt Housing Limited,18,cobalt,L4361,auto
-Housing 21,18,21,L0055,auto
 Dacorum Borough Council,18,dacorum,26UC,auto
-Freebridge Community Housing Limited,18,freebridge community,L4463,auto
 Eastlight Community Homes Limited,18,eastlight community,L4499,auto
+Freebridge Community Housing Limited,18,freebridge community,L4463,auto
+Housing 21,18,21,L0055,auto
+London Borough of Harrow,18,harrow,00AQ,auto
+Milton Keynes City Council,18,milton keynes,00MG,auto
+Red Kite Community Housing Limited,18,red kite community,4682,auto
 Slough Borough Council,18,slough,00MD,auto
-Lewes District Council,17,lewes,21UF,auto
-Eastbourne Borough Council,17,eastbourne,21UC,auto
-St Albans City and District Council,17,st albans and,26UG,auto
+Watford Community Housing Trust,18,watford community,L4495,auto
+West Northamptonshire Council,18,west northamptonshire,5130,auto
 City of Doncaster Council,17,doncaster,00CE,auto
-Magna Housing Limited,16,magna,4844,auto
-Housing Solutions,16,solutions,L4073,auto
-Saffron Housing Trust Limited,16,saffron,LH4412,auto
-London Borough of Havering Council,16,havering,00AR,auto
-Charnwood Borough Council,16,charnwood,31UC,auto
-Stoke-on-Trent City Council,16,stoke on trent,00GL,auto
-Bromford Housing Association Limited,16,bromford,L4449,auto
-Portsmouth City Council,16,portsmouth,00MR,auto
-Cheshire Peaks & Plains Housing Trust,16,cheshire peaks and plains,L4472,auto
+Eastbourne Borough Council,17,eastbourne,21UC,auto
+Lewes District Council,17,lewes,21UF,auto
+St Albans City and District Council,17,st albans and,26UG,auto
 Barking and Dagenham Council,16,barking and dagenham,00AB,auto
+Brent Council,16,brent,00AE,auto
+Bromford Housing Association Limited,16,bromford,L4449,auto
+Charnwood Borough Council,16,charnwood,31UC,auto
+Cheshire Peaks & Plains Housing Trust,16,cheshire peaks and plains,L4472,auto
 Epping Forest District Council,16,epping forest,22UH,auto
+Housing Solutions,16,solutions,L4073,auto
 Karibu Community Homes Limited,16,karibu community,LH3728,auto
+London Borough of Havering Council,16,havering,00AR,auto
+Magna Housing Limited,16,magna,4844,auto
+Portsmouth City Council,16,portsmouth,00MR,auto
+Saffron Housing Trust Limited,16,saffron,LH4412,auto
+Stoke-on-Trent City Council,16,stoke on trent,00GL,auto
 Wakefield And District Housing Limited,16,wakefield and,,unmatched
 Westward Housing Group Limited,16,westward,4826,auto
-Brent Council,16,brent,00AE,auto
-Croydon Council,15,croydon,00AH,auto
-Luton Borough Council,15,luton,00KA,auto
-Derby City Council,15,derby,00FK,auto
-Rotherham Metropolitan Borough Council,15,rotherham,00CF,auto
 Colchester City Council,15,colchester,22UG,auto
-Trafford Housing Trust Limited,15,trafford,L4517,auto
+Croydon Council,15,croydon,00AH,auto
+Derby City Council,15,derby,00FK,auto
 Islington and Shoreditch Housing Association Limited,15,islington and shoreditch,L0457,auto
+Luton Borough Council,15,luton,00KA,auto
 Mid Devon District Council,15,mid devon,18UD,auto
-Rooftop Housing Association Limited,14,rooftop,L4404,auto
-Grand Union Housing Group Limited,14,grand union,,unmatched
-Soha Housing Limited,14,soha,L4130,auto
-Peabody Trust 2018,14,peabody 2018,4878,manual
-Saxon Weald,14,saxon weald,L4299,auto
+Rotherham Metropolitan Borough Council,15,rotherham,00CF,auto
+Trafford Housing Trust Limited,15,trafford,L4517,auto
 Crawley Borough Council,14,crawley,45UE,auto
+Grand Union Housing Group Limited,14,grand union,,unmatched
+Peabody Trust 2018,14,peabody 2018,4878,manual
+Rooftop Housing Association Limited,14,rooftop,L4404,auto
+Saxon Weald,14,saxon weald,L4299,auto
+Soha Housing Limited,14,soha,L4130,auto
 Trident Housing Association Limited,14,trident,L0979,auto
-Two Rivers Housing,13,two rivers,L4385,auto
-Places for People Homes Limited,13,places for people,L4236,auto
 B3 Living Limited,13,b3 living,L4455,auto
-Canterbury City Council,13,canterbury,29UC,auto
 "Bournemouth, Christchurch and Poole Council",13,bournemouth christchurch and poole,5069,auto
-Halton Housing,13,halton,L4456,auto
-The Community Housing Group Limited,13,community,LH4264,auto
 Brentwood Borough Council,13,brentwood,22UD,auto
-North Kesteven District Council,12,north kesteven,32UE,auto
-Oxford City Council,12,oxford,38UC,auto
+Canterbury City Council,13,canterbury,29UC,auto
+Halton Housing,13,halton,L4456,auto
+Places for People Homes Limited,13,places for people,L4236,auto
+The Community Housing Group Limited,13,community,LH4264,auto
+Two Rivers Housing,13,two rivers,L4385,auto
 Acis Group Limited,12,acis,L4229,auto
-Ocean Housing Limited,12,ocean,L4422,auto
-Community Gateway Association Limited,12,community gateway,L4457,auto
+Aspire Housing Limited,12,aspire,L4238,auto
 Bromsgrove District Housing Trust Limited,12,bromsgrove,LH4415,auto
+Community Gateway Association Limited,12,community gateway,L4457,auto
 East End Homes Limited,12,east end,L4434,auto
+Futures Housing Group Limited,12,futures,L4502,auto
+North Kesteven District Council,12,north kesteven,32UE,auto
+Ocean Housing Limited,12,ocean,L4422,auto
+Oxford City Council,12,oxford,38UC,auto
 Southend-on-Sea City Council,12,southend on sea,00KF,auto
 Trent & Dove Housing Limited,12,trent and dove,L4311,auto
-Aspire Housing Limited,12,aspire,L4238,auto
-Futures Housing Group Limited,12,futures,L4502,auto
-Cross Keys Homes Limited,11,cross keys,LH4428,auto
 Ashford Borough Council,11,ashford,29UB,auto
-North Northamptonshire Council,11,north northamptonshire,5129,auto
-Housing For Women,11,for women,L0970,auto
-Reading Borough Council,11,reading,00MC,auto
 Cambridge City Council,11,cambridge,12UB,auto
+Cross Keys Homes Limited,11,cross keys,LH4428,auto
+Housing For Women,11,for women,L0970,auto
+North Northamptonshire Council,11,north northamptonshire,5129,auto
+Reading Borough Council,11,reading,00MC,auto
 Royal Borough of Kingston Upon Thames,11,kingston upon thames,00AX,auto
-Soho Housing Association Limited,10,soho,LH1321,auto
-Thanet District Council,10,thanet,29UN,auto
-Christian Action (Enfield) Housing Association Limited,10,christian action,LH0676,auto
-Castles & Coasts Housing Association Limited,10,castles and coasts,4858,auto
-Sparrow Shared Ownership Limited,10,sparrow shared ownership,4636,auto
-Six Town Housing Limited,10,six town,00BM,auto
-Nottingham City Homes,10,nottingham,00FY,auto
-Mosscare St. Vincent’s Housing Group Limited,10,mosscare st vincent s,4857,auto
-Broadland Housing Association Limited,10,broadland,L0026,auto
-One Housing Group,10,one,L4552,auto
-Woking Borough Council,10,woking,43UM,auto
-Wigan Metropolitan Borough Council,10,wigan,00BW,auto
-London Borough of Sutton,10,sutton,00BF,auto
-Southend on Sea City Council,10,southend on sea,00KF,auto
-Hastoe Housing Association Limited,10,hastoe,L0018,auto
-Wiltshire Council,10,wiltshire,00HY,auto
-Women’s Pioneer Housing Limited,10,women s pioneer,L1548,auto
-Teign Housing,10,teign,LH4403,auto
 Adur District Council,10,adur,45UB,auto
-Lincolnshire Housing Partnership Limited,9,lincolnshire partnership,4877,auto
-London & Quadrant H T,9,london and quadrant h t,L4517,manual
-Wythenshawe Community Housing Group Limited,9,wythenshawe community,L4219,auto
-South Kesteven District Council,9,south kesteven,32UG,auto
-Wealden District Council,9,wealden,21UH,auto
+Broadland Housing Association Limited,10,broadland,L0026,auto
+Castles & Coasts Housing Association Limited,10,castles and coasts,4858,auto
+Christian Action (Enfield) Housing Association Limited,10,christian action,LH0676,auto
+Hastoe Housing Association Limited,10,hastoe,L0018,auto
+London Borough of Sutton,10,sutton,00BF,auto
+Mosscare St. Vincent’s Housing Group Limited,10,mosscare st vincent s,4857,auto
+Nottingham City Homes,10,nottingham,00FY,auto
+One Housing Group,10,one,L4552,auto
+Six Town Housing Limited,10,six town,00BM,auto
+Soho Housing Association Limited,10,soho,LH1321,auto
+Southend on Sea City Council,10,southend on sea,00KF,auto
+Sparrow Shared Ownership Limited,10,sparrow shared ownership,4636,auto
+Teign Housing,10,teign,LH4403,auto
+Thanet District Council,10,thanet,29UN,auto
+Wigan Metropolitan Borough Council,10,wigan,00BW,auto
+Wiltshire Council,10,wiltshire,00HY,auto
+Woking Borough Council,10,woking,43UM,auto
+Women’s Pioneer Housing Limited,10,women s pioneer,L1548,auto
 Babergh District Council,9,babergh,42UB,auto
 Barnet Council,9,barnet,00AC,auto
-Hounslow Council,9,hounslow,00AT,auto
-Progress Housing Association Limited,9,progress,LH4189,auto
-WATMOS Community Homes,9,watmos community,L4383,auto
-Redditch Borough Council,9,redditch,47UD,auto
-Croydon Churches Housing Association Limited,9,croydon churches,LH0495,auto
-Vico Homes Limited,9,vico,L4441,auto
 Bernicia Group,9,bernicia,4868,auto
+Croydon Churches Housing Association Limited,9,croydon churches,LH0495,auto
 Exeter City Council,9,exeter,18UC,auto
 Great Yarmouth Borough Council,9,great yarmouth,33UD,auto
-Silva Homes Limited,9,silva,L4172,auto
+Hounslow Council,9,hounslow,00AT,auto
+Lincolnshire Housing Partnership Limited,9,lincolnshire partnership,4877,auto
+London & Quadrant H T,9,london and quadrant h t,L4517,manual
 Milton Keynes Council,9,milton keynes,00MG,auto
+Progress Housing Association Limited,9,progress,LH4189,auto
+Redditch Borough Council,9,redditch,47UD,auto
+Silva Homes Limited,9,silva,L4172,auto
+South Kesteven District Council,9,south kesteven,32UG,auto
+Vico Homes Limited,9,vico,L4441,auto
+WATMOS Community Homes,9,watmos community,L4383,auto
+Wealden District Council,9,wealden,21UH,auto
+Wythenshawe Community Housing Group Limited,9,wythenshawe community,L4219,auto
+Broadacres Housing Association Limited,8,broadacres,LH4014,auto
+Bury Metropolitan Borough Council,8,bury,00BM,auto
+Chesterfield Borough Council,8,chesterfield,17UD,auto
+City of York Council,8,york,00FF,auto
+Cornwall Council,8,cornwall,00HE,auto
+Derwent Housing Association Limited,8,derwent,L4236,auto
+Folkestone & Hythe District Council,8,folkestone and hythe,29UL,auto
+Greenwich Council,8,greenwich,00AL,auto
+Ipswich Borough Council,8,ipswich,42UD,auto
 Mansfield District Council,8,mansfield,37UF,auto
 Newark and Sherwood District Council,8,newark and sherwood,37UG,auto
-Folkestone & Hythe District Council,8,folkestone and hythe,29UL,auto
+Plymouth Community Homes Limited,8,plymouth community,L4543,auto
+Somerset Council,8,somerset,5178,auto
 Stroud District Council,8,stroud,23UF,auto
-Broadacres Housing Association Limited,8,broadacres,LH4014,auto
 Swan Housing Association Limited,8,swan,L0247,auto
 Tamworth Borough Council,8,tamworth,41UK,auto
-City of York Council,8,york,00FF,auto
-Somerset Council,8,somerset,5178,auto
-Chesterfield Borough Council,8,chesterfield,17UD,auto
-Cornwall Council,8,cornwall,00HE,auto
-Greenwich Council,8,greenwich,00AL,auto
-Bury Metropolitan Borough Council,8,bury,00BM,auto
 The Industrial Dwellings Society (1885) Limited,8,industrial dwellings,L0266,auto
-Derwent Housing Association Limited,8,derwent,L4236,auto
-Plymouth Community Homes Limited,8,plymouth community,L4543,auto
-Ipswich Borough Council,8,ipswich,42UD,auto
-City of Wolverhampton Council,7,wolverhampton,00CW,auto
-Connect Housing Association Limited,7,connect,L2285,auto
-Winchester City Council,7,winchester,24UP,auto
-Wigan Council,7,wigan,00BW,auto
-Tandridge District Council,7,tandridge,43UK,auto
 Arhag Housing Association Limited,7,arhag,LH3811,auto
 Brighter Places,7,brighter places,L3758,auto
-Unity Housing Association Limited,7,unity,LH3737,auto
-City of Lincoln Council,7,lincoln,32UD,auto
-Warwick District Council,7,warwick,44UF,auto
-Muir Group Housing Association Limited,7,muir,L2194,auto
-The Extracare Charitable Trust,7,extracare charitable,4706,auto
 Central Bedfordshire Council,7,central bedfordshire,00KC,auto
+City of Lincoln Council,7,lincoln,32UD,auto
 City of London Corporation,7,london,00AA,auto
-Livin Housing Limited,7,livin,L4538,auto
+City of Wolverhampton Council,7,wolverhampton,00CW,auto
+Connect Housing Association Limited,7,connect,L2285,auto
 Ealing Council,7,ealing,00AJ,auto
 Harrow Council,7,harrow,00AQ,auto
 Inquilab Housing Association Limited,7,inquilab,,unmatched
+Livin Housing Limited,7,livin,L4538,auto
+Muir Group Housing Association Limited,7,muir,L2194,auto
 Sage Housing Limited,7,sage,,unmatched
-North Devon Homes,6,north devon,LH4249,auto
-Gravesham Borough Council,6,gravesham,29UG,auto
-Mount Green Housing Association Limited,6,mount green,L1556,auto
-Great Places Housing Group Limited,6,great places,L4465,auto
+Tandridge District Council,7,tandridge,43UK,auto
+The Extracare Charitable Trust,7,extracare charitable,4706,auto
+Unity Housing Association Limited,7,unity,LH3737,auto
+Warwick District Council,7,warwick,44UF,auto
+Wigan Council,7,wigan,00BW,auto
+Winchester City Council,7,winchester,24UP,auto
+Cognatum Estates Ltd,6,cognatum estates,,unmatched
+Darlington Borough Council,6,darlington,00EH,auto
 Dartford Borough Council,6,dartford,29UD,auto
-Greatwell Homes Limited,6,greatwell,L4509,auto
-Selwood Housing Society Limited,6,selwood,LH4097,auto
-Uttlesford District Council,6,uttlesford,22UQ,auto
-Nuneaton and Bedworth Borough Council,6,nuneaton and bedworth,44UC,auto
-Sage Rented Limited,6,sage rented,5083,auto
-Poole Housing Partnership Ltd,6,poole partnership,,unmatched
-Nottingham City Homes Limited,6,nottingham,00FY,auto
-Notting Hill Home Ownership Limited,6,notting hill home ownership,4880,auto
-Plexus UK (First Project) Limited,6,plexus uk,4757,auto
-Solihull Metropolitan Borough Council,6,solihull,00CT,auto
+Derby Homes Limited,6,derby,00FK,auto
 Gloucester City Homes Limited,6,gloucester,4584,auto
-South Derbyshire District Council,6,south derbyshire,17UK,auto
+Gravesham Borough Council,6,gravesham,29UG,auto
+Great Places Housing Group Limited,6,great places,L4465,auto
+Greatwell Homes Limited,6,greatwell,L4509,auto
 Jigsaw Homes Tameside,6,jigsaw tameside,LH4345,auto
 Joseph Rowntree Housing Trust,6,joseph rowntree,5079,auto
-Cognatum Estates Ltd,6,cognatum estates,,unmatched
 Lincoln City Council,6,lincoln,32UD,auto
 Melton Borough Council,6,melton,31UG,auto
+Mount Green Housing Association Limited,6,mount green,L1556,auto
+North Devon Homes,6,north devon,LH4249,auto
+Notting Hill Home Ownership Limited,6,notting hill home ownership,4880,auto
+Nottingham City Homes Limited,6,nottingham,00FY,auto
+Nuneaton and Bedworth Borough Council,6,nuneaton and bedworth,44UC,auto
+Plexus UK (First Project) Limited,6,plexus uk,4757,auto
+Poole Housing Partnership Ltd,6,poole partnership,,unmatched
+Sage Rented Limited,6,sage rented,5083,auto
+Selwood Housing Society Limited,6,selwood,LH4097,auto
+Solihull Metropolitan Borough Council,6,solihull,00CT,auto
+South Derbyshire District Council,6,south derbyshire,17UK,auto
 Sovereign Living Limited,6,sovereign living,4837,auto
-Derby Homes Limited,6,derby,00FK,auto
 Stafford & Rural Homes,6,stafford and rural,,unmatched
-Darlington Borough Council,6,darlington,00EH,auto
-Westminster Community Homes Limited,5,westminster community,00BK,auto
-Worthing Homes Limited,5,worthing,LH4208,auto
-Tuntum Housing Association Limited,5,tuntum,L3808,auto
-Spitalfields Housing Association Limited,5,spitalfields,C3022,auto
-Runnymede Borough Council,5,runnymede,43UG,auto
-Rykneld Homes Limited,5,rykneld,17UJ,auto
-The Pioneer Housing and Community Group Limited,5,pioneer and community,L4118,auto
-The Havebury Housing Partnership,5,havebury partnership,LH4339,auto
-Oadby and Wigston Borough Council,5,oadby and wigston,31UJ,auto
-The Abbeyfield Society,5,abbeyfield,H1046,auto
-South Cambridgeshire District Council,5,south cambridgeshire,12UG,auto
-Tendring District Council,5,tendring,22UN,auto
-South Liverpool Homes Limited,5,south liverpool,L4230,auto
-TBG Open Door Limited,5,tbg open door,4843,auto
-St Mungo Community Housing Association,5,st mungo community,LH0279,auto
-Northumberland Council,5,northumberland,00EM,auto
-‘Johnnie’ Johnson Housing Trust Limited,5,johnnie johnson,,unmatched
-Bromford Flagship Limited,5,bromford flagship,L4449,auto
-Bassetlaw District Council,5,bassetlaw,37UC,auto
-Gosport Borough Council,5,gosport,24UF,auto
-Guildford Borough Council,5,guildford,43UD,auto
-Blackpool Council,5,blackpool,00EY,auto
-Castle Point Borough Council,5,castle point,22UE,auto
-Central and Cecil Housing Trust,5,central and cecil,L4393,auto
-Bromford Flagship LiveWest Limited,5,bromford flagship livewest,L4449,auto
-Mid Suffolk District Council,5,mid suffolk,42UE,auto
+Uttlesford District Council,6,uttlesford,22UQ,auto
 Arawak Walton Housing Association Limited,5,arawak walton,L3713,auto
 Arcon Housing Association Limited,5,arcon,,unmatched
-Cotman Housing Association Limited,5,cotman,L0284,auto
-Havebury Homes,5,havebury,LH4339,auto
-Colchester Borough Council,5,colchester,22UG,auto
 Aster Communities,5,aster communities,L4393,auto
-Selby District Council,4,selby,5179,manual
-Bournville Village Trust,4,bournville village,L0702,auto
-Orwell Housing Association Limited,4,orwell,L0028,auto
-North Yorkshire Council,4,north yorkshire,5179,auto
-Victory Housing Trust,4,victory,4651,manual
-Whitefriars Housing Group Limited,4,whitefriars,5075,manual
-Sandbourne Housing Association,4,sandbourne,LH0418,auto
-Sanctuary Affordable Housing Limited,4,sanctuary affordable,L0247,auto
-Lancaster City Council,4,lancaster,30UH,auto
-Fairhive Homes Limited,4,fairhive,L4473,auto
-SHAL Housing Limited,4,shal,LH4035,auto
-Karbon Homes Limited inc Byker Community Trust,4,karbon inc byker community,4846,manual
-Warwickshire Rural Housing Association Limited,4,warwickshire rural,L3881,auto
-Somerset West and Taunton Council,4,somerset west and taunton,5178,manual
-Prima Housing Group Limited,4,prima,L1001,auto
+Bassetlaw District Council,5,bassetlaw,37UC,auto
+Blackpool Council,5,blackpool,00EY,auto
+Bromford Flagship Limited,5,bromford flagship,L4449,auto
+Bromford Flagship LiveWest Limited,5,bromford flagship livewest,L4449,auto
+Castle Point Borough Council,5,castle point,22UE,auto
+Central and Cecil Housing Trust,5,central and cecil,L4393,auto
+Colchester Borough Council,5,colchester,22UG,auto
+Cotman Housing Association Limited,5,cotman,L0284,auto
+Gosport Borough Council,5,gosport,24UF,auto
+Guildford Borough Council,5,guildford,43UD,auto
+Havebury Homes,5,havebury,LH4339,auto
+Mid Suffolk District Council,5,mid suffolk,42UE,auto
+Northumberland Council,5,northumberland,00EM,auto
+Oadby and Wigston Borough Council,5,oadby and wigston,31UJ,auto
+Runnymede Borough Council,5,runnymede,43UG,auto
+Rykneld Homes Limited,5,rykneld,17UJ,auto
+South Cambridgeshire District Council,5,south cambridgeshire,12UG,auto
+South Liverpool Homes Limited,5,south liverpool,L4230,auto
+Spitalfields Housing Association Limited,5,spitalfields,C3022,auto
+St Mungo Community Housing Association,5,st mungo community,LH0279,auto
+TBG Open Door Limited,5,tbg open door,4843,auto
+Tendring District Council,5,tendring,22UN,auto
+The Abbeyfield Society,5,abbeyfield,H1046,auto
+The Havebury Housing Partnership,5,havebury partnership,LH4339,auto
+The Pioneer Housing and Community Group Limited,5,pioneer and community,L4118,auto
+Tuntum Housing Association Limited,5,tuntum,L3808,auto
+Westminster Community Homes Limited,5,westminster community,00BK,auto
+Worthing Homes Limited,5,worthing,LH4208,auto
+‘Johnnie’ Johnson Housing Trust Limited,5,johnnie johnson,,unmatched
 A2Dominion Housing Options Limited,4,a2dominion options,L4240,auto
-East Suffolk Council,4,east suffolk,5070,auto
-Chisel Limited,4,chisel,L3642,auto
-Medway Council,4,medway,00LC,auto
-English Rural Housing Association Limited,4,english rural,L4004,auto
-EMH Housing and Regeneration Limited,4,emh and regeneration,L4530,auto
-Wokingham Borough Council,4,wokingham,00MF,auto
+Bournville Village Trust,4,bournville village,L0702,auto
 Calico Homes Limited,4,calico,L4254,auto
-South Holland District Council,4,south holland,32UF,auto
-Moat Housing Group Limited,4,moat,L0386,auto
+Chisel Limited,4,chisel,L3642,auto
+EMH Housing and Regeneration Limited,4,emh and regeneration,L4530,auto
+East Suffolk Council,4,east suffolk,5070,auto
 Ekaya Housing Association Limited,4,ekaya,LH3940,auto
+English Rural Housing Association Limited,4,english rural,L4004,auto
+Fairhive Homes Limited,4,fairhive,L4473,auto
+Karbon Homes Limited inc Byker Community Trust,4,karbon inc byker community,4846,manual
+Lancaster City Council,4,lancaster,30UH,auto
+Medway Council,4,medway,00LC,auto
+Moat Housing Group Limited,4,moat,L0386,auto
+North Yorkshire Council,4,north yorkshire,5179,auto
+Orwell Housing Association Limited,4,orwell,L0028,auto
+Prima Housing Group Limited,4,prima,L1001,auto
+SHAL Housing Limited,4,shal,LH4035,auto
+Sanctuary Affordable Housing Limited,4,sanctuary affordable,L0247,auto
+Sandbourne Housing Association,4,sandbourne,LH0418,auto
+Selby District Council,4,selby,5179,manual
+Somerset West and Taunton Council,4,somerset west and taunton,5178,manual
+South Holland District Council,4,south holland,32UF,auto
 The Cambridge Housing Society Limited,4,cambridge,L0992,auto
-Rugby Borough Council,3,rugby,44UD,auto
-Barnsbury Housing Association,3,barnsbury,L2518,auto
-Evolve Housing + Support,3,evolve support,H4400,auto
-Riverside Housing Co-operative (Redditch) Limited,3,riverside co operative,C4381,auto
-Retirement Lease Housing Association (RLHA),3,retirement lease,L1967,auto
-Cheshire West and Chester Council,3,cheshire west and chester,00EW,auto
-Hinckley and Bosworth Borough Council,3,hinckley and bosworth,31UE,auto
-Clarion,3,clarion,LH4087,auto
+Victory Housing Trust,4,victory,4651,manual
+Warwickshire Rural Housing Association Limited,4,warwickshire rural,L3881,auto
+Whitefriars Housing Group Limited,4,whitefriars,5075,manual
+Wokingham Borough Council,4,wokingham,00MF,auto
+A2Dominion Homes Limited,3,a2dominion,L4240,auto
+Ability Housing Association,3,ability,LH2174,auto
+Adullam Homes Housing Association Limited,3,adullam,LH1388,auto
+Affordable Housing Communities Limited,3,affordable communities,4836,auto
+Ashfield District Council,3,ashfield,37UB,auto
 Audley Group Ltd,3,audley,,unmatched
-Coastline Housing Limited,3,coastline,LH4165,auto
-High Peak Borough Council,3,high peak,17UH,auto
-Sage Homes RP Limited,3,sage rp,5082,auto
+Barnsbury Housing Association,3,barnsbury,L2518,auto
+Bolsover District Council,3,bolsover,17UC,auto
+Cannock Chase District Council,3,cannock chase,41UB,auto
 Cheshire Peaks & Plains Housing Trust Limited,3,cheshire peaks and plains,L4472,auto
+Cheshire West and Chester Council,3,cheshire west and chester,00EW,auto
+Clarion,3,clarion,LH4087,auto
+Co-operative Development Society Limited,3,co operative development,LH0170,auto
+Coastline Housing Limited,3,coastline,LH4165,auto
 Deptford Housing Co-operative Limited,3,deptford co operative,C2300,auto
 Dover District Council,3,dover,29UE,auto
-Sage Housing Limited (SHL),3,sage,,unmatched
-Greenhill Housing Association,3,greenhill,L0923,auto
+Evolve Housing + Support,3,evolve support,H4400,auto
 GreenSquare Group Limited,3,greensquare,LH3902,manual
-Salvation Army Housing Association (SAHA),3,salvation army,LH2429,auto
-Cannock Chase District Council,3,cannock chase,41UB,auto
-Sedgemoor District Council,3,sedgemoor,5178,manual
-Twenty11 Homes Ltd,3,twenty11,4682,manual
+Greenhill Housing Association,3,greenhill,L0923,auto
+High Peak Borough Council,3,high peak,17UH,auto
+Hinckley and Bosworth Borough Council,3,hinckley and bosworth,31UE,auto
 Hornsey Housing Trust Limited,3,hornsey,L0719,auto
-Bolsover District Council,3,bolsover,17UC,auto
-Shian Housing Association Limited,3,shian,LH3883,auto
-Co-operative Development Society Limited,3,co operative development,LH0170,auto
-Adullam Homes Housing Association Limited,3,adullam,LH1388,auto
-My Space Housing Solutions,3,my space solutions,4779,auto
-Wythenshawe Community Housing Group (2) Limited,3,wythenshawe community,L4219,auto
-Ability Housing Association,3,ability,LH2174,auto
+Innisfree Housing Association Limited,3,innisfree,LH3829,auto
 Leeds Federated Housing Association Limited,3,leeds federated,LH0989,auto
-Peter Bedford Housing Association Limited,3,peter bedford,LH0888,auto
-A2Dominion Homes Limited,3,a2dominion,L4240,auto
+Leeds Jewish Housing Association Limited,3,leeds jewish,L0440,auto
+My Space Housing Solutions,3,my space solutions,4779,auto
 Peabody Enterprises Limited,3,peabody enterprises,4878,manual
-Affordable Housing Communities Limited,3,affordable communities,4836,auto
-Weaver Vale Housing Trust Limited,3,weaver vale,L4341,auto
-Ashfield District Council,3,ashfield,37UB,auto
+Peter Bedford Housing Association Limited,3,peter bedford,LH0888,auto
 Pinnacle Affordable Homes Ltd,3,pinnacle affordable,4699,auto
 Plus Dane Housing Group Limited,3,plus dane,L4556,auto
-Leeds Jewish Housing Association Limited,3,leeds jewish,L0440,auto
-Innisfree Housing Association Limited,3,innisfree,LH3829,auto
-Equity Housing Group Limited,2,equity,,unmatched
-Brighton Housing Trust,2,brighton,,unmatched
-Windrush Alliance UK Community Interest Company,2,windrush alliance uk community interest company,4671,auto
+Retirement Lease Housing Association (RLHA),3,retirement lease,L1967,auto
+Riverside Housing Co-operative (Redditch) Limited,3,riverside co operative,C4381,auto
+Rugby Borough Council,3,rugby,44UD,auto
+Sage Homes RP Limited,3,sage rp,5082,auto
+Sage Housing Limited (SHL),3,sage,,unmatched
+Salvation Army Housing Association (SAHA),3,salvation army,LH2429,auto
+Sedgemoor District Council,3,sedgemoor,5178,manual
+Shian Housing Association Limited,3,shian,LH3883,auto
+Twenty11 Homes Ltd,3,twenty11,4682,manual
+Weaver Vale Housing Trust Limited,3,weaver vale,L4341,auto
+Wythenshawe Community Housing Group (2) Limited,3,wythenshawe community,L4219,auto
+Ash-Shahada Housing Association Limited,2,ash shahada,C3843,auto
+BCP Council,2,bcp,,unmatched
+Be One Homes,2,be one,4568,auto
+Berneslai Homes,2,berneslai,,unmatched
+Blackpool Borough Council,2,blackpool,00EY,auto
 Bournemouth Churches Housing Association Limited,2,bournemouth churches,LH0155,auto
-Look Ahead Care and Support Limited,2,look ahead care and support,LH0013,auto
-Onward Group Limited,2,onward,4649,auto
-Lodge Lane East Co-operative Housing Limited,2,lodge lane east co operative,C0508,auto
+Brighton Housing Trust,2,brighton,,unmatched
+Cheltenham Borough Homes Limited,2,cheltenham,23UB,auto
+Co-op Homes (South) Limited,2,co op,L4279,auto
+Concept Housing Association CIC,2,concept,4780,auto
+Cornerstone Housing Limited,2,cornerstone,L0147,auto
+Doncaster Metropolitan Borough Council,2,doncaster,00CE,auto
+Eastlight Community Homes,2,eastlight community,L4499,auto
+Elim Housing Association Limited,2,elim,LH0977,auto
+Equity Housing Group Limited,2,equity,,unmatched
+Falcon Housing Association C.I.C,2,falcon c i c,4771,auto
 Fareham Borough Council,2,fareham,24UE,auto
 First Garden Cities Homes Limited,2,first garden cities,5090,auto
-Transform Housing & Support,2,transform and support,H2452,auto
-Shropshire Council,2,shropshire,00GG,auto
 Gentoo Sunderland Ltd,2,gentoo sunderland,,unmatched
-Falcon Housing Association C.I.C,2,falcon c i c,4771,auto
-South Tyneside Homes,2,south tyneside,00CL,auto
-Manningham Housing Association Limited,2,manningham,L3736,auto
-Blackpool Borough Council,2,blackpool,00EY,auto
-Tamil Community Housing Association Limited,2,tamil community,L4376,auto
-Concept Housing Association CIC,2,concept,4780,auto
-Northumberland County Council,2,northumberland,00EM,auto
-Stonewater (2) Limited,2,stonewater,L1556,auto
-Stoke on Trent City Council,2,stoke on trent,00GL,auto
-Cornerstone Housing Limited,2,cornerstone,L0147,auto
-North Star Housing Group,2,north star,LH0084,auto
-Star Housing,2,star,,unmatched
-York City Council,2,york,00FF,auto
-The Housing Plus Group Limited,2,plus,L4491,auto
-Cheltenham Borough Homes Limited,2,cheltenham,23UB,auto
-Doncaster Metropolitan Borough Council,2,doncaster,00CE,auto
-Nehemiah United Churches Housing Association Limited,2,nehemiah united churches,L3833,auto
-Eastlight Community Homes,2,eastlight community,L4499,auto
-Southend-on-Sea Borough Council,2,southend on sea,00KF,auto
-Elim Housing Association Limited,2,elim,LH0977,auto
-The Wrekin Housing Group Limited,2,wrekin,L4491,auto
-Legal and General Affordable Homes Limited,2,legal and general affordable,5149,auto
-Hackney Housing Co-operative Limited,2,hackney co operative,C2744,auto
-Legal and General Affordable Homes,2,legal and general affordable,5149,auto
-West Lancashire Borough Council,2,west lancashire,30UP,auto
-Pine Court Housing Association Limited,2,pine court,L3692,auto
-Be One Homes,2,be one,4568,auto
-"Homes Plus Limited (previously ,South Staffordshire Housing Association)",2,plus,L4491,auto
-Co-op Homes (South) Limited,2,co op,L4279,auto
-Ash-Shahada Housing Association Limited,2,ash shahada,C3843,auto
-Redwing Living Limited,2,redwing living,4653,auto
-BCP Council,2,bcp,,unmatched
-Honeycomb Group Limited,2,honeycomb,LH2162,auto
-PHA Homes,2,pha,L0244,auto
-Impact Housing Association Limited,2,impact,,unmatched
-Reliance Social Housing C.I.C,2,reliance social c i c,4778,auto
-Heylo Housing Registered Provider Limited,2,heylo registered provider,4668,auto
-Warrington Housing Association Limited,2,warrington,L0518,auto
-Retirement Lease Housing Association,2,retirement lease,L1967,auto
-Lambeth and Southwark Housing Association Limited,2,lambeth and southwark,L0927,auto
-Guinness Care and Support Limited,2,guinness care and support,,unmatched
-Quadrant-Brownswood Tenant Co-operative Limited,2,quadrant brownswood tenant co operative,C2157,auto
-Penge Churches Housing Association Limited,2,penge churches,L1243,auto
-Peak District Rural Housing Association Limited,2,peak rural,L3899,auto
-Waterloo Housing Group Limited,2,waterloo,,unmatched
-Peabody South East Limited,2,peabody south east,,unmatched
-Vale of Aylesbury Housing Trust Limited,2,vale aylesbury,,unmatched
 Greenoak Housing Association Limited,2,greenoak,L1393,auto
+Guinness Care and Support Limited,2,guinness care and support,,unmatched
+Hackney Housing Co-operative Limited,2,hackney co operative,C2744,auto
+Heylo Housing Registered Provider Limited,2,heylo registered provider,4668,auto
+"Homes Plus Limited (previously ,South Staffordshire Housing Association)",2,plus,L4491,auto
+Honeycomb Group Limited,2,honeycomb,LH2162,auto
 Hundred Houses Society Limited,2,hundred houses,L0718,auto
-Berneslai Homes,2,berneslai,,unmatched
-CityWest Homes,1,citywest,,unmatched
-Teachers’ Housing Association Limited,1,teachers,LH0426,auto
-Cheltenham Young Men’s Christian Association,1,cheltenham young men s christian,H4270,auto
-‘Johnnie’ Johnson H A Ltd,1,johnnie johnson h a,,unmatched
+Impact Housing Association Limited,2,impact,,unmatched
+Lambeth and Southwark Housing Association Limited,2,lambeth and southwark,L0927,auto
+Legal and General Affordable Homes,2,legal and general affordable,5149,auto
+Legal and General Affordable Homes Limited,2,legal and general affordable,5149,auto
+Lodge Lane East Co-operative Housing Limited,2,lodge lane east co operative,C0508,auto
+Look Ahead Care and Support Limited,2,look ahead care and support,LH0013,auto
+Manningham Housing Association Limited,2,manningham,L3736,auto
+Nehemiah United Churches Housing Association Limited,2,nehemiah united churches,L3833,auto
+North Star Housing Group,2,north star,LH0084,auto
+Northumberland County Council,2,northumberland,00EM,auto
+Onward Group Limited,2,onward,4649,auto
+PHA Homes,2,pha,L0244,auto
+Peabody South East Limited,2,peabody south east,,unmatched
+Peak District Rural Housing Association Limited,2,peak rural,L3899,auto
+Penge Churches Housing Association Limited,2,penge churches,L1243,auto
+Pine Court Housing Association Limited,2,pine court,L3692,auto
+Quadrant-Brownswood Tenant Co-operative Limited,2,quadrant brownswood tenant co operative,C2157,auto
+Redwing Living Limited,2,redwing living,4653,auto
+Reliance Social Housing C.I.C,2,reliance social c i c,4778,auto
+Retirement Lease Housing Association,2,retirement lease,L1967,auto
+Shropshire Council,2,shropshire,00GG,auto
+South Tyneside Homes,2,south tyneside,00CL,auto
+Southend-on-Sea Borough Council,2,southend on sea,00KF,auto
+Star Housing,2,star,,unmatched
+Stoke on Trent City Council,2,stoke on trent,00GL,auto
+Stonewater (2) Limited,2,stonewater,L1556,auto
+Tamil Community Housing Association Limited,2,tamil community,L4376,auto
+The Housing Plus Group Limited,2,plus,L4491,auto
+The Wrekin Housing Group Limited,2,wrekin,L4491,auto
+Transform Housing & Support,2,transform and support,H2452,auto
+Vale of Aylesbury Housing Trust Limited,2,vale aylesbury,,unmatched
+Warrington Housing Association Limited,2,warrington,L0518,auto
+Waterloo Housing Group Limited,2,waterloo,,unmatched
+West Lancashire Borough Council,2,west lancashire,30UP,auto
+Windrush Alliance UK Community Interest Company,2,windrush alliance uk community interest company,4671,auto
+York City Council,2,york,00FF,auto
+3CHA Ltd,1,3cha,4758,auto
+54 North Homes Limited,1,54 north,4846,auto
 54North Homes Limited,1,54north,,unmatched
-Taunton Deane Borough Council,1,taunton deane,,unmatched
 A & S Hillman Ltd,1,a and s hillman,,unmatched
-Clarion Housing Association,1,clarion,LH4087,auto
-York Housing Association Limited,1,york,00FF,auto
+A2Dominion South Limited,1,a2dominion south,L4240,auto
+Access Homes Housing Association Limited,1,access,L0006,auto
+Accord Housing Association Limited,1,accord,,unmatched
+Advance Housing and Support Limited,1,advance and support,LH0280,auto
+Agudas Israel Housing Association Limited,1,agudas israel,LH3673,auto
+Aldwyck Housing Group Limited,1,aldwyck,,unmatched
+Apna Ghar Housing Association Limited,1,apna ghar,,unmatched
+Array,1,array,,unmatched
+Ashton Pioneer Homes Limited,1,ashton pioneer,L4199,auto
 Auxesia Homes Limited,1,auxesia,4765,auto
+Axiom Housing Association Limited,1,axiom,,unmatched
+BHT Sussex,1,bht sussex,H1696,auto
+Barnet Homes,1,barnet,00AC,auto
+Belgrave Neighbourhood Co-op Housing Association Limited,1,belgrave neighbourhood co op,,unmatched
+Bernicia Group Limited,1,bernicia,4868,auto
+Black Country Housing Group Limited,1,black country,L1668,auto
+Bournemouth Borough Council,1,bournemouth,,unmatched
+Brockley Tenants Co-operative Limited,1,brockley tenants co operative,C2430,auto
+Brunelcare,1,brunelcare,LH0269,auto
+Cheltenham Young Men’s Christian Association,1,cheltenham young men s christian,H4270,auto
 Chorus Homes Group Limited,1,chorus,L4236,auto
 Cirencester Housing Limited,1,cirencester,,unmatched
-The Joseph Rowntree Housing Trust,1,joseph rowntree,5079,auto
-Array,1,array,,unmatched
-The Riverside Group Of Companies Ltd,1,riverside companies,,unmatched
-Yarlington Housing Group,1,yarlington,,unmatched
-Brunelcare,1,brunelcare,LH0269,auto
-Aldwyck Housing Group Limited,1,aldwyck,,unmatched
-Agudas Israel Housing Association Limited,1,agudas israel,LH3673,auto
-Black Country Housing Group Limited,1,black country,L1668,auto
-Willow Tree Housing Partnership Limited,1,willow tree partnership,L2424,auto
-Bernicia Group Limited,1,bernicia,4868,auto
-Bournemouth Borough Council,1,bournemouth,,unmatched
-Apna Ghar Housing Association Limited,1,apna ghar,,unmatched
-Belgrave Neighbourhood Co-op Housing Association Limited,1,belgrave neighbourhood co op,,unmatched
-Advance Housing and Support Limited,1,advance and support,LH0280,auto
-Brockley Tenants Co-operative Limited,1,brockley tenants co operative,C2430,auto
-Westward Housing Group,1,westward,4826,auto
-The Papworth Trust,1,papworth,LH1648,auto
-Accord Housing Association Limited,1,accord,,unmatched
-Access Homes Housing Association Limited,1,access,L0006,auto
-Barnet Homes,1,barnet,00AC,auto
-Walterton and Elgin Community Homes Limited,1,walterton and elgin community,L3939,auto
-BHT Sussex,1,bht sussex,H1696,auto
-The Sir Oswald Stoll Foundation,1,sir oswald stoll foundation,A3418,auto
-Westlea Housing Association Limited,1,westlea,,unmatched
-Axiom Housing Association Limited,1,axiom,,unmatched
-A2Dominion South Limited,1,a2dominion south,L4240,auto
-YMCA St Paul’s Group,1,ymca st paul s,LH4078,auto
-Ashton Pioneer Homes Limited,1,ashton pioneer,L4199,auto
-South Kesteven District Councill,1,south kesteven councill,,unmatched
+CityWest Homes,1,citywest,,unmatched
+Clarion Housing Association,1,clarion,LH4087,auto
 Community Housing Initiative,1,community initiative,,unmatched
+Connexus Housing Limited,1,connexus,LH4353,auto
+Connexus Housing One Limited,1,connexus one,,unmatched
+Cossington Housing Co-operative Limited,1,cossington co operative,C2787,auto
+Cyron Housing Co-operative Limited,1,cyron co operative,C2695,auto
+Dawson Housing Limited,1,dawson,5058,auto
+Delta Housing Limited,1,delta,L4331,auto
+Derive RP Limited,1,derive rp,5176,auto
+Derwent Community Housing Association Limited,1,derwent community,,unmatched
+Dolphin Living Limited,1,dolphin living,,unmatched
+Eldonian Community Based Housing Association Ltd,1,eldonian community based,C3609,auto
+Empowering People Inspiring Communities Limited,1,empowering people inspiring communities,L4167,auto
+Enham Trust,1,enham,L4393,auto
+Fortis Living Limited,1,fortis living,,unmatched
+Four Housing Group Limited,1,four,,unmatched
+Franklands Village Housing Association Limited,1,franklands village,L1680,auto
+Futures Homescape Limited,1,futures homescape,L4502,auto
+Gloucester City Council,1,gloucester,23UE,auto
+Glover’s Trust Endowed Fund,1,glover s endowed fund,A3267,auto
+Grainger Trust,1,grainger,4743,auto
+Grainger Trust Limited,1,grainger,4743,auto
+Gravesend Churches Housing Association Limited,1,gravesend churches,LH0870,auto
+Guinness Trust,1,guinness,4729,auto
+Habitare Homes Limited,1,habitare,5128,auto
+Harrison Housing,1,harrison,A4410,auto
+Harrogate Borough Council,1,harrogate,5179,auto
+Harrow Churches Housing Association,1,harrow churches,,unmatched
+Hilldale Housing Association Limited,1,hilldale,4760,auto
+Hyde Southbank Homes Limited,1,hyde southbank,LH0032,auto
+IKE Supported Housing Limited,1,ike supported,4822,auto
+Inclusion Housing Community Interest Company,1,inclusion community interest company,4662,auto
+Jewish Community Housing Association Limited,1,jewish community,LH0902,auto
+Jigsaw Homes North,1,jigsaw north,LH4345,auto
 Leeds and Yorkshire Housing Association Limited,1,leeds and yorkshire,,unmatched
+Lincolnshire Rural Housing Association Limited,1,lincolnshire rural,L3698,auto
+M&G UK Shared Ownership Limited,1,m and g uk shared ownership,5115,auto
+Metropolitan Thames Valley,1,thames valley,L0726,auto
+Metropolitan Thames Valley Housing (MTVH),1,thames valley,L0726,auto
+Mulberry Housing Co-operative Limited,1,mulberry co operative,C3635,auto
+Network Stadium Housing Association Limited,1,network stadium,,unmatched
+New Charter Housing (South) Ltd,1,new charter,,unmatched
+New Forest District Council,1,new forest,24UJ,auto
+New Outlook Housing Association Limited,1,new outlook,H0924,auto
+New World Housing Association Limited,1,new world,LH3980,auto
+Newcastle-upon-Tyne City Council,1,newcastle upon tyne,,unmatched
+North East Derbyshire District Council,1,north east derbyshire,17UJ,auto
+North London Muslim Housing Association Limited,1,north london muslim,LH3859,auto
+North Warwickshire Borough Council,1,north warwickshire,44UB,auto
+Northampton Borough Council,1,northampton,,unmatched
+Northamptonshire Rural Housing Association Limited,1,northamptonshire rural,L3981,auto
+Notting Hill Housing Trust,1,notting hill,,unmatched
+Oak Housing Limited,1,oak,4720,auto
+Odu-Dua Housing Association Limited,1,odu dua,L3757,auto
+Optima Community Association,1,optima community,,unmatched
+Orbit South Housing Association Limited,1,orbit south,,unmatched
+Peabody,1,peabody,4878,auto
 Peabody Developments Limited,1,peabody developments,4878,auto
 Pinnacle Spaces Limited,1,pinnacle spaces,4700,auto
-Jigsaw Homes North,1,jigsaw north,LH4345,auto
-Jewish Community Housing Association Limited,1,jewish community,LH0902,auto
-Inclusion Housing Community Interest Company,1,inclusion community interest company,4662,auto
-IKE Supported Housing Limited,1,ike supported,4822,auto
-Hyde Southbank Homes Limited,1,hyde southbank,LH0032,auto
 Portal Housing Association Limited,1,portal,,unmatched
 Portobello Housing Co-operative Limited,1,portobello co operative,C3338,auto
 Portsmouth Rotary Housing Association Limited,1,portsmouth rotary,L0686,auto
@@ -573,77 +609,41 @@ Prospect Housing Limited,1,prospect,,unmatched
 Radcliffe Housing Society Limited,1,radcliffe,L2159,auto
 Railway Housing Association and Benefit Fund,1,railway and benefit fund,A1855,auto
 ReSI Homes Limited,1,resi,5092,auto
-Hilldale Housing Association Limited,1,hilldale,4760,auto
 Retirement Villages Ltd,1,retirement villages,,unmatched
 Richmondshire District Council,1,richmondshire,,unmatched
-Harrow Churches Housing Association,1,harrow churches,,unmatched
-Peabody,1,peabody,4878,auto
-Orbit South Housing Association Limited,1,orbit south,,unmatched
-Harrogate Borough Council,1,harrogate,5179,auto
-Lincolnshire Rural Housing Association Limited,1,lincolnshire rural,L3698,auto
-Northamptonshire Rural Housing Association Limited,1,northamptonshire rural,L3981,auto
-North Warwickshire Borough Council,1,north warwickshire,44UB,auto
-North London Muslim Housing Association Limited,1,north london muslim,LH3859,auto
-North East Derbyshire District Council,1,north east derbyshire,17UJ,auto
-Newcastle-upon-Tyne City Council,1,newcastle upon tyne,,unmatched
-Notting Hill Housing Trust,1,notting hill,,unmatched
-New World Housing Association Limited,1,new world,LH3980,auto
-New Outlook Housing Association Limited,1,new outlook,H0924,auto
-New Forest District Council,1,new forest,24UJ,auto
-New Charter Housing (South) Ltd,1,new charter,,unmatched
-Network Stadium Housing Association Limited,1,network stadium,,unmatched
-Oak Housing Limited,1,oak,4720,auto
-Mulberry Housing Co-operative Limited,1,mulberry co operative,C3635,auto
-Odu-Dua Housing Association Limited,1,odu dua,L3757,auto
-Metropolitan Thames Valley Housing (MTVH),1,thames valley,L0726,auto
-Metropolitan Thames Valley,1,thames valley,L0726,auto
-54 North Homes Limited,1,54 north,4846,auto
-Optima Community Association,1,optima community,,unmatched
-M&G UK Shared Ownership Limited,1,m and g uk shared ownership,5115,auto
 Rosebery Housing Association Limited,1,rosebery,4878,auto
-Harrison Housing,1,harrison,A4410,auto
-Sutton Housing Partnership,1,sutton partnership,,unmatched
-South Tyneside Housing Ventures Trust Limited,1,south tyneside ventures,,unmatched
-Empowering People Inspiring Communities Limited,1,empowering people inspiring communities,L4167,auto
-Eldonian Community Based Housing Association Ltd,1,eldonian community based,C3609,auto
-Southward Housing Co-operative Limited,1,southward co operative,C2581,auto
-Dolphin Living Limited,1,dolphin living,,unmatched
-Derwent Community Housing Association Limited,1,derwent community,,unmatched
-Derive RP Limited,1,derive rp,5176,auto
-Delta Housing Limited,1,delta,L4331,auto
-Square Building Trust Limited,1,square building,L1218,auto
-Squared Housing,1,squared,,unmatched
-Dawson Housing Limited,1,dawson,5058,auto
-St Basil’s,1,st basil s,H3994,auto
-Cyron Housing Co-operative Limited,1,cyron co operative,C2695,auto
-St Peter’s Saltley Housing Association Limited,1,st peter s saltley,L3519,auto
-Steve Biko Housing Association Limited,1,steve biko,L3711,auto
-Cossington Housing Co-operative Limited,1,cossington co operative,C2787,auto
-Connexus Housing One Limited,1,connexus one,,unmatched
-Stonewater (5) Limited,1,stonewater,L1556,auto
-Connexus Housing Limited,1,connexus,LH4353,auto
-Sussex Housing and Care,1,sussex and care,LH0079,auto
-South Yorkshire Housing Association Limited (SYHA),1,south yorkshire,L0078,auto
-Enham Trust,1,enham,L4393,auto
-Habitare Homes Limited,1,habitare,5128,auto
-South Lakes Housing,1,south lakes,4686,auto
 Runnymeade Borough Council,1,runnymeade,,unmatched
-Guinness Trust,1,guinness,4729,auto
 Sadeh Lok Limited,1,sadeh lok,,unmatched
 Sage Rented Limited (SRL),1,sage rented,5083,auto
-Gravesend Churches Housing Association Limited,1,gravesend churches,LH0870,auto
-Grainger Trust Limited,1,grainger,4743,auto
 Sapphire Independent Housing Limited,1,sapphire independent,H1313,auto
-Grainger Trust,1,grainger,4743,auto
-Glover’s Trust Endowed Fund,1,glover s endowed fund,A3267,auto
 Severnside Housing,1,severnside,L4491,auto
-Gloucester City Council,1,gloucester,23UE,auto
-Futures Homescape Limited,1,futures homescape,L4502,auto
-Franklands Village Housing Association Limited,1,franklands village,L1680,auto
-Four Housing Group Limited,1,four,,unmatched
-Fortis Living Limited,1,fortis living,,unmatched
 Solo Housing (East Anglia),1,solo,4696,auto
 South Cheshire Housing Society Limited,1,south cheshire,L2034,auto
 South Devon Rural Housing Association Limited,1,south devon rural,LH0920,auto
-Northampton Borough Council,1,northampton,,unmatched
-3CHA Ltd,1,3cha,4758,auto
+South Kesteven District Councill,1,south kesteven councill,,unmatched
+South Lakes Housing,1,south lakes,4686,auto
+South Tyneside Housing Ventures Trust Limited,1,south tyneside ventures,,unmatched
+South Yorkshire Housing Association Limited (SYHA),1,south yorkshire,L0078,auto
+Southward Housing Co-operative Limited,1,southward co operative,C2581,auto
+Square Building Trust Limited,1,square building,L1218,auto
+Squared Housing,1,squared,,unmatched
+St Basil’s,1,st basil s,H3994,auto
+St Peter’s Saltley Housing Association Limited,1,st peter s saltley,L3519,auto
+Steve Biko Housing Association Limited,1,steve biko,L3711,auto
+Stonewater (5) Limited,1,stonewater,L1556,auto
+Sussex Housing and Care,1,sussex and care,LH0079,auto
+Sutton Housing Partnership,1,sutton partnership,,unmatched
+Taunton Deane Borough Council,1,taunton deane,,unmatched
+Teachers’ Housing Association Limited,1,teachers,LH0426,auto
+The Joseph Rowntree Housing Trust,1,joseph rowntree,5079,auto
+The Papworth Trust,1,papworth,LH1648,auto
+The Riverside Group Of Companies Ltd,1,riverside companies,,unmatched
+The Sir Oswald Stoll Foundation,1,sir oswald stoll foundation,A3418,auto
+Walterton and Elgin Community Homes Limited,1,walterton and elgin community,L3939,auto
+Westlea Housing Association Limited,1,westlea,,unmatched
+Westward Housing Group,1,westward,4826,auto
+Willow Tree Housing Partnership Limited,1,willow tree partnership,L2424,auto
+YMCA St Paul’s Group,1,ymca st paul s,LH4078,auto
+Yarlington Housing Group,1,yarlington,,unmatched
+York Housing Association Limited,1,york,00FF,auto
+‘Johnnie’ Johnson H A Ltd,1,johnnie johnson h a,,unmatched
