@@ -1,0 +1,169 @@
+landlord_name,rsl_number,landlord_id,landlord_type,year,sat_overall,sat_quality_home,sat_repairs,shqs_pct,emergency_repair_hours,non_emergency_repair_days,right_first_time_pct,gas_checks_missed,complaints_stage1_full_response_pct,complaints_stage1_days,asb_per_100,stock
+Scottish Avg,,,,2025/2026,87.6,86.64,88.05,89.53,3.45,8.75,95.29,449.0,98.17,5.36,7.2,
+Aberdeen City Council,1000.0,877d3782-77a0-11eb-8dbe-06f9654bc8a2,Local authority,2025/2026,81.23,79.92,82.51,95.81,3.75,7.4,86.83,0.0,98.53,5.69,18.9,23493.0
+Aberdeenshire Council,1001.0,87979488-77a0-11eb-a6d5-06f9654bc8a2,Local authority,2025/2026,81.72,77.42,87.38,83.83,2.06,7.41,97.71,2.0,97.72,8.07,2.8,13466.0
+Abertay Housing Association Ltd,297.0,9878f508-77a0-11eb-b35a-06f9654bc8a2,Mainstream,2025/2026,83.19,80.67,99.24,93.88,1.79,6.01,98.38,0.0,94.02,4.06,13.8,1894.0
+Abronhill Housing Association Ltd,275.0,968e360e-77a0-11eb-a75a-06f9654bc8a2,Mainstream,2025/2026,95.56,92.78,92.86,49.81,1.8,4.37,96.82,0.0,100.0,0.83,9.3,257.0
+Albyn Housing Society Ltd,64.0,9ba80660-77a0-11eb-9abe-06f9654bc8a2,Mainstream,2025/2026,90.86,86.68,88.54,91.06,4.18,4.44,95.48,0.0,100.0,3.5,8.5,3502.0
+Almond Housing Association Ltd,285.0,97ac0ec6-77a0-11eb-ab9d-06f9654bc8a2,Mainstream,2025/2026,83.68,74.62,79.06,99.96,2.61,10.51,93.04,0.0,98.65,3.15,1.5,2555.0
+Angus Council,1002.0,87afb090-77a0-11eb-9f1c-06f9654bc8a2,Local authority,2025/2026,74.8,76.5,86.09,91.46,2.74,12.87,99.96,4.0,92.54,46.94,11.4,7778.0
+Angus Housing Association Ltd,65.0,9bc80ef6-77a0-11eb-a73e-06f9654bc8a2,Mainstream,2025/2026,89.29,89.29,92.86,89.8,1.79,4.24,96.67,0.0,96.85,4.78,7.6,2206.0
+Ardenglen Housing Association Ltd,219.0,93256280-77a0-11eb-b741-06f9654bc8a2,Mainstream,2025/2026,92.42,87.88,94.3,97.06,2.48,5.61,95.34,0.0,100.0,4.22,12.9,985.0
+Argyll and Bute Council,1003.0,87c891e6-77a0-11eb-aad3-06f9654bc8a2,Local authority,2025/2026,,,,,,,,,100.0,5.4,,
+Argyll Community Housing Association Ltd,360.0,9add59c4-77a0-11eb-9f5d-06f9654bc8a2,Mainstream,2025/2026,92.03,89.84,90.19,87.31,3.01,14.91,97.74,3.0,100.0,3.8,1.4,5193.0
+Ark Housing Association Ltd,66.0,9be9b0d8-77a0-11eb-93a8-06f9654bc8a2,Mainstream,2025/2026,88.05,84.46,72.97,80.46,3.81,8.28,97.08,0.0,100.0,4.61,5.2,307.0
+Atrium Homes,305.0,995d8416-77a0-11eb-ad0b-06f9654bc8a2,Mainstream,2025/2026,84.91,83.65,80.95,88.02,2.35,5.19,96.28,0.0,97.78,2.66,4.7,1219.0
+Ayrshire Housing,304.0,993c8b62-77a0-11eb-8f96-06f9654bc8a2,Mainstream,2025/2026,91.18,93.53,82.82,89.94,3.94,7.66,98.4,0.0,100.0,6.05,21.1,1719.0
+Barrhead Housing Association Ltd,70.0,9c0b95cc-77a0-11eb-8dd7-06f9654bc8a2,Mainstream,2025/2026,88.78,85.43,90.09,98.83,2.26,7.58,97.11,0.0,100.0,3.31,7.3,1026.0
+Berwickshire Housing Association Ltd,289.0,97f11926-77a0-11eb-b9b8-06f9654bc8a2,Mainstream,2025/2026,75.97,67.4,71.82,78.99,2.71,5.78,97.93,0.0,98.54,6.47,0.7,1975.0
+Bield Housing & Care,71.0,9c2bcf36-77a0-11eb-9ee2-06f9654bc8a2,Mainstream,2025/2026,83.99,86.44,83.88,96.57,3.2,7.83,79.17,0.0,89.01,6.56,1.0,4405.0
+Blackwood Homes and Care,158.0,8def5dca-77a0-11eb-ae0d-06f9654bc8a2,Mainstream,2025/2026,63.41,76.64,69.29,92.68,3.25,5.52,98.57,55.0,100.0,5.48,0.6,1558.0
+Blairtummock Housing Association Ltd,216.0,92dc7fd4-77a0-11eb-8a9c-06f9654bc8a2,Mainstream,2025/2026,90.51,79.84,92.86,100.0,3.27,3.96,97.39,0.0,100.0,2.84,5.7,700.0
+Blochairn Housing Association Ltd,223.0,936597e2-77a0-11eb-87d8-06f9654bc8a2,Mainstream,2025/2026,96.36,92.12,95.38,73.81,2.29,4.79,96.18,0.0,100.0,2.27,6.5,294.0
+Blue Triangle (Glasgow) Housing Association Ltd,72.0,9c4aebfa-77a0-11eb-9b97-06f9654bc8a2,Mainstream,2025/2026,98.75,90.0,100.0,86.36,2.27,0.8,95.0,0.0,,,13.6,22.0
+Bridgewater Housing Association Ltd,301.0,98fcbe38-77a0-11eb-bd5b-06f9654bc8a2,Mainstream,2025/2026,87.41,94.64,91.25,96.88,1.65,9.77,95.71,0.0,99.25,3.89,6.0,864.0
+BT Loch Aillse agus an Eilein Sgitheanaich Ltd - Lochalsh and Skye HA Ltd,324.0,9a51ec4a-77a0-11eb-bcfd-06f9654bc8a2,Mainstream,2025/2026,85.51,84.38,97.12,95.61,4.26,11.92,97.08,0.0,100.0,14.17,0.7,866.0
+Cadder Housing Association Ltd,270.0,9609ec82-77a0-11eb-a40e-06f9654bc8a2,Mainstream,2025/2026,75.42,80.07,90.23,99.86,2.9,5.98,95.09,0.0,100.0,4.78,10.3,699.0
+Cairn Housing Association Ltd,218.0,93011718-77a0-11eb-a182-06f9654bc8a2,Mainstream,2025/2026,84.22,82.78,82.38,76.98,2.86,7.11,86.01,0.0,99.0,4.52,7.7,4770.0
+Caledonia Housing Association Ltd,224.0,93876ae8-77a0-11eb-bcfd-06f9654bc8a2,Mainstream,2025/2026,87.3,87.1,85.11,94.59,3.47,5.64,99.3,0.0,98.71,4.88,8.9,5210.0
+Calvay Housing Association Ltd,80.0,9c6eb918-77a0-11eb-b542-06f9654bc8a2,Mainstream,2025/2026,92.53,90.8,94.68,89.41,2.44,5.06,99.02,0.0,98.31,3.29,7.6,869.0
+Cassiltoun Housing Association Ltd,84.0,9cc41912-77a0-11eb-9135-06f9654bc8a2,Mainstream,2025/2026,89.03,91.45,83.64,97.4,2.68,5.46,96.45,0.0,100.0,4.52,10.0,1075.0
+Castle Rock Edinvar Housing Association Ltd,106.0,8aac7ef4-77a0-11eb-979a-06f9654bc8a2,Mainstream,2025/2026,47.51,59.48,54.11,79.95,21.44,24.59,98.42,272.0,98.13,8.26,13.7,7223.0
+Castlehill Housing Association Ltd,83.0,9c911008-77a0-11eb-abb1-06f9654bc8a2,Mainstream,2025/2026,76.79,82.2,82.82,99.79,3.92,6.33,97.97,0.0,100.0,5.19,8.6,1887.0
+Cathcart & District Housing Association Ltd,85.0,9ce63b6e-77a0-11eb-a906-06f9654bc8a2,Mainstream,2025/2026,90.83,91.67,89.74,87.33,3.06,3.86,100.0,0.0,100.0,2.11,8.2,600.0
+Cernach Housing Association Ltd,230.0,93ea8c22-77a0-11eb-a395-06f9654bc8a2,Mainstream,2025/2026,88.7,94.93,91.19,99.43,1.9,3.73,99.07,0.0,100.0,3.5,11.2,875.0
+City of Edinburgh Council,1004.0,87df008e-77a0-11eb-9397-06f9654bc8a2,Local authority,2025/2026,67.2,70.2,69.79,75.67,5.04,11.8,99.53,32.0,99.94,13.97,5.8,19264.0
+Clackmannanshire Council,1006.0,880f4de8-77a0-11eb-b91e-06f9654bc8a2,Local authority,2025/2026,93.22,91.56,93.63,86.96,3.67,11.24,99.1,0.0,100.0,4.24,2.8,5107.0
+Cloch Housing Association Ltd,91.0,f480fbde-77a0-11eb-ab12-06f9654bc8a2,Mainstream,2025/2026,92.96,88.97,86.76,93.98,2.37,5.54,96.17,0.0,98.44,3.16,12.6,1446.0
+Clyde Valley Housing Association Ltd,291.0,9811c13a-77a0-11eb-b1f2-06f9654bc8a2,Mainstream,2025/2026,90.38,88.85,82.67,91.13,2.35,6.57,97.93,0.0,97.58,4.3,5.9,4849.0
+Clydebank Housing Association Ltd,86.0,9d0605d4-77a0-11eb-9af9-06f9654bc8a2,Mainstream,2025/2026,92.78,89.28,88.5,93.41,2.76,5.15,94.54,0.0,100.0,3.1,4.0,1214.0
+Clydesdale Housing Association Ltd,93.0,9d9a9884-77a0-11eb-83be-06f9654bc8a2,Mainstream,2025/2026,94.64,93.53,90.73,98.92,2.46,4.85,99.5,0.0,97.14,2.85,12.3,742.0
+Comhairle nan Eilean Siar - Western Isles Council,1032.0,8a94b71a-77a0-11eb-b2cc-06f9654bc8a2,Local authority,2025/2026,,,,100.0,,1.5,100.0,0.0,,,,1.0
+Cordale Housing Association Ltd,259.0,f3636c64-77a0-11eb-a51e-06f9654bc8a2,Mainstream,2025/2026,88.18,86.36,86.62,100.0,3.18,6.56,98.67,0.0,98.15,4.06,7.0,531.0
+Craigdale Housing Association Ltd,95.0,9dbc57da-77a0-11eb-9ae8-06f9654bc8a2,Mainstream,2025/2026,96.47,94.12,91.15,100.0,2.49,3.32,98.65,0.0,100.0,2.5,3.7,407.0
+Cunninghame Housing Association Ltd,195.0,90b9ba3c-77a0-11eb-aed8-06f9654bc8a2,Mainstream,2025/2026,92.36,90.83,96.58,95.24,1.77,8.69,98.32,0.0,96.0,4.98,6.8,3656.0
+Dalmuir Park Housing Association Ltd,98.0,9dddffca-77a0-11eb-877b-06f9654bc8a2,Mainstream,2025/2026,91.01,94.96,92.31,95.74,2.28,5.71,96.21,1.0,100.0,3.8,2.4,680.0
+Drumchapel Housing Co-operative Ltd,185.0,9013b09c-77a0-11eb-bbd1-06f9654bc8a2,Mainstream,2025/2026,93.9,89.2,94.32,99.37,3.27,2.84,98.16,0.0,100.0,2.91,8.1,479.0
+Dumfries and Galloway Council,1007.0,88271158-77a0-11eb-9e6a-06f9654bc8a2,Local authority,2025/2026,,,,,,,,,100.0,3.67,,
+Dunbritton Housing Association Ltd,260.0,95652198-77a0-11eb-9c79-06f9654bc8a2,Mainstream,2025/2026,90.87,88.49,87.41,98.67,3.35,6.3,97.54,0.0,100.0,0.12,13.2,979.0
+Dundee City Council,1008.0,883f9f20-77a0-11eb-8e66-06f9654bc8a2,Local authority,2025/2026,83.2,83.2,87.35,84.77,2.75,10.57,81.67,2.0,100.0,9.44,10.2,12645.0
+East Ayrshire Council,1009.0,88570264-77a0-11eb-9fc5-06f9654bc8a2,Local authority,2025/2026,90.33,86.25,99.15,98.71,1.69,7.94,89.99,0.0,98.75,4.49,8.8,12193.0
+East Dunbartonshire Council,1010.0,886fc4f2-77a0-11eb-ac00-06f9654bc8a2,Local authority,2025/2026,70.83,77.82,92.06,65.71,3.66,11.34,98.21,0.0,96.88,8.77,4.0,3902.0
+East Kilbride and District Housing Association Ltd,279.0,96ce82ae-77a0-11eb-a448-06f9654bc8a2,Mainstream,2025/2026,95.42,92.81,97.0,88.76,3.81,4.7,98.51,0.0,94.44,2.88,1.6,614.0
+East Lothian Council,1011.0,8889273a-77a0-11eb-9715-06f9654bc8a2,Local authority,2025/2026,83.65,86.55,84.89,90.02,2.66,8.56,96.03,0.0,91.35,5.49,11.3,9465.0
+East Lothian Housing Association Ltd,103.0,8a587dfe-77a0-11eb-a14a-06f9654bc8a2,Mainstream,2025/2026,93.88,96.01,92.47,95.46,1.31,3.78,97.64,0.0,99.35,1.94,21.1,1410.0
+East Renfrewshire Council,1012.0,88a02188-77a0-11eb-a641-06f9654bc8a2,Local authority,2025/2026,80.62,84.45,65.53,86.9,3.32,10.85,99.66,0.0,100.0,5.74,3.5,3266.0
+Easthall Park Housing Association Ltd,238.0,94dad59c-77a0-11eb-b1e2-06f9654bc8a2,Mainstream,2025/2026,91.64,92.51,93.08,89.64,2.5,4.25,99.6,3.0,96.77,2.58,11.4,695.0
+Eildon Housing Association Ltd,107.0,8acc4734-77a0-11eb-97d3-06f9654bc8a2,Mainstream,2025/2026,83.92,85.39,88.1,90.03,2.55,10.55,96.9,0.0,99.04,3.39,2.6,2939.0
+Elderpark Housing Association Ltd,108.0,8aee6332-77a0-11eb-9930-06f9654bc8a2,Mainstream,2025/2026,88.67,89.67,76.18,91.35,1.62,4.46,75.99,1.0,100.0,6.01,5.8,1353.0
+Falkirk Council,1013.0,88b8055a-77a0-11eb-8ee8-06f9654bc8a2,Local authority,2025/2026,93.41,96.41,91.75,91.85,2.15,10.4,96.25,0.0,100.0,3.63,2.7,17142.0
+Ferguslie Park Housing Association Ltd,99.0,9dfe3074-77a0-11eb-b07b-06f9654bc8a2,Mainstream,2025/2026,94.72,92.86,88.24,99.13,2.2,8.63,99.78,0.0,100.0,2.67,8.1,806.0
+Fife Council,1014.0,88d3ecb6-77a0-11eb-a071-06f9654bc8a2,Local authority,2025/2026,83.1,85.62,94.75,92.82,3.37,6.16,86.3,8.0,97.29,4.93,4.2,31431.0
+Fife Housing Association Ltd,295.0,98348062-77a0-11eb-a0e7-06f9654bc8a2,Mainstream,2025/2026,90.36,86.55,86.3,72.26,2.61,11.87,98.64,0.0,99.34,2.58,5.4,2531.0
+Forgewood Housing Co-operative Ltd,271.0,962aa210-77a0-11eb-95e0-06f9654bc8a2,Mainstream,2025/2026,93.57,87.14,96.72,100.0,2.26,3.6,99.01,0.0,100.0,1.2,1.9,215.0
+Forth Housing Association Ltd,110.0,8b0d67b4-77a0-11eb-b620-06f9654bc8a2,Mainstream,2025/2026,94.64,94.39,92.9,99.31,2.42,5.79,99.47,0.0,100.0,3.96,31.9,1021.0
+Fyne Homes,321.0,9a0b06ae-77a0-11eb-9ad6-06f9654bc8a2,Mainstream,2025/2026,90.92,79.09,81.36,84.09,4.42,6.31,81.23,0.0,100.0,3.43,5.2,1590.0
+Gardeen Housing Association Ltd,214.0,92b69166-77a0-11eb-8afd-06f9654bc8a2,Mainstream,2025/2026,97.39,94.12,97.69,100.0,1.97,3.35,98.68,0.0,100.0,2.5,4.7,253.0
+Garrion Peoples Housing Cooperative Ltd,226.0,93c7c55c-77a0-11eb-a162-06f9654bc8a2,Mainstream,2025/2026,91.88,87.5,96.84,100.0,2.65,3.65,99.07,0.0,100.0,1.06,0.8,252.0
+Glasgow City Council,1005.0,87f6c2fa-77a0-11eb-836f-06f9654bc8a2,Local authority,2025/2026,,,,0.0,6.0,1.0,100.0,0.0,96.91,7.93,,2.0
+Glasgow West Housing Association Ltd,126.0,8bc67600-77a0-11eb-9012-06f9654bc8a2,Mainstream,2025/2026,83.76,77.32,76.03,76.94,3.22,6.63,97.39,0.0,100.0,3.15,3.5,1544.0
+Glen Housing Association Ltd,267.0,95a96bdc-77a0-11eb-be1c-06f9654bc8a2,Mainstream,2025/2026,92.83,85.66,96.88,98.38,2.58,5.77,98.31,0.0,100.0,5.26,5.7,495.0
+Glen Oaks Housing Association Ltd,241.0,95007806-77a0-11eb-a17a-06f9654bc8a2,Mainstream,2025/2026,83.67,77.78,83.93,96.3,3.36,4.66,94.29,0.0,98.44,4.0,5.6,1351.0
+Govan Housing Association Ltd,87.0,9d3b7160-77a0-11eb-8823-06f9654bc8a2,Mainstream,2025/2026,75.12,72.35,92.78,73.96,2.97,3.94,98.73,3.0,98.28,11.04,2.9,1640.0
+Govanhill Housing Association Ltd,117.0,8b44ff08-77a0-11eb-8b47-06f9654bc8a2,Mainstream,2025/2026,86.88,84.55,82.67,78.2,2.18,8.19,99.8,0.0,99.25,3.74,5.1,2871.0
+Grampian Housing Association Ltd,120.0,8b661aee-77a0-11eb-9910-06f9654bc8a2,Mainstream,2025/2026,81.96,85.94,81.7,93.05,1.66,7.55,98.65,4.0,100.0,4.65,9.8,3797.0
+Hanover (Scotland) Housing Association Ltd,124.0,8b850102-77a0-11eb-962e-06f9654bc8a2,Mainstream,2025/2026,81.93,85.03,81.28,85.95,4.08,5.7,97.18,0.0,99.69,3.81,1.8,4477.0
+Harbour Homes Scotland Limited,170.0,8eebac06-77a0-11eb-beaf-06f9654bc8a2,Mainstream,2025/2026,88.56,88.16,85.65,90.49,1.86,12.05,89.99,7.0,97.14,8.74,1.5,2597.0
+Hawthorn Housing Co-operative Ltd,171.0,8f0d79c6-77a0-11eb-925b-06f9654bc8a2,Mainstream,2025/2026,99.32,93.92,98.23,99.73,3.0,3.42,98.49,1.0,100.0,6.78,4.7,364.0
+Hebridean Housing Partnership Ltd,359.0,9ab8d342-77a0-11eb-aea5-06f9654bc8a2,Mainstream,2025/2026,82.72,80.23,91.23,92.54,2.27,2.29,96.16,0.0,97.4,3.52,0.4,2453.0
+Highland Council,1015.0,88ef139c-77a0-11eb-9bb1-06f9654bc8a2,Local authority,2025/2026,72.12,70.04,95.04,61.65,4.67,7.97,86.34,0.0,98.88,4.8,2.2,15375.0
+Hillcrest Homes (Scotland) Limited,125.0,8ba5312a-77a0-11eb-8126-06f9654bc8a2,Mainstream,2025/2026,89.22,89.62,88.97,97.59,2.6,7.92,99.0,2.0,99.67,2.8,1.7,7808.0
+Hillhead Housing Association 2000,326.0,9a75172e-77a0-11eb-aacd-06f9654bc8a2,Mainstream,2025/2026,89.05,89.89,88.0,99.2,1.46,3.17,94.1,2.0,100.0,3.24,4.6,871.0
+Hjaltland Housing Association Ltd,127.0,8be43d84-77a0-11eb-80dc-06f9654bc8a2,Mainstream,2025/2026,93.45,85.75,95.5,99.88,2.73,6.65,96.69,0.0,100.0,1.92,0.7,824.0
+Home Group Scotland,90.0,9d7b3b10-77a0-11eb-9766-06f9654bc8a2,Mainstream,2025/2026,76.61,85.92,74.66,98.75,3.74,7.88,97.99,2.0,100.0,4.28,4.4,4414.0
+Homes for Life Housing Partnership,311.0,99a4b9d0-77a0-11eb-a055-06f9654bc8a2,Mainstream,2025/2026,83.44,100.0,51.79,91.72,3.45,11.15,98.62,0.0,100.0,4.92,6.6,302.0
+Horizon Housing Association Ltd,128.0,f2738a3c-77a0-11eb-8328-06f9654bc8a2,Mainstream,2025/2026,81.97,82.38,92.9,100.0,2.9,6.1,92.87,0.0,100.0,3.5,2.5,796.0
+Inverclyde Council,1016.0,89079520-77a0-11eb-826b-06f9654bc8a2,Local authority,2025/2026,60.0,,,60.0,2.0,1.0,0.0,0.0,,,0.0,5.0
+Irvine Housing Association Ltd,280.0,96fb6e72-77a0-11eb-9dc1-06f9654bc8a2,Mainstream,2025/2026,87.1,86.9,82.78,93.52,4.44,20.54,93.07,0.0,100.0,6.05,4.2,2500.0
+Key Housing Association Ltd,141.0,8c6c160a-77a0-11eb-ac13-06f9654bc8a2,Mainstream,2025/2026,90.99,90.45,93.38,99.58,4.0,5.91,99.11,0.0,100.0,1.15,7.6,715.0
+Kingdom Housing Association Ltd,142.0,8c9bcec2-77a0-11eb-8b24-06f9654bc8a2,Mainstream,2025/2026,85.27,81.86,83.14,93.42,2.47,8.52,98.63,4.0,100.0,1.15,16.9,6245.0
+Kingsridge Cleddans Housing Association Ltd,234.0,947670c0-77a0-11eb-a80d-06f9654bc8a2,Mainstream,2025/2026,96.64,97.48,97.67,100.0,2.85,2.21,100.0,0.0,100.0,1.25,5.4,279.0
+Knowes Housing Association Ltd,300.0,98da98e4-77a0-11eb-a356-06f9654bc8a2,Mainstream,2025/2026,90.85,86.34,89.77,95.69,1.79,8.65,98.49,0.0,100.0,2.93,8.4,1067.0
+Lanarkshire Housing Association Ltd,202.0,91638026-77a0-11eb-a70d-06f9654bc8a2,Mainstream,2025/2026,93.24,85.95,88.13,88.36,1.71,5.07,90.78,0.0,100.0,4.25,6.2,928.0
+Langstane Housing Association Ltd,145.0,8ce2e05a-77a0-11eb-b5c7-06f9654bc8a2,Mainstream,2025/2026,81.48,81.2,93.25,92.91,2.68,7.02,96.43,1.0,98.86,5.19,18.0,2877.0
+Larkfield Housing Association Ltd,293.0,f3852976-77a0-11eb-8814-06f9654bc8a2,Mainstream,2025/2026,86.75,81.2,92.5,94.95,3.0,6.59,96.17,0.0,100.0,2.43,1.3,396.0
+Link Group Ltd,148.0,8d041892-77a0-11eb-8e60-06f9654bc8a2,Mainstream,2025/2026,88.02,90.77,88.03,92.84,2.95,7.83,87.33,0.0,99.04,3.91,13.2,10850.0
+Linstone Housing Association Ltd,299.0,98bb608c-77a0-11eb-ace6-06f9654bc8a2,Mainstream,2025/2026,86.89,88.35,86.24,73.28,3.46,4.37,95.17,0.0,99.28,6.37,7.1,1572.0
+Linthouse Housing Association Ltd,149.0,8d26e30e-77a0-11eb-a44c-06f9654bc8a2,Mainstream,2025/2026,88.97,94.66,95.09,71.79,3.02,7.12,96.41,0.0,96.88,4.63,8.4,1333.0
+Lister Housing Co-operative Ltd,150.0,8d4bc49e-77a0-11eb-8656-06f9654bc8a2,Mainstream,2025/2026,87.5,86.61,84.44,92.97,4.01,9.2,98.11,0.0,100.0,3.33,3.2,185.0
+Lochaber Housing Association Ltd,151.0,8d6c7da6-77a0-11eb-9749-06f9654bc8a2,Mainstream,2025/2026,83.66,78.57,98.33,98.51,3.34,5.64,98.91,0.0,100.0,3.3,1.6,736.0
+Lochfield Park Housing Association Ltd,268.0,95c949de-77a0-11eb-8bcb-06f9654bc8a2,Mainstream,2025/2026,88.01,83.15,87.0,100.0,2.05,4.88,96.25,0.0,100.0,1.25,5.6,607.0
+Loreburn Housing Association Ltd,153.0,8dcc670c-77a0-11eb-b64a-06f9654bc8a2,Mainstream,2025/2026,73.6,71.94,80.09,87.91,2.44,10.17,96.7,0.0,100.0,4.32,4.2,2580.0
+Loretto Housing Association Ltd,154.0,f2993e1c-77a0-11eb-8aa5-06f9654bc8a2,Mainstream,2025/2026,92.75,94.26,85.51,99.93,2.93,8.06,98.8,0.0,97.72,3.64,8.2,2768.0
+Manor Estates Housing Association Ltd,284.0,978cd0d8-77a0-11eb-9780-06f9654bc8a2,Mainstream,2025/2026,85.9,90.41,80.64,85.4,2.96,5.07,78.1,0.0,100.0,2.92,6.2,1041.0
+Maryhill Housing Association Ltd,159.0,8e10c19a-77a0-11eb-a18c-06f9654bc8a2,Mainstream,2025/2026,74.47,67.97,75.1,90.89,2.74,10.12,93.99,1.0,99.45,4.04,17.4,3171.0
+Melville Housing Association Ltd,286.0,97cefd64-77a0-11eb-9b48-06f9654bc8a2,Mainstream,2025/2026,90.39,91.09,99.8,97.0,1.73,6.25,99.07,0.0,100.0,3.99,7.4,2131.0
+Midlothian Council,1017.0,891ed8d4-77a0-11eb-ba8d-06f9654bc8a2,Local authority,2025/2026,82.11,85.26,79.12,94.14,6.61,36.53,96.98,9.0,98.12,4.32,5.6,7747.0
+Milnbank Housing Association Ltd,161.0,8e34c842-77a0-11eb-b6e5-06f9654bc8a2,Mainstream,2025/2026,89.78,84.0,89.13,81.45,2.8,5.15,96.99,0.0,89.66,4.12,4.1,1677.0
+Molendinar Park Housing Association,274.0,966d9ae8-77a0-11eb-a6c1-06f9654bc8a2,Mainstream,2025/2026,91.0,79.0,90.55,100.0,2.25,2.64,98.73,0.0,100.0,3.91,0.6,497.0
+Moray Council,1018.0,893734d8-77a0-11eb-bb79-06f9654bc8a2,Local authority,2025/2026,81.73,81.0,78.14,63.26,2.42,9.99,92.17,1.0,97.95,4.9,10.0,6457.0
+Muirhouse Housing Association Ltd,261.0,958787c4-77a0-11eb-9e36-06f9654bc8a2,Mainstream,2025/2026,87.92,86.53,84.87,100.0,2.18,5.07,100.0,0.0,100.0,2.75,6.7,506.0
+New Gorbals Housing Association Ltd,211.0,92545262-77a0-11eb-937a-06f9654bc8a2,Mainstream,2025/2026,95.21,96.83,95.51,94.28,1.37,4.0,98.65,1.0,100.0,3.14,4.6,2499.0
+North Ayrshire Council,1019.0,894f5838-77a0-11eb-8a41-06f9654bc8a2,Local authority,2025/2026,91.81,89.73,93.72,96.27,2.68,8.46,95.48,0.0,95.83,4.03,7.6,13399.0
+North Glasgow Housing Association Ltd,187.0,9057f8ba-77a0-11eb-a166-06f9654bc8a2,Mainstream,2025/2026,80.66,76.24,77.52,93.54,3.3,6.2,95.72,0.0,98.72,5.17,1.6,5437.0
+North Lanarkshire Council,1020.0,896831a0-77a0-11eb-8597-06f9654bc8a2,Local authority,2025/2026,86.57,87.31,96.42,91.2,2.66,6.81,95.89,1.0,97.98,5.46,10.8,36285.0
+North View Housing Association Ltd,269.0,95ea181c-77a0-11eb-8ecf-06f9654bc8a2,Mainstream,2025/2026,92.45,89.93,99.23,100.0,1.74,3.89,94.0,0.0,100.0,5.13,9.7,692.0
+Oak Tree Housing Association Ltd,137.0,8c484644-77a0-11eb-a1d2-06f9654bc8a2,Mainstream,2025/2026,89.34,85.09,85.69,96.48,2.24,6.22,99.67,0.0,97.01,3.97,9.1,1844.0
+Ochil View Housing Association Ltd,213.0,92954d58-77a0-11eb-a5f0-06f9654bc8a2,Mainstream,2025/2026,92.49,90.1,87.37,90.9,1.35,8.12,96.05,0.0,100.0,3.3,9.0,1461.0
+Ore Valley Housing Association Ltd,236.0,9497e944-77a0-11eb-b124-06f9654bc8a2,Mainstream,2025/2026,98.64,98.64,93.63,99.46,1.28,9.89,99.38,0.0,100.0,5.33,3.8,739.0
+Orkney Housing Association Ltd,164.0,8e59bcb0-77a0-11eb-809e-06f9654bc8a2,Mainstream,2025/2026,89.4,89.04,90.51,99.88,2.61,9.8,96.38,0.0,98.11,4.38,5.1,859.0
+Orkney Islands Council,1021.0,8981d416-77a0-11eb-98e4-06f9654bc8a2,Local authority,2025/2026,77.27,70.57,85.23,93.88,7.24,14.6,72.09,0.0,100.0,6.93,0.9,1045.0
+Osprey Housing Ltd,312.0,99c9586c-77a0-11eb-b7ee-06f9654bc8a2,Mainstream,2025/2026,90.23,87.32,75.49,99.2,2.87,10.42,99.57,0.0,100.0,5.16,3.5,1864.0
+Paisley Housing Association Ltd,166.0,8e7df206-77a0-11eb-b718-06f9654bc8a2,Mainstream,2025/2026,92.62,95.69,88.17,95.86,2.11,3.15,99.12,1.0,100.0,4.29,3.8,1304.0
+Paragon Housing Association Ltd,298.0,989bdfbe-77a0-11eb-aba0-06f9654bc8a2,Mainstream,2025/2026,88.5,86.0,86.05,91.4,1.35,7.52,95.41,0.0,96.09,4.4,4.0,1488.0
+Parkhead Housing Association Ltd,167.0,8ea218de-77a0-11eb-a34d-06f9654bc8a2,Mainstream,2025/2026,90.53,87.87,83.51,99.09,2.93,5.98,99.3,0.0,100.0,2.89,2.0,1757.0
+Partick Housing Association Ltd,168.0,8ec7a996-77a0-11eb-bff3-06f9654bc8a2,Mainstream,2025/2026,95.0,91.94,85.82,90.09,2.25,5.24,99.75,0.0,100.0,5.27,8.2,1826.0
+Perth & Kinross Council,1022.0,899ab832-77a0-11eb-81d7-06f9654bc8a2,Local authority,2025/2026,80.0,78.92,97.71,79.73,3.53,8.3,94.66,0.0,98.63,5.46,6.0,8368.0
+Pineview Housing Association Ltd,231.0,940d7674-77a0-11eb-a61a-06f9654bc8a2,Mainstream,2025/2026,91.45,93.51,95.25,99.88,3.74,3.3,95.86,0.0,97.94,4.17,26.3,852.0
+Prospect Community Housing,204.0,91abc746-77a0-11eb-a038-06f9654bc8a2,Mainstream,2025/2026,87.55,87.78,98.91,100.0,1.65,2.78,99.1,0.0,100.0,2.52,3.2,943.0
+Provanhall Housing Association Ltd,242.0,9521ff94-77a0-11eb-affa-06f9654bc8a2,Mainstream,2025/2026,94.34,86.42,94.8,97.37,2.28,4.55,93.35,0.0,100.0,3.2,6.6,533.0
+Queens Cross Housing Association Ltd,172.0,8f300946-77a0-11eb-bc54-06f9654bc8a2,Mainstream,2025/2026,88.76,82.58,81.71,94.82,2.33,4.53,97.14,1.0,100.0,3.41,17.6,4423.0
+Reidvale Housing Association,173.0,8f54678c-77a0-11eb-ab29-06f9654bc8a2,Mainstream,2025/2026,92.67,93.04,92.86,98.41,2.8,4.77,91.34,0.0,100.0,3.67,2.4,880.0
+Renfrewshire Council,1023.0,89b3b620-77a0-11eb-a5d2-06f9654bc8a2,Local authority,2025/2026,72.02,71.62,78.8,80.86,4.95,5.5,91.07,11.0,95.66,14.3,3.3,11942.0
+River Clyde Homes,362.0,9b2037f8-77a0-11eb-9979-06f9654bc8a2,Mainstream,2025/2026,84.47,82.87,83.61,88.69,4.57,31.32,90.5,0.0,99.75,5.44,2.7,6094.0
+Rosehill Housing Association Limited,174.0,8f8e785a-77a0-11eb-b617-06f9654bc8a2,Mainstream,2025/2026,93.27,90.19,98.39,98.18,2.72,4.6,94.97,0.0,100.0,3.22,5.6,1045.0
+Ruchazie Housing Association Ltd,277.0,96ae1078-77a0-11eb-b3ef-06f9654bc8a2,Mainstream,2025/2026,94.37,90.85,89.86,100.0,2.68,5.25,96.75,0.0,100.0,1.0,4.9,226.0
+Rural Stirling Housing Association Ltd,232.0,94315fd0-77a0-11eb-8826-06f9654bc8a2,Mainstream,2025/2026,94.1,94.1,73.78,96.67,3.01,5.64,96.77,0.0,100.0,4.76,12.3,691.0
+Rutherglen and Cambuslang Housing Association Ltd,176.0,8faddf24-77a0-11eb-b89a-06f9654bc8a2,Mainstream,2025/2026,95.04,90.08,94.68,93.13,2.94,6.15,98.53,0.0,100.0,3.09,3.4,873.0
+Sanctuary Scotland Housing Association Ltd,302.0,991c2a20-77a0-11eb-9ae3-06f9654bc8a2,Mainstream,2025/2026,83.9,86.3,82.48,90.54,5.19,16.84,90.53,0.0,99.14,4.13,4.0,9256.0
+Scottish Borders Council,1024.0,89c9bf56-77a0-11eb-a9fb-06f9654bc8a2,Local authority,2025/2026,,,,,,,,,100.0,4.44,,
+Scottish Borders Housing Association Ltd,313.0,99ea7a74-77a0-11eb-8dca-06f9654bc8a2,Mainstream,2025/2026,78.44,77.25,84.24,90.53,1.97,10.39,97.98,1.0,98.81,3.89,2.8,5735.0
+Scottish Veterans Residences,180.0,8fd23e6e-77a0-11eb-a02f-06f9654bc8a2,Small,2025/2026,86.96,89.13,91.18,100.0,2.41,3.58,97.71,0.0,100.0,0.09,12.4,75.0
+Shetland Islands Council,1025.0,89e21966-77a0-11eb-b16e-06f9654bc8a2,Local authority,2025/2026,74.68,74.52,94.76,91.13,2.2,7.9,100.0,0.0,100.0,4.38,0.1,1703.0
+Shettleston Housing Association Ltd,183.0,8ff1ffa6-77a0-11eb-862b-06f9654bc8a2,Mainstream,2025/2026,91.57,87.51,92.51,91.85,2.06,3.88,94.75,0.0,100.0,3.83,14.1,2417.0
+Shire Housing Association Ltd,296.0,98569e90-77a0-11eb-8654-06f9654bc8a2,Mainstream,2025/2026,90.91,88.31,89.13,98.55,2.98,6.46,97.63,0.0,100.0,2.45,2.1,967.0
+South Ayrshire Council,1026.0,89f89592-77a0-11eb-97f1-06f9654bc8a2,Local authority,2025/2026,91.49,91.61,89.36,92.66,2.33,7.77,93.76,0.0,97.48,4.4,4.7,8360.0
+South Lanarkshire Council,1031.0,8a7ce9dc-77a0-11eb-b5a2-06f9654bc8a2,Local authority,2025/2026,93.44,92.12,88.98,78.06,3.41,12.59,98.78,1.0,92.68,4.1,4.0,26169.0
+Southside Housing Association Ltd,186.0,9035b43a-77a0-11eb-a8fa-06f9654bc8a2,Mainstream,2025/2026,96.22,96.04,92.36,86.37,3.02,3.99,96.65,3.0,98.81,5.19,10.5,2253.0
+Spire View Housing Association Ltd,323.0,9a30ca88-77a0-11eb-9b67-06f9654bc8a2,Mainstream,2025/2026,96.57,96.04,88.82,97.18,1.82,3.86,100.0,0.0,96.15,3.16,6.7,852.0
+Stirling Council,1027.0,8a11b798-77a0-11eb-ac18-06f9654bc8a2,Local authority,2025/2026,89.47,85.37,92.69,81.03,3.59,6.73,95.22,2.0,99.13,4.51,5.4,6162.0
+Thenue Housing Association Ltd,193.0,9099eff4-77a0-11eb-ab6f-06f9654bc8a2,Mainstream,2025/2026,92.57,91.2,80.05,95.22,1.89,7.78,99.51,0.0,100.0,4.15,6.8,3141.0
+Tollcross Housing Association Ltd,197.0,90da9892-77a0-11eb-b7cb-06f9654bc8a2,Mainstream,2025/2026,91.0,89.15,91.35,82.02,2.34,2.7,99.7,0.0,100.0,2.9,13.4,2325.0
+Trafalgar Housing Association Ltd,212.0,92763eb8-77a0-11eb-b524-06f9654bc8a2,Mainstream,2025/2026,95.0,91.25,92.11,99.67,1.94,4.79,98.66,0.0,100.0,1.64,5.3,301.0
+Trust Housing Association Ltd,143.0,8cc142b0-77a0-11eb-a5d8-06f9654bc8a2,Mainstream,2025/2026,81.6,85.6,84.72,91.88,2.0,6.48,98.51,0.0,99.17,3.83,4.2,3844.0
+Viewpoint Housing Association Ltd,199.0,90fd9c48-77a0-11eb-a185-06f9654bc8a2,Mainstream,2025/2026,75.44,82.67,91.39,72.4,1.25,4.07,98.08,0.0,94.9,3.68,3.1,1308.0
+Waverley Housing,327.0,9a967450-77a0-11eb-9ca7-06f9654bc8a2,Mainstream,2025/2026,80.85,73.16,81.1,88.93,3.09,6.11,98.73,0.0,100.0,2.84,3.1,1455.0
+Wellhouse Housing Association Ltd,281.0,9769e1f4-77a0-11eb-bb50-06f9654bc8a2,Mainstream,2025/2026,93.69,94.01,91.18,99.24,1.88,6.5,100.0,0.0,100.0,4.21,4.7,792.0
+West Dunbartonshire Council,1028.0,8a285d5e-77a0-11eb-9b28-06f9654bc8a2,Local authority,2025/2026,87.0,87.8,90.05,81.66,4.59,10.9,98.54,0.0,87.18,7.03,9.3,10581.0
+West Granton Housing Co-operative Ltd,225.0,93a6d734-77a0-11eb-9e0e-06f9654bc8a2,Mainstream,2025/2026,97.5,100.0,90.24,93.55,2.6,4.75,94.75,0.0,100.0,0.1,5.6,372.0
+West Highland Housing Association Ltd,163.0,f2c2e65e-77a0-11eb-b883-06f9654bc8a2,Mainstream,2025/2026,92.21,85.71,83.33,96.47,3.19,11.18,98.1,0.0,92.31,4.42,3.6,851.0
+West Lothian Council,1029.0,8a40257e-77a0-11eb-b671-06f9654bc8a2,Local authority,2025/2026,92.44,78.97,95.22,95.83,6.06,6.64,96.91,1.0,98.49,3.48,2.0,14344.0
+West of Scotland Housing Association Ltd,201.0,913f2de8-77a0-11eb-8cb7-06f9654bc8a2,Mainstream,2025/2026,91.18,91.87,90.97,94.19,2.06,5.46,98.64,0.0,99.12,3.46,6.7,4252.0
+West Whitlawburn Housing Co-operative Ltd,203.0,9186b62c-77a0-11eb-9268-06f9654bc8a2,Mainstream,2025/2026,94.35,93.29,93.48,97.02,2.28,3.05,97.77,0.0,97.96,4.12,18.3,704.0
+Wheatley Homes East Limited,116.0,f242f9bc-77a0-11eb-917f-06f9654bc8a2,Mainstream,2025/2026,95.58,95.03,96.77,99.57,2.84,9.02,98.92,0.0,96.96,3.98,12.0,7055.0
+Wheatley Homes Glasgow Limited,317.0,f3f284bc-77a0-11eb-8611-06f9654bc8a2,Mainstream,2025/2026,89.73,89.92,83.45,99.59,2.85,7.26,98.9,0.0,96.77,3.98,9.2,42315.0
+Wheatley Homes South Limited,315.0,f3cb4cc6-77a0-11eb-a595-06f9654bc8a2,Mainstream,2025/2026,94.74,93.16,96.93,90.67,2.68,9.05,99.81,5.0,97.65,3.56,7.9,10233.0
+Whiteinch and Scotstoun Housing Association Ltd,205.0,91ccc75c-77a0-11eb-b02a-06f9654bc8a2,Mainstream,2025/2026,95.0,95.67,95.28,87.6,2.43,5.3,97.73,0.0,97.87,3.76,3.1,1314.0
+Williamsburgh Housing Association Ltd,207.0,91ecf6f8-77a0-11eb-a102-06f9654bc8a2,Mainstream,2025/2026,87.77,89.66,90.51,98.61,1.58,5.33,97.69,1.0,89.66,3.35,7.0,1726.0
+Yoker Housing Association Ltd,208.0,9211170e-77a0-11eb-96d7-06f9654bc8a2,Mainstream,2025/2026,88.46,86.54,79.35,99.7,1.89,1.54,99.9,0.0,100.0,1.45,2.7,672.0
+Yorkhill Housing Association Ltd,209.0,923150fa-77a0-11eb-b0aa-06f9654bc8a2,Mainstream,2025/2026,87.26,87.26,90.0,79.03,2.16,2.08,98.16,0.0,100.0,4.48,10.8,472.0

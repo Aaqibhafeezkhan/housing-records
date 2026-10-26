@@ -1,0 +1,4 @@
+seg,label,median,n,q10,q25,q75,q90,rm_median,rm_n,margin_median,margin_n,void_median,void_n,arrears_median,arrears_n,baddebt_median,baddebt_n,england_median_all_providers
+GN,general needs,5526.0,171,4511.0,5009.5,6496.5,8298.0,3206.0,155,21.1,171,77.0,171,3.4,171,32.0,171,5688.0
+HOP,housing for older people,10649.0,4,7336.9,8175.25,17475.0,26147.4,3496.0,1,17.5,3,107.0,3,2.8,3,35.0,3,5688.0
+SH,supported housing,15275.5,16,7194.0,10805.75,20719.75,29814.5,2910.5,16,10.2,16,617.5,16,5.050000000000001,16,86.5,16,5688.0

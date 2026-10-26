@@ -1,0 +1,161 @@
+landlord_code,landlord_name,la_code,la_name,la_owned_homes
+5069,"Bournemouth, Christchurch and Poole Council",E06000058,"Bournemouth, Christchurch and Poole",10169
+5070,East Suffolk Council,E07000244,East Suffolk,4345
+5129,North Northamptonshire Council,E06000061,North Northamptonshire,8211
+5130,West Northamptonshire Council,E06000062,West Northamptonshire,11455
+5177,Westmorland and Furness Council,E06000064,Westmorland and Furness,2571
+5178,Somerset Council,E06000066,Somerset,9737
+5179,North Yorkshire Council,E06000065,North Yorkshire,8551
+00AA,City of London Corporation,E09000001,City of London,451
+00AB,London Borough of Barking and Dagenham,E09000002,Barking and Dagenham,16046
+00AC,London Borough of Barnet,E09000003,Barnet,9984
+00AE,London Borough of Brent,E09000005,Brent,9607
+00AG,London Borough of Camden Council,E09000007,Camden,22796
+00AH,London Borough of Croydon,E09000008,Croydon,13347
+00AJ,London Borough of Ealing,E09000009,Ealing,11259
+00AK,London Borough of Enfield,E09000010,Enfield,10823
+00AL,Royal Borough of Greenwich,E09000011,Greenwich,20956
+00AM,London Borough of Hackney,E09000012,Hackney,21552
+00AN,London Borough of Hammersmith and Fulham,E09000013,Hammersmith and Fulham,11917
+00AP,Haringey London Borough Council,E09000014,Haringey,15182
+00AQ,London Borough of Harrow,E09000015,Harrow,4863
+00AR,London Borough of Havering Council,E09000016,Havering,9364
+00AS,London Borough of Hillingdon,E09000017,Hillingdon,10430
+00AT,London Borough of Hounslow,E09000018,Hounslow,13434
+00AU,London Borough of Islington,E09000019,Islington,25530
+00AW,Royal Borough of Kensington and Chelsea,E09000020,Kensington and Chelsea,7034
+00AX,Royal Borough of Kingston Upon Thames,E09000021,Kingston upon Thames,4541
+00AY,London Borough of Lambeth,E09000022,Lambeth,23655
+00AZ,London Borough of Lewisham,E09000023,Lewisham,14131
+00BB,London Borough of Newham,E09000025,Newham,17047
+00BC,London Borough of Redbridge,E09000026,Redbridge,4682
+00BE,Southwark Council,E09000028,Southwark,38207
+00BF,London Borough of Sutton,E09000029,Sutton,6035
+00BG,London Borough of Tower Hamlets,E09000030,Tower Hamlets,11777
+00BH,London Borough of Waltham Forest,E09000031,Waltham Forest,10057
+00BJ,London Borough of Wandsworth,E09000032,Wandsworth,17353
+00BK,City of Westminster Council,E09000033,Westminster,12113
+00BM,Bury Metropolitan Borough Council,E08000002,Bury,7673
+00BN,Manchester City Council,E08000003,Manchester,15086
+00BP,Oldham Metropolitan Borough Council,E08000004,Oldham,2083
+00BR,Salford City Council,E08000006,Salford,1207
+00BS,Stockport Metropolitan Borough Council,E08000007,Stockport,10958
+00BW,Wigan Council,E08000010,Wigan,21318
+00CC,Barnsley Metropolitan Borough Council,E08000016,Barnsley,17904
+00CE,City of Doncaster Council,E08000017,Doncaster,19944
+00CF,Rotherham Metropolitan Borough Council,E08000018,Rotherham,20099
+00CG,Sheffield City Council,E08000019,Sheffield,38153
+00CH,Gateshead Metropolitan Borough Council,E08000037,Gateshead,17996
+00CJ,Newcastle City Council,E08000021,Newcastle upon Tyne,24683
+00CK,North Tyneside Council,E08000022,North Tyneside,13942
+00CL,South Tyneside Council,E08000023,South Tyneside,15829
+00CN,Birmingham City Council,E08000025,Birmingham,57869
+00CR,Dudley Metropolitan Borough Council,E08000027,Dudley,20780
+00CS,Sandwell Metropolitan Borough Council,E08000028,Sandwell,27717
+00CT,Solihull Metropolitan Borough Council,E08000029,Solihull,9978
+00CW,Wolverhampton City Council,E08000031,Wolverhampton,21302
+00CZ,Kirklees Metropolitan Borough Council,E08000034,Kirklees,21599
+00DA,Leeds City Council,E08000035,Leeds,52646
+00EH,Darlington Borough Council,E06000005,Darlington,5262
+00EM,Northumberland County Council,E06000057,Northumberland,8416
+00EW,Cheshire West and Chester Council,E06000050,Cheshire West and Chester,5285
+00EY,Blackpool Borough Council,E06000009,Blackpool,4872
+00FA,Kingston upon Hull City Council,E06000010,Kingston upon Hull,22883
+00FB,East Riding Of Yorkshire Council,E06000011,East Riding of Yorkshire,11412
+00FF,City of York Council,E06000014,York,7470
+00FK,Derby City Council,E06000015,Derby,12602
+00FN,Leicester City Council,E06000016,Leicester,18613
+00FY,Nottingham City Council,E06000018,Nottingham,24108
+00GG,Shropshire Council,E06000051,Shropshire,4037
+00GL,Stoke on Trent City Council,E06000021,Stoke-on-Trent,17288
+00HB,Bristol City Council,E06000023,Bristol,26898
+00HE,Cornwall Council,E06000052,Cornwall,10488
+00HX,Swindon Borough Council,E06000030,Swindon,10381
+00HY,Wiltshire Council,E06000054,Wiltshire,5326
+00KA,Luton Borough Council,E06000032,Luton,7607
+00KC,Central Bedfordshire Council,E06000056,Central Bedfordshire,5613
+00KF,Southend on Sea City Council,E06000033,Southend-on-Sea,6074
+00KG,Thurrock Council,E06000034,Thurrock,9790
+00LC,Medway Council,E06000035,Medway,3032
+00MC,Reading Borough Council,E06000038,Reading,6944
+00MD,Slough Borough Council,E06000039,Slough,6183
+00MF,Wokingham Borough Council,E06000041,Wokingham,2568
+00MG,Milton Keynes Council,E06000042,Milton Keynes,12461
+00ML,Brighton and Hove City Council,E06000043,Brighton and Hove,11919
+00MR,Portsmouth City Council,E06000044,Portsmouth,10474
+00MS,Southampton City Council,E06000045,Southampton,16196
+12UB,Cambridge City Council,E07000008,Cambridge,7562
+12UG,South Cambridgeshire District Council,E07000012,South Cambridgeshire,5982
+17UC,Bolsover District Council,E07000033,Bolsover,4940
+17UD,Chesterfield Borough Council,E07000034,Chesterfield,8728
+17UH,High Peak Borough Council,E07000037,High Peak,3802
+17UJ,North East Derbyshire District Council,E07000038,North East Derbyshire,7500
+17UK,South Derbyshire District Council,E07000039,South Derbyshire,2940
+18UB,East Devon District Council,E07000040,East Devon,4166
+18UC,Exeter City Council,E07000041,Exeter,4728
+18UD,Mid Devon District Council,E07000042,Mid Devon,2971
+21UC,Eastbourne Borough Council,E07000061,Eastbourne,3464
+21UF,Lewes District Council,E07000063,Lewes,3263
+21UH,Wealden District Council,E07000065,Wealden,3155
+22UB,Basildon Borough Council,E07000066,Basildon,11044
+22UD,Brentwood Borough Council,E07000068,Brentwood,2647
+22UE,Castle Point Borough Council,E07000069,Castle Point,1495
+22UG,Colchester City Council,E07000071,Colchester,6074
+22UH,Epping Forest District Council,E07000072,Epping Forest,6484
+22UJ,Harlow District Council,E07000073,Harlow,9050
+22UN,Tendring District Council,E07000076,Tendring,3078
+22UQ,Uttlesford District Council,E07000077,Uttlesford,2823
+23UB,Cheltenham Borough Council,E07000078,Cheltenham,4551
+23UF,Stroud District Council,E07000082,Stroud,4998
+24UE,Fareham Borough Council,E07000087,Fareham,2471
+24UF,Gosport Borough Council,E07000088,Gosport,3061
+24UJ,New Forest District Council,E07000091,New Forest,5220
+24UP,Winchester City Council,E07000094,Winchester,5241
+26UC,Dacorum Borough Council,E07000096,Dacorum,10121
+26UG,St Albans City and District Council,E07000240,St Albans,4814
+26UH,Stevenage Borough Council,E07000243,Stevenage,7968
+26UL,Welwyn Hatfield Borough Council,E07000241,Welwyn Hatfield,8850
+29UB,Ashford Borough Council,E07000105,Ashford,5281
+29UC,Canterbury City Council,E07000106,Canterbury,5130
+29UD,Dartford Borough Council,E07000107,Dartford,4202
+29UE,Dover District Council,E07000108,Dover,4463
+29UG,Gravesham Borough Council,E07000109,Gravesham,5642
+29UL,Folkestone and Hythe District Council,E07000112,Folkestone and Hythe,3414
+29UN,Thanet District Council,E07000114,Thanet,3153
+30UH,Lancaster City Council,E07000121,Lancaster,3614
+30UP,West Lancashire Borough Council,E07000127,West Lancashire,5794
+31UC,Charnwood Borough Council,E07000130,Charnwood,5428
+31UE,Hinckley and Bosworth Borough Council,E07000132,Hinckley and Bosworth,3230
+31UG,Melton Borough Council,E07000133,Melton,1785
+31UH,North West Leicestershire District Council,E07000134,North West Leicestershire,4080
+31UJ,Oadby and Wigston Borough Council,E07000135,Oadby and Wigston,1178
+32UD,City of Lincoln Council,E07000138,Lincoln,7780
+32UE,North Kesteven District Council,E07000139,North Kesteven,4055
+32UF,South Holland District Council,E07000140,South Holland,3847
+32UG,South Kesteven District Council,E07000141,South Kesteven,5848
+33UD,Great Yarmouth Borough Council,E07000145,Great Yarmouth,5796
+33UG,Norwich City Council,E07000148,Norwich,14130
+37UB,Ashfield District Council,E07000170,Ashfield,6640
+37UC,Bassetlaw District Council,E07000171,Bassetlaw,6520
+37UD,Broxtowe Borough Council,E07000172,Broxtowe,4379
+37UF,Mansfield District Council,E07000174,Mansfield,6305
+37UG,Newark and Sherwood District Council,E07000175,Newark and Sherwood,5567
+38UC,Oxford City Council,E07000178,Oxford,7900
+41UB,Cannock Chase District Council,E07000192,Cannock Chase,5019
+41UK,Tamworth Borough Council,E07000199,Tamworth,4312
+42UB,Babergh District Council,E07000200,Babergh,3546
+42UD,Ipswich Borough Council,E07000202,Ipswich,7822
+42UE,Mid Suffolk District Council,E07000203,Mid Suffolk,3501
+43UD,Guildford Borough Council,E07000209,Guildford,5217
+43UG,Runnymede Borough Council,E07000212,Runnymede,3055
+43UK,Tandridge District Council,E07000215,Tandridge,2597
+43UL,Waverley Borough Council,E07000216,Waverley,4778
+43UM,Woking Borough Council,E07000217,Woking,3290
+44UB,North Warwickshire Borough Council,E07000218,North Warwickshire,2581
+44UC,Nuneaton And Bedworth Borough Council,E07000219,Nuneaton and Bedworth,5625
+44UD,Rugby Borough Council,E07000220,Rugby,3493
+44UF,Warwick District Council,E07000222,Warwick,5648
+45UB,Adur District Council,E07000223,Adur,2523
+45UC,Arun District Council,E07000224,Arun,3470
+45UE,Crawley Borough Council,E07000226,Crawley,8364
+47UD,Redditch Borough Council,E07000236,Redditch,5533
