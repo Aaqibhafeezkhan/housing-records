@@ -132,3 +132,29 @@ The fix:
 
 The same mismatch is why `build_bundle.py` looks up register facts (legal form, registration year) by code as
 text; that lookup can be simplified once the codes are fixed at source.
+
+---
+
+## Map shows the wrong borough's name near borough borders  [bug, map, good first issue]
+
+**What happens:** moving the pointer (or tapping) close to the border between two boroughs sometimes shows the
+name of a completely different borough, one that is nowhere near.
+
+**Likely cause:** to find which borough is under the pointer, `site/index.html` paints every borough into a
+hidden canvas, each in its own colour, and reads back the colour under the pointer (`idAt`, called from
+`districtAt`). Browsers smooth (anti-alias) the edges of shapes, so a pixel on a border is a **blend** of two
+boroughs' colours, and that blended colour can decode to the number of an unrelated borough. `idAt` tries to
+skip blended pixels by checking transparency, but where two filled boroughs meet, the blended pixel is fully
+opaque, so the check doesn't catch it. `districtAt` also calls `idAt` in its "loose" mode, which accepts
+semi-transparent edge pixels.
+
+**Possible fixes**, any one of which would do:
+
+- check the borough `idAt` returns with an exact point-in-polygon test against `D.paths`, and fall back to
+  `districtNear` when it fails;
+- or accept an id only when the surrounding pixels (say a 3×3 square) agree;
+- or draw the hidden canvas without shared edges, so no pixel can hold a blend.
+
+**How to test:** hover slowly along several borough borders, especially in London and where small boroughs
+meet large ones, on both a normal and a high-resolution screen, and on a phone (tapping). The tooltip and the
+card that opens must always name one of the two boroughs either side of the border.
