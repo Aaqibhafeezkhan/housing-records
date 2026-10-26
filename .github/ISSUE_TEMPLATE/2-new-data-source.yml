@@ -1,0 +1,35 @@
+name: Suggest a data source
+description: Published data that could be added to the record.
+labels: ["new-source"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: What is it?
+      placeholder: "e.g. Welsh Government social landlord performance data"
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Link to where it is published
+    validations:
+      required: true
+  - type: input
+    id: licence
+    attributes:
+      label: Licence
+      description: Under what terms is it published? (e.g. Open Government Licence v3.0). Say "not sure" if you don't know.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: What would it show, and for which landlords?
+    validations:
+      required: true
+  - type: textarea
+    id: gaps
+    attributes:
+      label: Known gaps or caveats
+      description: Missing landlords, years, self-reported figures, anything a reader should know.

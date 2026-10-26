@@ -1,0 +1,24 @@
+name: Something's broken
+description: The site, the map, the "ask anything" box or the pipeline isn't working.
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: How can we see it happen?
+      placeholder: "1. Open housingrecords.org  2. Search for ...  3. ..."
+  - type: input
+    id: device
+    attributes:
+      label: Browser and device
+      placeholder: "e.g. Safari on iPhone, Chrome on Windows"
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else (screenshots welcome)

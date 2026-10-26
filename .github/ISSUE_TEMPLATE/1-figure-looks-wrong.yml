@@ -1,0 +1,39 @@
+name: A figure looks wrong
+description: A number, grade or statement on the site that doesn't match its source.
+labels: ["data", "needs-checking"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you. Every figure on Housing Records should trace to a published source, so a mismatch matters.
+        You don't need to know any code to report one.
+  - type: input
+    id: where
+    attributes:
+      label: Where is it?
+      description: The landlord or borough, and which part of the card.
+      placeholder: "e.g. Example Housing Association, 'Repairs on time'"
+    validations:
+      required: true
+  - type: textarea
+    id: shown
+    attributes:
+      label: What the site shows
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you think it should be, and why
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Link to the source
+      description: The official page or file that shows the correct figure, if you have it.
+  - type: textarea
+    id: context
+    attributes:
+      label: Anything else
+      description: Please don't include personal details about yourself or any tenant.
