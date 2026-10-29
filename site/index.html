@@ -389,6 +389,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* example searches shown when the empty box is opened: small group headings that are not choices */
 .search li.grp{cursor:default;padding:6px var(--s2) 2px;color:var(--ink-3);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase}
 .search li.grp:hover{background:none}
+/* the list eases in from just under the box; the examples follow it in, one after another */
+@keyframes suggIn{from{opacity:0;transform:translateY(-6px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes suggItem{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.search ul:not([hidden]){animation:suggIn 200ms cubic-bezier(.2,.6,.2,1) both;transform-origin:top center}
+.search ul.ex li{animation:suggItem 260ms cubic-bezier(.2,.6,.2,1) both;animation-delay:calc(60ms + var(--i,0) * 35ms)}
+@media (prefers-reduced-motion:reduce){.search ul:not([hidden]),.search ul.ex li{animation:none}}
 /* a question is a title, not a paragraph: one line, trimmed with an ellipsis */
 .card.k-q .hd>div:first-child{min-width:0;flex:1}
 .card.k-q .hd h2{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -2114,18 +2120,19 @@ const looksLikeQuestion=v=>/\?$/.test(v)||v.split(/\s+/).length>=3;
 // Shown when the box is opened empty, so people can see what it does. Every question here was asked
 // of the live box and answered properly from the record: keep it that way when changing the list
 // (no "why" questions, nothing that reads cost or rent as good or bad).
-const EXAMPLES=[{t:'l',c:'LH4087',n:'Clarion Housing Group'},{t:'la',c:'E09000007',n:'Camden'}]
+const EXAMPLES=[{t:'l',c:'4653',n:'Regenda Limited'},{t:'la',c:'E09000007',n:'Camden'}]
   .filter(x=>x.t==='l'?L[x.c]:LAS[x.c]);
 const EXAMPLE_QS=['Which councils take longest to re-let empty homes?','Which landlords built the most homes last year?','Compare Peabody and Clarion'];
-function showExamples(){ cur=-1;
-  sugg.innerHTML=(EXAMPLES.length?`<li class="grp" role="presentation">Try a landlord or borough</li>`:'')
+function showExamples(){ cur=-1; sugg.classList.add('ex');
+  sugg.innerHTML=(EXAMPLES.length?`<li class="grp" role="presentation">Search a landlord or borough</li>`:'')
     +EXAMPLES.map(x=>`<li role="option" data-t="${x.t}" data-c="${esc(x.c)}"><span>${esc(x.n)}</span><small>${x.t==='la'?'Borough':'Landlord'}</small></li>`).join('')
-    +`<li class="grp" role="presentation">Try a question</li>`
+    +`<li class="grp" role="presentation">Ask a question</li>`
     +EXAMPLE_QS.map(t=>`<li role="option" class="ask" data-t="ask" data-c="${esc(t)}"><span>${esc(t)}</span></li>`).join('');
+  [...sugg.children].forEach((li,i)=>li.style.setProperty('--i',i));
   sugg.hidden=false; }
 q.addEventListener('focus',()=>{ if(!q.value.trim())showExamples(); });
 q.addEventListener('click',()=>{ if(!q.value.trim()&&sugg.hidden)showExamples(); });
-q.addEventListener('input',()=>{ const raw=q.value.trim(), v=raw.toLowerCase(); cur=-1; if(!v){showExamples();return;} if(v.length<2){sugg.hidden=true;return;}
+q.addEventListener('input',()=>{ const raw=q.value.trim(), v=raw.toLowerCase(); cur=-1; if(!v){showExamples();return;} sugg.classList.remove('ex'); if(v.length<2){sugg.hidden=true;return;}
   const hits=items.filter(i=>i.n.toLowerCase().includes(v)).slice(0,8);
   let html=hits.map(h=>`<li role="option" data-t="${h.t}" data-c="${esc(h.c)}"><span>${esc(h.n)}</span><small>${esc(h.s)}</small></li>`).join('');
   if(looksLikeQuestion(raw)&&raw.length>=8) html+=`<li role="option" class="ask" data-t="ask" data-c="${esc(raw)}"><span>Ask “${esc(raw)}”</span></li>`;
