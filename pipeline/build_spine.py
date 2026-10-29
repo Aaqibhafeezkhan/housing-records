@@ -20,6 +20,12 @@ TP = {"TP01": "sat_overall", "TP02": "sat_repairs", "TP03": "sat_repair_time", "
       "TP09": "sat_complaints", "TP10": "sat_communal", "TP11": "sat_neighbourhood", "TP12": "sat_asb"}
 
 
+def as_code(col):
+    """Registration codes as text. Excel stores codes like 4878 as numbers but L4517 as text, while the CSV
+    returns read every code as text; joining the two silently drops every all-number code (issue #5)."""
+    return col.map(lambda v: str(int(v)) if isinstance(v, float) and v.is_integer() else str(v).strip())
+
+
 def load_sheet(path, sheet):
     df = pd.read_excel(path, sheet_name=sheet, header=None)
     hr = df.index[df[0].astype(str).str.strip() == "Landlord name"][0]
@@ -43,7 +49,7 @@ def not_included(path, sheet):
         return {}
     note = [c for c in df.columns if c.startswith("Notes from RSH")][0]
     df = df.dropna(subset=["Landlord code"])
-    return {c: str(n).strip() for c, n in zip(df["Landlord code"], df[note]) if isinstance(n, str)}
+    return {c: str(n).strip() for c, n in zip(as_code(df["Landlord code"]), df[note]) if isinstance(n, str)}
 
 
 BASE = {"Landlord name": "landlord_name", "Landlord code": "landlord_code", "Landlord type": "landlord_type",
@@ -58,6 +64,8 @@ def build_tsm(year, path, mi_sheet, tp_sheet):
     mi, pe = load_sheet(path, mi_sheet), load_sheet(path, tp_sheet)
     # footnote rows at the bottom of the older workbooks have no landlord code
     mi, pe = (df[df["Landlord code"].notna()].copy() for df in (mi, pe))
+    for df in (mi, pe):
+        df["Landlord code"] = as_code(df["Landlord code"])
     m = mi[list(BASE)].rename(columns=BASE)
     for code, name in MI.items():
         m[name] = pd.to_numeric(mi[pick(mi, code)], errors="coerce")
@@ -83,6 +91,7 @@ def build_tsm(year, path, mi_sheet, tp_sheet):
 def main():
     prov = pd.read_excel(glob.glob(RAW + "rsh/List_of_registered_providers_*.xlsx")[0])
     prov.columns = ["org_name", "reg_number", "reg_date", "designation", "corporate_form", "notes"]
+    prov["reg_number"] = as_code(prov.reg_number)
     prov.to_csv(OUT + "registered_providers.csv", index=False)
 
     tsm = pd.concat([
@@ -95,6 +104,7 @@ def main():
     sla = sla.rename(columns={"PRP name": "landlord_name", "PRP registration number": "landlord_code",
                               "Size of organisation": "size", "Local Authority name": "la_name", "LA code": "la_code"})
     owned = [c for c in sla.columns if "Owned low cost rental" in c]
+    sla["landlord_code"] = as_code(sla.landlord_code)
     sla["lcra_owned"] = sla[owned].apply(pd.to_numeric, errors="coerce").sum(axis=1)
     sla["dhs_fails"] = pd.to_numeric(sla[[c for c in sla.columns if "fail the DHS" in c][0]], errors="coerce")
     sla = sla[sla.la_code.astype(str).str.startswith("E") & (sla.lcra_owned > 0)]

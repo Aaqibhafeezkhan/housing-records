@@ -93,6 +93,9 @@ spine["homes_estimate"] = spine.lcra_owned_sdr.where(spine.landlord_type == "PRP
 grp = (spine.landlord_type == "PRP") & (spine.lcra_owned_sdr < 0.01 * spine.group_lcra_owned)
 spine["homes_grp"] = grp
 spine.loc[grp, "homes_estimate"] = spine.loc[grp, "group_lcra_owned"]
+spine.loc[grp, "la_count"] = spine.loc[grp, "group_la_count"]   # and the boroughs those group homes are in
+gmain = sla.groupby(["group_code", "la_name"]).lcra_owned.sum().reset_index().sort_values(["lcra_owned", "la_name"], ascending=[False, True]).drop_duplicates("group_code").set_index("group_code").la_name
+spine.loc[grp, "main_la"] = spine.loc[grp, "landlord_code"].astype(str).map(gmain)
 spine["la_count"] = spine.la_count.fillna(spine.group_la_count)
 spine.to_csv(OUT + "landlord_spine_2024_25.csv", index=False)
 
