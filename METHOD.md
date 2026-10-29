@@ -133,6 +133,14 @@ and carry the Regulator's reason through to the card.
 **Where data is withheld, the summary must not read a clean bill of health out of the gap.** "Not in the
 worst 25% on any of the four measures" is false when three of them were withheld.
 
+**Registration codes are text.** The Regulator's workbooks store codes like `4878` as numbers and codes like
+`L4517` as text; the CSV returns read every code as text. Joining the two silently dropped every all-number
+code (issue #5). `build_spine.py` turns every code into text as it is read (`as_code`). Do the same for any new
+source.
+
+**Group parents.** Where a parent's own stock return holds under 1% of its group's homes, the homes figure, the
+number of boroughs and the main borough all come from the whole group, and the card says so (`homes_grp`).
+
 **LAHS units.** Section H is in pounds. Sections B and F are in **£'000** in the open-data file despite the
 form saying pounds — verified against the form's own derived cell `f16c` and against Right to Buy average
 prices. Three asserts stop the build if this changes.
