@@ -1,11 +1,4 @@
 landlord_code,landlord_name,la_code,la_name,la_owned_homes
-5069,"Bournemouth, Christchurch and Poole Council",E06000058,"Bournemouth, Christchurch and Poole",10169
-5070,East Suffolk Council,E07000244,East Suffolk,4345
-5129,North Northamptonshire Council,E06000061,North Northamptonshire,8211
-5130,West Northamptonshire Council,E06000062,West Northamptonshire,11455
-5177,Westmorland and Furness Council,E06000064,Westmorland and Furness,2571
-5178,Somerset Council,E06000066,Somerset,9737
-5179,North Yorkshire Council,E06000065,North Yorkshire,8551
 00AA,City of London Corporation,E09000001,City of London,451
 00AB,London Borough of Barking and Dagenham,E09000002,Barking and Dagenham,16046
 00AC,London Borough of Barnet,E09000003,Barnet,9984
@@ -159,3 +152,10 @@ landlord_code,landlord_name,la_code,la_name,la_owned_homes
 45UC,Arun District Council,E07000224,Arun,3470
 45UE,Crawley Borough Council,E07000226,Crawley,8364
 47UD,Redditch Borough Council,E07000236,Redditch,5533
+5069,"Bournemouth, Christchurch and Poole Council",E06000058,"Bournemouth, Christchurch and Poole",10169
+5070,East Suffolk Council,E07000244,East Suffolk,4345
+5129,North Northamptonshire Council,E06000061,North Northamptonshire,8211
+5130,West Northamptonshire Council,E06000062,West Northamptonshire,11455
+5177,Westmorland and Furness Council,E06000064,Westmorland and Furness,2571
+5178,Somerset Council,E06000066,Somerset,9737
+5179,North Yorkshire Council,E06000065,North Yorkshire,8551
