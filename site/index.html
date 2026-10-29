@@ -617,6 +617,8 @@ summary .pills{margin-left:auto;display:flex;gap:5px;flex-wrap:wrap;justify-cont
   stroke-linecap:round;stroke-linejoin:round;display:block}
 .ic-s{width:14px;height:14px;stroke-width:1.7}
 .sec h3 .ic,summary .ic{color:var(--ink-3)}
+summary>.ic{box-sizing:content-box;padding:7px;width:14px;height:14px;border-radius:8px;background:rgba(255,255,255,.06);color:var(--ink-2);transition:color var(--t)}
+summary:hover>.ic,details[open]>summary>.ic{color:var(--ink)}
 .hrow{display:flex;align-items:center;gap:var(--s2);min-width:0}
 .big .bl{align-items:flex-start}
 .big .bl .ic{margin-top:2px}
@@ -2016,7 +2018,7 @@ function showLandlord(code,dot){
   const sc=posOf(x), scn=sc==null?null:Math.round(sc*100);
   open(esc(x.name),
     `${here}${isLA?'A council, landlord for its own homes':'Housing association'} · ${x.homes?fmtInt(x.homes)+' social-rent homes in England':x.size}${x.la_count>1?` across ${x.la_count} boroughs`:''}
-     <div class="hsc">${scn!=null?pill(scn+'/100',scoreBand(scn)):pill('Not ranked')}<small>${scn!=null?`Its position across the four measures below, better than ${scn}% of landlords`:'Not enough of the four measures below are published to place this landlord'}</small></div>`,
+     <div class="hsc">${scn!=null?pill(scn+'/100',scoreBand(scn)):pill('Not ranked')}<small>${scn!=null?`Better than ${scn}% of landlords`:'Not enough of the four measures below are published to place this landlord'}</small></div>`,
    `<div class="sec summary"><p>${summaryOf(x,bands,isLA)}</p></div>
     ${four}
     ${costSection(x,isLA,betterThan(DIST.non_emergency_repairs_on_time_pct,x.m.non_emergency_repairs_on_time_pct,true))}
