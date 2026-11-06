@@ -10,6 +10,8 @@ from paths import RAW, OUT, DERIVED
 
 cases, tags = {}, {}
 for f in sorted(glob.glob(RAW + "ho/*.json")) + sorted(glob.glob(RAW + "ho/*.json.gz")):
+    if "ho_orders_" in f:          # the Orders text snapshot, read by read_compensation.py, not a case dump
+        continue
     opener = gzip.open if f.endswith(".gz") else open
     with opener(f, "rt") as fh:
         d = json.load(fh)
@@ -113,6 +115,14 @@ df.to_csv(OUT + "ombudsman_cases.csv", index=False)
 # text of each decision. data/derived/ombudsman_compensation.csv holds one row per decision with an order:
 # status "parsed" (total in pounds, 0 where no monetary order) or "quarantined" (no figure, by design).
 comp = pd.read_csv(DERIVED + "ombudsman_compensation.csv")
+# Guard: a single award this large is rare, and the original reader misread several (see
+# data/derived/README.md). Every one must have been checked by hand against its decision, or the build stops.
+REVIEW_OVER = 20_000
+big = comp[(comp.status == "parsed") & (comp.total > REVIEW_OVER) & ~comp.notes.fillna("").str.contains("hand-checked")]
+if len(big):
+    raise SystemExit(f"{len(big)} compensation award(s) over £{REVIEW_OVER:,} not yet hand-checked against the decision "
+                     f"(mark the row 'hand-checked' in data/derived/ombudsman_compensation.csv once verified):\n"
+                     + big[["case_id", "total"]].to_string(index=False))
 parsed = comp[comp.status == "parsed"].set_index("case_id").total
 df["comp_total"] = df.case_id.astype(int).map(parsed)
 df["ym"] = pd.to_datetime(df.month, format="%Y-%m", errors="coerce")
