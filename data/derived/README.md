@@ -8,37 +8,57 @@ committed because they cannot be downloaded from anywhere else. Licensed under C
 
 The Housing Ombudsman's search records **that** a compensation order was made in a decision, not **how much**.
 Amounts exist only in the "Orders" section of each published decision. This file holds one row per decision
-that has a compensation order (12,861 decisions, crawled September 2026).
+that has a compensation order (12,861 decisions).
+
+It is written by [`pipeline/read_compensation.py`](../../pipeline/read_compensation.py) from the Orders text of
+every decision, collected in November 2026 with [`pipeline/orders_crawler.js`](../../pipeline/orders_crawler.js)
+and committed as `data/raw/ho/ho_orders_2026-11.json.gz`. Running `bash pipeline/run.sh` regenerates it.
 
 | Column | Meaning |
 |---|---|
-| `case_id` | The Ombudsman's case number. The decision is at `https://www.housing-ombudsman.org.uk/decisions/` (link in `data/out/ombudsman_cases.csv`). |
-| `total` | Pounds ordered to be paid. `0` where the order is not monetary. Empty when quarantined. |
+| `case_id` | The Ombudsman's case number. The decision is linked from `data/out/ombudsman_cases.csv`. |
+| `total` | Pounds the decision orders the landlord to pay. Empty when quarantined. |
 | `status` | `parsed` or `quarantined`. |
-| `notes` | Labels the reader left. On quarantined rows they say why: `breakdown-mismatch` (a stated total and its breakdown do not reconcile) or `recurring` (a weekly or otherwise recurring award with no single total). On parsed rows, `prior-offer` marks a decision where a reference to an earlier offer was dropped rather than added. `head-only` and `parts-only` are further labels from the original reader; their exact rules will be written down when the reader is rebuilt. |
+| `notes` | `hand-checked` when the figure was checked by a person against the decision (see below). On quarantined rows, why: `no-amount-in-orders` (the Orders section names no sum of money), `open-ended` (for example "the replacement value", interest without a sum, an order to "re-offer", a sum for each of several residents), `recurring` (a weekly or monthly award with no single total), `total-mismatch` (separate orders and a stated total do not reconcile), `calculation-table` (the sums are set out in a table the reader cannot follow), `page-not-found` (no published decision page). On parsed rows, `unread-line` means the Orders section also mentions money that is not an order to pay, which was left out. |
 
-**Results:** 11,562 parsed (10,925 with a monetary figure, totalling £11.83m; 637 with no monetary order) and
-1,299 quarantined.
+**Results:** 12,355 decisions with a figure, totalling **£9.86m**; 506 quarantined (about one decision in 25).
 
-### The rules the amounts were read with
+### The rules the amounts are read with
 
 The reader refuses rather than guesses:
 
-- everything after a breakdown marker ("made up as follows", "which includes", "comprising", "of which",
-  "broken down as") is a component of a total already counted, never an addition;
-- clauses that *refer* to money rather than order it are dropped ("this replaces its previous offer of £200",
-  "this sum includes the £380 offered at stage 2", "does not include the £440");
-- a decision is quarantined, with no figure, where a stated total and its breakdown do not reconcile, or where
-  the award is a weekly or recurring calculation.
+- only the Orders section is read, never the account of the complaint around it, which is full of other sums
+  (a resident's claim, service charges, the landlord's earlier offers);
+- each order to pay counts once, at the amount it names. A breakdown under it ("made up of", "comprising", a
+  list) is part of that amount, never added to it. A stated grand total ("in total the Ombudsman has ordered
+  £X") wins over adding up separate orders;
+- an order to pay an amount the landlord offered earlier counts, because the order says to pay it. An offer
+  only referred to ("this replaces its offer of £200", "in addition to the £500 already offered") does not;
+- a decision is quarantined, with no figure, where the award is recurring or open ended, where the order names
+  no amount, or where the parts do not reconcile.
 
-Hand-checked against 13 decisions: 12 exact, the 13th quarantined rather than wrong.
+### Checked by hand
 
-**About one decision in eight has no figure by design, so every total built from this file is a floor.** The
-site always says "at least £X, read from N of M decisions" and never calls it a total.
+`ombudsman_compensation_checks.csv` lists 361 decisions checked by a person against the published decision,
+with the old figure, the correct one and why. These always override the reader. They are:
 
-### Known gap
+- every award over £5,000 in the previous version of this file (311 decisions);
+- a random sample of 50 smaller awards from the previous version.
 
-The program that produced this file was not kept with the project. The file is published as it was used on the
-site, and `pipeline/build_ombudsman.py` reads it. Rebuilding the reader in `pipeline/`, so this file can be
-regenerated and checked from the decisions themselves, is an open task. Until then, any figure can be checked by
-hand against the linked decision.
+**Why the file was rebuilt.** The previous version of this file was produced by a reader that was not kept, and
+was hand-checked against only 13 decisions. Checking it properly showed it was badly wrong: of the 310 awards over
+£5,000 with a published page, only 82 were right. 103 had counted a total *and* its breakdown, 92 had taken sums
+from the account of the complaint rather than the order, and five more included the largest, a £3,582.82 award
+recorded as £358,282. In the random sample of smaller awards, 13 of 50 were wrong. Its national total of
+£11.83m was overstated.
+
+**How good the new reader is.** On a further random 50 decisions it had not been tuned on, it gave the right
+figure for 43. It left out four it could have read and read two too low; one was a judgement call. It read none
+too high. Those 50 are not in the checks file; the reader's rules were then improved to read them correctly.
+Because the reader errs towards leaving a decision out or reading it low, **every total built from this file is
+a floor**. The site always says "at least £X, read from N of M decisions" and never calls it a total.
+
+### Safety check
+
+`pipeline/build_ombudsman.py` stops the build if any single award over £20,000 has not been checked by hand,
+so a misreading like £358,282 cannot reach the site again.

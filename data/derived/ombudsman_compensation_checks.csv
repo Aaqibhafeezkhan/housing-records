@@ -1,0 +1,362 @@
+case_id,old_total,total,status,why_checked,finding
+201804647,12956,6478,parsed,"over £5,000","total £6,478 stated; breakdown was added on top"
+201900229,22600,11300,parsed,"over £5,000","total £11,300 stated; breakdown was added on top"
+201901900,8100,8100,parsed,"over £5,000","three separate pay orders £5,300 + £900 + £1,900"
+201902957,5490,5490,parsed,"over £5,000",correct
+201912638,6650,2150,parsed,"over £5,000","order ends ""a total of £2,150 should therefore be awarded"""
+201915243,10875.56,5687.78,parsed,"over £5,000","total £5,687.78 stated; breakdown was added on top"
+202003750,6365,6365,parsed,"over £5,000",correct
+202005343,250,250,parsed,"random sample under £5,000",correct
+202005633,15736.42,9201.32,parsed,"over £5,000","total £9,201.32 stated; breakdown was added on top"
+202006337,34314,13657,parsed,"over £5,000","order of £13,657 (earlier £7,000 payment deductible); breakdown was added on top"
+202006900,15936.56,8468.28,parsed,"over £5,000","eight separate pay orders, ""in total ... £8,468.28"""
+202008030,27850,6350,parsed,"over £5,000","total £6,350 stated; breakdown was added on top"
+202008567,150,150,parsed,"random sample under £5,000",correct
+202008719,5900,1300,parsed,"over £5,000","order of an additional £1,300; the £1,000 offered earlier is not ordered"
+202009112,6930,3465,parsed,"over £5,000","revised total £3,465; breakdown was added on top"
+202010229,22241.6,10940.8,parsed,"over £5,000","total £10,940.80 stated; breakdown was added on top"
+202010493,150,150,parsed,"random sample under £5,000",correct
+202011545,8572.24,5072.24,parsed,"over £5,000","total £5,072.24 stated; breakdown was added on top"
+202012865,6765.13,3229.56,parsed,"over £5,000","total £3,229.56 stated; breakdown was added on top"
+202013105,1350,1350,parsed,"random sample under £5,000",correct
+202014048,5099.2,4949.2,parsed,"over £5,000","total £4,949.20 stated (inclusive of £150 offered)"
+202014249,5200,5200,parsed,"over £5,000",correct
+202015707,6950,3450,parsed,"over £5,000","total £3,450 stated; breakdown was added on top"
+202017021,6881,6881,parsed,"over £5,000",correct
+202101470,1230,,quarantined,"random sample under £5,000","order to ""re-offer"" £500 plus vouchers, and to pay £650: unclear what is ordered money"
+202102777,8490,8490,parsed,"over £5,000","correct: £4,400 offered (ordered to be paid) + additional £4,090"
+202105165,6586.88,3293.44,parsed,"over £5,000","total £3,293.44 stated; breakdown was added on top"
+202105218,300,300,parsed,"random sample under £5,000",correct
+202106614,25,25,parsed,"random sample under £5,000",correct
+202106760,6788.6,3394.3,parsed,"over £5,000","total £3,394.30 stated; breakdown was added on top"
+202108664,6747.85,6747.85,parsed,"over £5,000",correct
+202109579,7185.5,7185.5,parsed,"over £5,000",correct
+202109673,6050,6050,parsed,"over £5,000",correct (five separate pay orders)
+202110801,5964,5964,parsed,"over £5,000",correct
+202111993,5371.12,5371.12,parsed,"over £5,000",correct
+202112331,6900,6900,parsed,"over £5,000",correct
+202112363,6750.74,3375.37,parsed,"over £5,000","total £3,375.37 stated; breakdown was added on top"
+202112672,6450,6450,parsed,"over £5,000",correct
+202113463,7541.25,7541.25,parsed,"over £5,000",correct
+202113701,6392.25,5592.25,parsed,"over £5,000","total £5,592.25 stated (inclusive of £800 offered)"
+202113988,10120,5060,parsed,"over £5,000","total £5,060 stated; breakdown was added on top"
+202114456,6278.7,3139.35,parsed,"over £5,000","total £3,139.35 stated; breakdown was added on top"
+202114537,6428,6428,parsed,"over £5,000",correct
+202114618,950,950,parsed,"random sample under £5,000",correct
+202114946,300,300,parsed,"random sample under £5,000",correct
+202115485,8500,8500,parsed,"over £5,000",correct
+202115880,7073.1,3536.55,parsed,"over £5,000","total £3,536.55 stated; breakdown was added on top"
+202115884,850,850,parsed,"random sample under £5,000",correct
+202115891,6100,3050,parsed,"over £5,000","total £3,050 stated; breakdown was added on top"
+202117203,12696.24,2582.08,parsed,"over £5,000","order of additional £2,582.08; the £1,650 offered earlier is not ordered"
+202117594,6390.4,6390.4,parsed,"over £5,000",correct
+202119227,6405.65,6405.65,parsed,"over £5,000",correct
+202119657,990,990,parsed,"random sample under £5,000",correct
+202119712,7400,3700,parsed,"over £5,000","""the total compensation award is £3,700""; items were added to it"
+202120242,6655,4455,parsed,"over £5,000","£4,355 (inclusive of the £550 and £1,750 offers) + £100; the offers were added on top"
+202120342,5372.01,3372.01,parsed,"over £5,000","total £3,372.01 stated; breakdown was added on top"
+202120596,5458.8,5458.8,parsed,"over £5,000",correct
+202120759,5750,5750,parsed,"over £5,000",correct
+202120868,1050,1050,parsed,"random sample under £5,000",correct
+202121186,5032.67,5032.67,parsed,"over £5,000",correct
+202121344,5310,5310,parsed,"over £5,000",correct
+202122213,7000,7000,parsed,"over £5,000",correct
+202122354,12700,12700,parsed,"over £5,000",correct
+202122382,11532.2,5816.1,parsed,"over £5,000","total £5,816.10 stated; breakdown was added on top"
+202122562,8588,4684,parsed,"over £5,000","total £4,684 stated; breakdown was added on top"
+202122577,7647.2,3823.6,parsed,"over £5,000","total £3,823.60 stated; breakdown was added on top"
+202122722,6120,6040,parsed,"over £5,000","total £6,040 stated; breakdown was added on top"
+202122779,10600,5300,parsed,"over £5,000","revised total £5,300; breakdown was added on top"
+202123152,100,100,parsed,"random sample under £5,000",correct
+202123468,5100,2800,parsed,"over £5,000","total £2,800 stated (includes the £500 previous offer)"
+202123583,10000,5000,parsed,"over £5,000","total £5,000 stated; breakdown was added on top"
+202124959,5600,2800,parsed,"over £5,000","total £2,800 stated; breakdown was added on top"
+202125872,7120.12,6620.12,parsed,"over £5,000","total £6,620.12 stated (inclusive of £500 offered)"
+202127572,7939.02,7939.02,parsed,"over £5,000",correct
+202128101,450,450,parsed,"random sample under £5,000",correct
+202128357,5100,5100,parsed,"over £5,000",correct
+202128358,5050,5050,parsed,"over £5,000","correct: £4,425 already offered + £625 additional"
+202128413,200,200,parsed,"random sample under £5,000",correct
+202200694,8500,8500,parsed,"over £5,000",correct
+202200947,6270,1270,parsed,"over £5,000","order of £1,270, 'not linked to the previously agreed payment of £5,000'"
+202202115,5636.29,5636.29,parsed,"over £5,000","correct: £4,386.29 offered (ordered to be paid) + further £1,250"
+202202336,10414,3732,parsed,"over £5,000","total £3,732 stated; breakdown was added on top"
+202203480,880,,quarantined,"random sample under £5,000","orders the £500 offered, ""the estimate for the repairs ... or the £800 paid"", and £80: one amount is not fixed"
+202203603,1380,1380,parsed,"random sample under £5,000",correct
+202203890,11760,11760,parsed,"over £5,000",correct
+202204372,12874,6437,parsed,"over £5,000","total £6,437 stated; breakdown was added on top"
+202205559,675,675,parsed,"random sample under £5,000",correct
+202205605,7446.8,3723.4,parsed,"over £5,000","total £3,723.40 stated; breakdown was added on top"
+202205647,10716.5,10716.5,parsed,"over £5,000",correct
+202206474,5511.28,5511.28,parsed,"over £5,000",correct
+202206761,5685,5685,parsed,"over £5,000",correct
+202206829,650,650,parsed,"random sample under £5,000",correct
+202207096,6900,6900,parsed,"over £5,000",correct
+202207224,1100,1100,parsed,"random sample under £5,000",correct
+202207559,13300,6700,parsed,"over £5,000","total £6,700 stated; breakdown was added on top"
+202207961,6411.44,5335.44,parsed,"over £5,000","total £5,335.44 stated; breakdown was added on top"
+202208458,7500,7500,parsed,"over £5,000",correct
+202209171,300,300,parsed,"random sample under £5,000",correct
+202209197,11967.3,5983.65,parsed,"over £5,000","total £5,983.65 stated; breakdown was added on top"
+202210777,5495,3000,parsed,"over £5,000","total £3,000 stated; breakdown was added on top"
+202212340,150,150,parsed,"random sample under £5,000",correct
+202212610,5600,2800,parsed,"over £5,000","total £2,800 (to the block's sinking fund); breakdown was added on top"
+202212749,8710,4705,parsed,"over £5,000","total £4,705 stated (inclusive of £3,280 paid)"
+202213272,16408.3,6270.62,parsed,"over £5,000","total £6,270.62 stated; breakdown was added on top"
+202213384,12700,12700,parsed,"over £5,000","correct: £11,200 reimbursement + £1,500"
+202213507,6550,3250,parsed,"over £5,000","total £3,250 stated; breakdown was added on top"
+202213529,5860,5860,parsed,"over £5,000",correct
+202213941,7412,7412,parsed,"over £5,000",correct
+202214409,1355,1355,parsed,"random sample under £5,000",correct
+202214697,5052.51,5052.51,parsed,"over £5,000","correct: £4,052.51 + further £1,000"
+202214825,6100,3050,parsed,"over £5,000","total £3,050 stated; breakdown was added on top"
+202215121,6777,6777,parsed,"over £5,000",correct
+202215143,5900,2350,parsed,"over £5,000","total £2,350 stated; breakdown was added on top"
+202215820,7100,3550,parsed,"over £5,000","total £3,550 stated; breakdown was added on top"
+202216536,5500,5500,parsed,"over £5,000",correct
+202217072,15933.92,8816.96,parsed,"over £5,000","total £8,816.96 stated; breakdown was added on top"
+202217276,5200,5200,parsed,"over £5,000",correct
+202217811,2760,2300,parsed,"random sample under £5,000","order of £2,300; breakdown was added on top"
+202218444,8650.46,8650.46,parsed,"over £5,000",correct
+202218714,5142,2871,parsed,"over £5,000","order of £2,871 (including the £2,271 awarded); the £2,271 was added on top"
+202219263,5390,5390,parsed,"over £5,000",correct
+202219308,7513.74,3756.87,parsed,"over £5,000","total £3,756.87 stated; breakdown was added on top"
+202219381,6500,1750,parsed,"over £5,000","total £1,750 ordered (""in addition to the £1,250 already offered"", not ordered)"
+202219634,22414.25,9673.25,parsed,"over £5,000","total £9,673.25 stated; breakdown was added on top"
+202219681,5480,5480,parsed,"over £5,000",correct
+202219931,6576,1000,parsed,"over £5,000","order of £1,000 inclusive of earlier offers"
+202219974,7400,3700,parsed,"over £5,000","""the total sum of £3,700""; breakdown was added on top"
+202220147,5400,2700,parsed,"over £5,000","total £2,700 stated; breakdown was added on top"
+202220339,5196,5196,parsed,"over £5,000",correct
+202220484,1060,580,parsed,"random sample under £5,000",total £580 stated; breakdown was added on top
+202220517,6532.85,6532.85,parsed,"over £5,000",correct
+202221044,7300,3650,parsed,"over £5,000","total £3,650 stated; breakdown was added on top"
+202222149,8400,2800,parsed,"over £5,000","total £2,800 stated; breakdown was added on top"
+202222548,1175,650,parsed,"random sample under £5,000",order of £650; the old figure came from the narrative
+202222583,5691.46,9462.19,parsed,"over £5,000","two pay orders: the £6,641.46 offered (ordered to be paid) + an additional £2,820.73"
+202223235,6272.78,6272.78,parsed,"over £5,000",correct
+202223339,7100,1200,parsed,"over £5,000","order of £1,200; breakdown and the earlier £1,200 offer were added on top"
+202223344,5884.25,5884.25,parsed,"over £5,000",correct
+202223502,6000,3000,parsed,"over £5,000","total £3,000 stated; breakdown was added on top"
+202223683,10046,5023,parsed,"over £5,000","total £5,023 stated; breakdown was added on top"
+202223799,10200,3300,parsed,"over £5,000","order of additional £3,300; breakdown was added on top"
+202224022,13410,13410,parsed,"over £5,000",correct
+202225779,5647,5647,parsed,"over £5,000",correct
+202227036,7384.86,3027.43,parsed,"over £5,000","total £3,027.43 stated; breakdown was added on top"
+202227185,5825,5825,parsed,"over £5,000",correct
+202227250,7075,7075,parsed,"over £5,000",correct
+202228112,77700,2150,parsed,"over £5,000","order of £2,150 (includes £2,000 previously offered); the old figure came from the narrative"
+202228261,50,50,parsed,"random sample under £5,000",correct
+202228372,5250,5250,parsed,"over £5,000",correct
+202228688,6800,3400,parsed,"over £5,000","total £3,400 stated; breakdown was added on top"
+202229060,10131.72,5331.72,parsed,"over £5,000","total £5,331.72 stated; breakdown was added on top"
+202229072,5600,5600,parsed,"over £5,000",correct
+202229637,9576,4788,parsed,"over £5,000","total £4,788 stated; breakdown was added on top"
+202229793,5010,2505,parsed,"over £5,000","total £2,505 stated; breakdown was added on top"
+202230534,22113.02,100,parsed,"over £5,000",order of £100; the old figure came from service-charge amounts in the narrative
+202230620,9700,9700,parsed,"over £5,000",correct
+202231045,5450,2100,parsed,"over £5,000","total £2,100 stated; breakdown was added on top"
+202231098,6597,6597,parsed,"over £5,000",correct
+202300902,860,860,parsed,"random sample under £5,000",correct
+202301199,2575,2575,parsed,"random sample under £5,000",correct
+202301452,5125,1250,parsed,"over £5,000","""the total compensation figure of £1,250"" (£875 already paid + £375 ordered)"
+202302015,9142,4571,parsed,"over £5,000","total £4,571 stated; breakdown was added on top"
+202303198,2000,1000,parsed,"random sample under £5,000","total £1,000 stated; breakdown was added on top"
+202303220,7857.93,3870.53,parsed,"over £5,000","total £3,870.53 stated; breakdown was added on top"
+202303265,5520,2000,parsed,"over £5,000","order of £2,000 ""in addition to the £1,520 offered"" (not ordered); breakdown was added on top"
+202303446,5720,5720,parsed,"over £5,000",correct
+202303657,6987,6987,parsed,"over £5,000",correct
+202303945,5400,2700,parsed,"over £5,000","total £2,700 stated; breakdown was added on top"
+202304099,400,400,parsed,"random sample under £5,000",correct
+202304703,8340,4170,parsed,"over £5,000","total £4,170 stated; breakdown was added on top"
+202305706,7300,7300,parsed,"over £5,000",correct
+202306033,14744.26,7875.26,parsed,"over £5,000","£7,119.61 plus ordered interest of £755.65; breakdown was added on top"
+202306224,5142,2000,parsed,"over £5,000","total £2,000 stated; breakdown was added on top"
+202306466,8750,4375,parsed,"over £5,000","total £4,375 stated; breakdown was added on top"
+202306931,9035,8685,parsed,"over £5,000","total £8,685 stated; a further amount was double counted"
+202307668,150,150,parsed,"random sample under £5,000",correct
+202308116,5225,2075,parsed,"over £5,000","total £2,075 stated; breakdown was added on top"
+202308522,5230,5230,parsed,"over £5,000",correct
+202308633,5700,2850,parsed,"over £5,000","total £2,850 stated; breakdown was added on top"
+202308724,5700,5700,parsed,"over £5,000",correct
+202308916,11655,4700,parsed,"over £5,000","total £4,700 stated; breakdown was added on top"
+202308931,8360,8360,parsed,"over £5,000",correct
+202310872,5405,2250,parsed,"over £5,000","total £2,250 stated; breakdown was added on top"
+202311490,5190,2345,parsed,"over £5,000","total £2,345 stated; breakdown was added on top"
+202312100,5965,5965,parsed,"over £5,000",correct
+202313033,9329.8,9329.8,parsed,"over £5,000",correct
+202313629,150,150,parsed,"random sample under £5,000",correct
+202313724,11184.68,5592.34,parsed,"over £5,000","total £5,592.34 stated; breakdown was added on top"
+202313959,8429.54,7499.54,parsed,"over £5,000","total £7,499.54 stated; breakdown was added on top"
+202314060,5444,2722,parsed,"over £5,000","total £2,722 stated; breakdown was added on top"
+202316355,8985,8985,parsed,"over £5,000",correct
+202316879,5900,3300,parsed,"over £5,000","total £3,300 stated; breakdown was added on top"
+202318030,6600,6600,parsed,"over £5,000",correct
+202320637,5060,5060,parsed,"over £5,000",correct
+202320638,6300,3150,parsed,"over £5,000","order of an additional £3,150; breakdown was added on top"
+202320936,281,281,parsed,"random sample under £5,000",correct
+202321218,10150,1850,parsed,"over £5,000","order to pay the £1,850 offered; the old figure came from the narrative"
+202323182,6200,100,parsed,"over £5,000",order of £100; the old figure came from amounts in the narrative
+202324124,11300,5650,parsed,"over £5,000","total £5,650 stated; breakdown was added on top"
+202324731,12636,5128,parsed,"over £5,000","total £5,128 stated; breakdown was added on top"
+202325127,12900,12900,parsed,"over £5,000",correct
+202325705,5910,2955,parsed,"over £5,000","total £2,955 stated; breakdown was added on top"
+202327473,5768.02,2884.01,parsed,"over £5,000","total £2,884.01 stated; breakdown was added on top"
+202327699,100250,250,parsed,"over £5,000","order of £250; breakdown and other amounts were added on top"
+202327803,5400,900,parsed,"over £5,000","order of £900 ""in addition to that offered""; the £1,800 offer is not ordered"
+202328172,5343.94,5343.94,parsed,"over £5,000",correct
+202328291,18300,150,parsed,"over £5,000",order of £150; the old figure came from amounts in the narrative
+202329603,6330,6330,parsed,"over £5,000",correct
+202330174,9880.14,9880.14,parsed,"over £5,000",correct
+202330314,7997.5,2500,parsed,"over £5,000","order of £2,500 (includes the £500 awarded); breakdown was added on top"
+202330877,52714.13,5204.3,parsed,"over £5,000","order of £5,204.30 (includes £5,104.30 offered); the old figure came from the narrative"
+202332876,8765.4,8765.4,parsed,"over £5,000",correct
+202332893,12000,,quarantined,"over £5,000",no compensation amount in the Orders section; the old figure came from the narrative
+202333792,7430,3715,parsed,"over £5,000","total £3,715 stated; breakdown was added on top"
+202334444,5650,100,parsed,"over £5,000",order of £100; the old figure came from amounts in the narrative
+202334956,6100,6100,parsed,"over £5,000",correct
+202335119,5472.1,2421.01,parsed,"over £5,000","total £2,421.01 stated; breakdown was added on top"
+202335462,5300,5300,parsed,"over £5,000",correct
+202335517,12086,750,parsed,"over £5,000",order of £750; the old figure came from amounts in the narrative
+202335738,6575,1100,parsed,"over £5,000","order of £1,100; the old figure came from amounts in the narrative"
+202335827,1100,1100,parsed,"random sample under £5,000",correct
+202335962,5400,1000,parsed,"over £5,000","order of £1,000 inclusive of the £650 offer; the old figure came from the narrative"
+202336084,500,500,parsed,"random sample under £5,000",correct
+202336163,5540,300,parsed,"over £5,000",order to pay the £300 offered; the old figure came from the narrative
+202336410,17200,700,parsed,"over £5,000",order of £700; the old figure came from amounts in the narrative
+202336475,150,150,parsed,"random sample under £5,000",correct
+202336534,11000,11000,parsed,"over £5,000",correct
+202336564,7325,675,parsed,"over £5,000",order of a further £675; the £750 offered earlier is not ordered
+202337252,22845.78,11408.08,parsed,"over £5,000","total £11,408.08 stated; breakdown was added on top"
+202338305,5187.75,2276.95,parsed,"over £5,000","two pay orders: £1,676.95 + £600; the old figure included narrative amounts"
+202339205,6040.22,3020.11,parsed,"over £5,000","total £3,020.11 stated; breakdown was added on top"
+202339416,6230,300,parsed,"over £5,000",order of £300; the old figure came from amounts in the narrative
+202339571,39900,1600,parsed,"over £5,000","order of £1,600 (includes £1,250 offered); the old figure came from the narrative"
+202339873,19032.56,,quarantined,"over £5,000",no published decision page could be found for this case number
+202339998,37839.25,250,parsed,"over £5,000",order of £250; the old figure came from amounts in the narrative
+202340632,11300,400,parsed,"over £5,000",order of an additional £400; the old figure came from the narrative
+202341427,13430,1850,parsed,"over £5,000","""the total compensation to be paid is therefore £1,850""; the old figure came from the narrative"
+202342198,5177.16,5177.16,parsed,"over £5,000",correct
+202342939,5780,2125,parsed,"over £5,000","total £2,125 stated; breakdown was added on top"
+202343105,9040.26,300,parsed,"over £5,000",order of £300; the old figure came from amounts in the narrative
+202343141,5160,2530,parsed,"over £5,000","order of £2,530; the old figure came from the narrative"
+202343735,8934,8934,parsed,"over £5,000",correct
+202343847,6535.81,1995.27,parsed,"over £5,000","order of £1,995.27; the old figure came from the narrative"
+202344680,1200,600,parsed,"random sample under £5,000",order of £600; the old figure doubled it
+202344683,30100,50,parsed,"over £5,000",order of £50; the old figure came from amounts in the narrative
+202344800,6544.6,3272.3,parsed,"over £5,000","total £3,272.30 stated; breakdown was added on top"
+202345280,6250,,quarantined,"over £5,000",no compensation amount in the Orders section; the old figure came from the narrative
+202345539,2700,1350,parsed,"random sample under £5,000","order of £1,350; breakdown was added on top"
+202345841,12050,6025,parsed,"over £5,000","total £6,025 stated; breakdown was added on top"
+202346162,13570.45,5721.15,parsed,"over £5,000","total £5,721.15 stated; breakdown was added on top"
+202346809,9018,9018,parsed,"over £5,000",correct
+202347354,9140,200,parsed,"over £5,000",order of £200; the old figure came from amounts in the narrative
+202347452,6285,2800,parsed,"over £5,000","order of £2,800 (in addition to £685 already received); breakdown was added on top"
+202347611,20125,125,parsed,"over £5,000",order of £125; the old figure came from amounts in the narrative
+202348138,6060,6060,parsed,"over £5,000",correct
+202400007,6430,750,parsed,"over £5,000",order of £750; the old figure came from amounts in the narrative
+202400281,7386,3218,parsed,"over £5,000","total £3,218 stated; breakdown was added on top"
+202400358,6650,1450,parsed,"over £5,000","order to pay the £1,450 offered; the old figure came from the narrative"
+202401054,6575,825,parsed,"over £5,000",order to pay the £825 offered; the old figure came from the narrative
+202401272,1950,250,parsed,"random sample under £5,000",order of an additional £250; the old figure came from the narrative
+202401736,60375,2325,parsed,"over £5,000","order of £2,325; the old figure came from amounts in the narrative"
+202402124,13873.02,,quarantined,"over £5,000",no compensation amount in the Orders section; the old figure came from the narrative
+202403494,3100,1150,parsed,"random sample under £5,000","total £1,150 stated (includes £800 offered); the old figure added the breakdown and the offer"
+202405777,5800,900,parsed,"over £5,000",order of £900; the old figure came from amounts in the narrative
+202405984,5025,910,parsed,"over £5,000",order of £910; the old figure came from amounts in the narrative
+202406853,23500,3525,parsed,"over £5,000","order to pay the £3,525 awarded; the old figure came from the narrative"
+202408056,5495,1440,parsed,"over £5,000","order to pay the £1,440 offered; the old figure came from the narrative"
+202409476,200,200,parsed,"random sample under £5,000",correct
+202409660,11600,700,parsed,"over £5,000",order of £700; the old figure came from amounts in the narrative
+202410232,6230,415,parsed,"over £5,000",order of £415; the old figure came from amounts in the narrative
+202410261,6060,3030,parsed,"over £5,000","order of £300 plus the £2,730 offered, which the order says ""should also now be paid"""
+202410560,10254.85,2008,parsed,"over £5,000","order to pay the £2,008 offered; the old figure came from the narrative"
+202411410,6218,3109,parsed,"over £5,000","total £3,109 stated; breakdown was added on top"
+202411628,6260,,quarantined,"over £5,000","order only to ""consider paying additional compensation"", no amount"
+202411689,420,420,parsed,"random sample under £5,000",correct
+202411943,335,335,parsed,"random sample under £5,000",correct
+202412377,300,300,parsed,"random sample under £5,000",correct
+202412843,7750,500,parsed,"over £5,000","""we order the landlord to pay the resident a further £500""; the old figure came from the narrative"
+202413276,5948,2974,parsed,"over £5,000","total £2,974 stated; breakdown was added on top"
+202413836,5150,,quarantined,"over £5,000",no compensation amount in the Orders section; the old figure came from the narrative
+202416059,5500,5300,parsed,"over £5,000","total £5,300 stated; an amount in the breakdown was counted twice"
+202417239,7396,3698,parsed,"over £5,000","total £3,698 stated; breakdown was added on top"
+202419119,6040,3020,parsed,"over £5,000","total £3,020 stated; breakdown was added on top"
+202422387,7060,2300,parsed,"over £5,000","order of £2,300; the old figure came from the narrative"
+202422774,5900,1225,parsed,"over £5,000","order of £1,225 (inclusive of £975 offered); the old figure came from the narrative"
+202423079,21778.64,2602.44,parsed,"over £5,000","order of £2,602.44 (£2,002.44 + £500 + £100); the old figure came from the narrative"
+202424164,5204,4400,parsed,"over £5,000","two compensation orders: £2,000 + £2,400 (rent based); the old figure came from the narrative"
+202425099,6645,250,parsed,"over £5,000",order of £250; the old figure came from amounts in the narrative
+202426470,6146,3723,parsed,"over £5,000","total £3,723 stated; breakdown was added on top"
+202427297,7000,700,parsed,"over £5,000",order of £700; the old figure came from amounts in the narrative
+202428087,5511.28,1834.07,parsed,"over £5,000","order of £1,834.07; the old figure came from the narrative"
+202428785,8264,,quarantined,"over £5,000",no compensation amount in the Orders section; the old figure came from the narrative
+202429579,7600,800,parsed,"over £5,000",order of £800; the old figure came from amounts in the narrative
+202429704,5242.5,2621.25,parsed,"over £5,000","total £2,621.25 stated; breakdown was added on top"
+202429859,910,1890,parsed,"random sample under £5,000",three pay orders: the £980 offered + £850 + £60
+202430309,9650,3230,parsed,"over £5,000","order of £3,230; the old figure came from the narrative"
+202431366,8185.76,3025.92,parsed,"over £5,000","order of £3,025.92; the old figure came from the narrative"
+202431683,7400,700,parsed,"over £5,000",two pay orders £600 + £100; the old figure came from the narrative
+202431910,6150,,quarantined,"over £5,000",no compensation amount in the Orders section; the old figure came from the narrative
+202433680,5904,2952,parsed,"over £5,000","total £2,952 stated; breakdown was added on top"
+202434827,6596.96,3298.48,parsed,"over £5,000","total £3,298.48 stated; breakdown was added on top"
+202435432,950,950,parsed,"random sample under £5,000",correct
+202437670,8123.52,,quarantined,"over £5,000",no compensation amount in the Orders section; the old figure came from the narrative
+202438166,7050,2350,parsed,"over £5,000","total £2,350 stated (inclusive of £650 offer); breakdown was added on top"
+202439478,7220,1100,parsed,"over £5,000","order of £1,100 (in addition to £650 already paid); the old figure came from the narrative"
+202439920,5325,600,parsed,"over £5,000",order of £600; the old figure came from amounts in the narrative
+202440401,5371.64,2560.82,parsed,"over £5,000","total £2,560.82 stated; breakdown was added on top"
+202440462,97628.73,1900,parsed,"over £5,000","order of £1,900; the old figure came from amounts in the narrative"
+202440830,5760.84,350,parsed,"over £5,000",order of £350; the old figure came from amounts in the narrative
+202441461,14026.4,250,parsed,"over £5,000",order of £250; the old figure came from amounts in the narrative
+202441912,5720,750,parsed,"over £5,000",order of £750; the old figure came from amounts in the narrative
+202441915,8100,1650,parsed,"over £5,000","order to pay the £1,650 offered; the old figure came from the narrative"
+202442428,5376,1400,parsed,"over £5,000","order of £1,400; the old figure came from the narrative"
+202445176,7685,350,parsed,"over £5,000",order of £350; the old figure came from amounts in the narrative
+202446072,5255.94,1800,parsed,"over £5,000","order of £1,800; the old figure came from amounts in the narrative"
+202447613,9960,700,parsed,"over £5,000",order of £700; the old figure came from amounts in the narrative
+202448140,11661.61,2682.03,parsed,"over £5,000","order of £2,682.03; the old figure came from the narrative"
+202448219,8225,50,parsed,"over £5,000",order of £50; the old figure came from amounts in the narrative
+202449791,358282,3582.82,parsed,"over £5,000","order of £3,582.82 (written as £3,582,82 in the decision); misread as £358,282"
+202450621,8079.2,8079.2,parsed,"over £5,000",correct
+202451888,7286,1755.2,parsed,"over £5,000","order of £1,755.20; the old figure came from the narrative"
+202452282,15100,1350,parsed,"over £5,000","order of £1,350; the old figure came from amounts in the narrative"
+202452515,5100,950,parsed,"over £5,000",two pay orders £800 (offered) + £150; the old figure came from the narrative
+202452934,8931,3010,parsed,"over £5,000","order of £3,010; the old figure came from amounts in the narrative"
+202453230,1170,435,parsed,"random sample under £5,000",two pay orders £160 + £275; the old figure came from the narrative
+202500964,5375,925,parsed,"over £5,000",order of £925; the old figure came from amounts in the narrative
+202502432,795,795,parsed,"random sample under £5,000",correct
+202504047,8100,2000,parsed,"over £5,000","order to pay the £2,000 offered; the old figure came from the narrative"
+202506259,7210,,quarantined,"over £5,000",no compensation amount in the Orders section; the old figure came from the narrative
+202506388,6240,1500,parsed,"over £5,000","order of £1,500; the old figure came from amounts in the narrative"
+202507005,9691.71,3755.55,parsed,"over £5,000","order of £3,755.55; the old figure came from the narrative"
+202507149,7932.4,2320.6,parsed,"over £5,000","order of £2,320.60; the old figure came from the narrative"
+202507528,10900.06,3375.02,parsed,"over £5,000","order of £3,375.02; the old figure came from the narrative"
+202508933,5450,1700,parsed,"over £5,000","order of £1,700; the old figure came from amounts in the narrative"
+202509252,6400,700,parsed,"over £5,000",order of £700; the old figure came from amounts in the narrative
+202509424,7400,1500,parsed,"over £5,000","order of £1,500; the old figure came from amounts in the narrative"
+202509644,7250,1100,parsed,"over £5,000","order of £1,100 (inclusive of £1,000 awarded); the old figure came from the narrative"
+202509922,42700,250,parsed,"over £5,000",order of £250; the old figure came from amounts in the narrative
+202510295,5250,500,parsed,"over £5,000",order of £500; the old figure came from amounts in the narrative
+202511609,5650,750,parsed,"over £5,000",order of £750; the old figure came from amounts in the narrative
+202512546,18420.65,4563.55,parsed,"over £5,000","order of £4,563.55; the old figure came from the narrative"
+202513341,29200,1000,parsed,"over £5,000","order to pay the £1,000 offered; the old figure came from the narrative"
+202513531,5350,1650,parsed,"over £5,000","order of £1,650; the old figure came from amounts in the narrative"
+202513777,42389.33,1200,parsed,"over £5,000","order of £1,200 (plus a £250 refund to the reserve fund, not to the resident); old figure came from the narrative"
+202513912,11170,2900,parsed,"over £5,000","order of £2,900; the old figure came from amounts in the narrative"
+202513932,6180.2,1177.6,parsed,"over £5,000","order of £1,177.60; the old figure came from amounts in the narrative"
+202515774,5850,3400,parsed,"over £5,000","order of £3,400; the old figure came from amounts in the narrative"
+202515848,5404,800,parsed,"over £5,000",order of an additional £800; the old figure came from the narrative
+202516965,8000,2125,parsed,"over £5,000","order of £2,125; the old figure came from amounts in the narrative"
+202517130,7394.82,3172.41,parsed,"over £5,000","order of £3,172.41; the old figure came from the narrative"
+202519749,48611.04,12340.26,parsed,"over £5,000","two pay orders £12,140.26 (offers) + £200; the old figure came from the narrative"
+202520731,7839.3,1147.86,parsed,"over £5,000","order of £1,147.86; the old figure came from the narrative"
+202524014,7920,1600,parsed,"over £5,000","order of £1,600; the old figure came from amounts in the narrative"
+202526007,10150,3300,parsed,"over £5,000","order of £3,300; the old figure came from amounts in the narrative"
+202526075,6744.25,1583,parsed,"over £5,000","order of £1,583; the old figure came from amounts in the narrative"
+202526571,11098.23,11098.23,parsed,"over £5,000",correct
+202527096,6000,,quarantined,"over £5,000",no compensation amount in the Orders section; the old figure came from the narrative
+202530163,2400,1200,parsed,"random sample under £5,000","order of £1,200; breakdown was added on top"
+202534476,16350,6725,parsed,"over £5,000","order of £6,725; the old figure came from amounts in the narrative"
+202535798,8750,1200,parsed,"over £5,000","order of £1,200; the old figure came from amounts in the narrative"
+202539137,6615,2182,parsed,"over £5,000","order of £2,182; the old figure came from amounts in the narrative"
