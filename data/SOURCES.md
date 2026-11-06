@@ -37,7 +37,7 @@ it, not the text of decisions (see `DATA-LICENCE.md`).
 
 | File | Source | What we take |
 |---|---|---|
-| `derived/ombudsman_compensation.csv` (committed) | The "Orders" section of each of the 12,861 decisions with a compensation order, read September 2026 | The amount ordered, or a refusal to give one. A floor, never a total. See `data/derived/README.md`. |
+| `derived/ombudsman_compensation.csv` (committed) | The "Orders" section of each of the 12,861 decisions with a compensation order, collected November 2026 (`raw/ho/ho_orders_2026-11.json.gz`) and read by `pipeline/read_compensation.py` | The amount ordered, or a refusal to give one. A floor, never a total. See `data/derived/README.md`. |
 
 ## MHCLG
 

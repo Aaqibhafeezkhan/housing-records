@@ -6,6 +6,7 @@ cd "$(dirname "$0")"
 
 python3 build_spine.py       # RSH register + Tenant Satisfaction Measures + stock by local authority
 python3 build_layers.py      # regulatory gradings, council stock (LAHS), group roll-up, Scotland
+python3 read_compensation.py # compensation amounts read from the Orders section of each decision
 python3 build_ombudsman.py   # Housing Ombudsman cases -> per-landlord record, attached to the spine
 python3 build_vfm.py         # Regulator Value for Money cost per home, housing associations only
 python3 build_rents.py       # average weekly rent per landlord and per borough (SDR)

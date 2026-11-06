@@ -77,27 +77,6 @@ Things to solve:
 
 ---
 
-## Rebuild the compensation reader  [data, help wanted]
-
-The site shows how much compensation the Housing Ombudsman ordered each landlord to pay, for example
-"at least £X, read from N of M decisions". The Ombudsman publishes amounts only in the text of each decision,
-so they had to be read from 12,861 decisions.
-
-The results are committed in `data/derived/ombudsman_compensation.csv`, and the rules they were read with are
-written down in `data/derived/README.md`, but **the program that read them was not kept**. Until it is rebuilt,
-nobody can regenerate the file from the decisions or check the rules were applied consistently.
-
-The task:
-
-1. Collect the "Orders" section of each of the 12,861 decisions, politely (no more than a request or two a
-   second) and saving only that section.
-2. Write the reader in `pipeline/`, following the rules in `data/derived/README.md`: refuse rather than guess.
-3. Compare its output with the committed file, decision by decision, and explain every difference. The target
-   is: 11,562 parsed (10,925 with a figure, £11.83m in total), 1,299 quarantined.
-4. Hand-check at least 10 real decisions, including some that are quarantined.
-
----
-
 ## Fix: landlords with all-number codes get the group's homes, or none  [data, bug, priority]
 
 The Regulator's spreadsheets store registration codes like `4878` as numbers but codes like `L4517` as text.

@@ -177,22 +177,26 @@ borough at all.
 ## 6. Compensation ordered — read with care
 
 The Ombudsman's dataset records *that* a compensation order was made, not how much. Amounts exist only in
-the prose of each decision. They are read from the "Orders" section of all 13,341 decisions that have one.
+the prose of each decision. `pipeline/read_compensation.py` reads them from the "Orders" section of all 12,861
+decisions that have a compensation order (the text is committed in `data/raw/ho/ho_orders_2026-11.json.gz`).
 
-**The parser refuses rather than guesses:**
+**The reader refuses rather than guesses:**
 
-- everything after a breakdown marker ("made up as follows", "which includes", "comprising", "of which",
-  "broken down as") is components of a total already counted, never an addition;
-- clauses that *refer* to money rather than order it are dropped ("this replaces its previous offer of £200",
-  "this sum includes the £380 offered at stage 2", "does not include the £440");
-- a decision is **quarantined with no figure** where a stated total and its breakdown do not reconcile, or
-  where the award is a weekly calculation.
+- only the Orders section is read, never the account of the complaint around it;
+- each order to pay counts once, at the amount it names; a breakdown ("made up as follows", "comprising", a
+  list) is components of that amount, never an addition; a stated grand total wins;
+- an order to pay an amount offered earlier counts; an offer only *referred to* ("this replaces its previous
+  offer of £200", "in addition to the £500 already offered") does not;
+- a decision is **quarantined with no figure** where the award is recurring or open ended, where the order
+  names no amount, or where its parts do not reconcile.
 
-**Results:** 10,925 of 12,861 parsed (£11.8m); 1,299 quarantined; 637 no monetary order. Hand-checked
-against 13 decisions — 12 exact, the 13th quarantined rather than wrong.
+**Results:** 12,355 of 12,861 decisions read (£9.86m); 506 quarantined. Hand-checked against 361 decisions
+(every award over £5,000 in the previous version, and a random 50 smaller ones), which override the reader;
+tested on a further random 50 it had not seen: 43 exact, none too high. The checks, and what the previous
+version got wrong, are in `data/derived/README.md`. The build stops if any award over £20,000 is unchecked.
 
-**Roughly one decision in eight is excluded by design, so the figure is a floor.** The card must always read
-*"at least £X, read from N of M decisions"* and must never call it a total.
+**Errors run low, so the figure is a floor.** The card must always read *"at least £X, read from N of M
+decisions"* and must never call it a total.
 
 ---
 
@@ -297,8 +301,8 @@ Re-verified against source files. Useful for press, and worth re-checking each u
   sold under Right to Buy; 4,752 sold out of social housing entirely; 42 of 200 associations ended smaller.
 - **Severe maladministration, concentrated** — L&Q 16 of 1,151 cases; Southern Housing 9 of 578; Lambeth 8
   of 357; Peabody 8 of 711; Haringey 7 of 202.
-- **£11.8m of compensation ordered** across 10,925 decisions, and that is a floor. Nobody has published this
-  before, because the Ombudsman only publishes amounts one decision at a time.
+- **At least £9.86m of compensation ordered** across 12,355 decisions, and that is a floor. Nobody has
+  published this before, because the Ombudsman only publishes amounts one decision at a time.
 
 When a named landlord disputes any of these, the answer is the same and it is strong: *this is the figure you
 reported to your regulator, and here is the file.*
