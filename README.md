@@ -106,8 +106,9 @@ The site deploys automatically to Vercel when a change is merged into `main`. Th
   marks a landlord's homes in a borough, not a building at a real address.
 - **Tenant Satisfaction Measures are self-reported** by landlords. The site shows them next to the Ombudsman's
   independent findings for that reason.
-- **Compensation figures are a floor.** About one decision in eight is deliberately left without a figure
-  because its wording was ambiguous. See [`data/derived/README.md`](data/derived/README.md).
+- **Compensation figures are a floor.** They are read from the wording of each decision. About one decision
+  in 25 is deliberately left without a figure because its wording names no fixed amount, and the reader errs
+  low rather than high. See [`data/derived/README.md`](data/derived/README.md).
 - **England only for now.** Scotland's data is collected but not yet on the site; Wales is not yet covered.
 
 ## Contributing
