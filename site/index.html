@@ -2004,7 +2004,7 @@ function showLandlord(code,dot){
         <dt>Severe maladministration</dt><dd class="${ho.ho_severe_all?'sev-bad':'sev-none'}">${ho.ho_severe_all||0}</dd>
         ${ho.ho_compensation_sum_all>0?`<dt>Compensation ordered <span class="nd">(read from ${fmtInt(ho.ho_compensation_known_all)} of ${fmtInt(ho.ho_cases_all)} decisions)</span></dt><dd class="sev-none">at least £${fmtInt(ho.ho_compensation_sum_all)}</dd>`:''}
       </dl>
-      ${ho.ho_compensation_sum_all>0?`<p class="src">Amounts are read from the text of each decision, which is the only place they are published. Where a decision sets out a total and a breakdown that do not reconcile, or awards a weekly sum, no figure is taken from it — so this is a floor, not a total.</p>`:''}
+      ${ho.ho_compensation_sum_all>0?`<p class="src">Amounts are read from the text of each decision, which is the only place they are published. Only the order itself is read. Where a decision names no fixed amount, awards a weekly sum, or sets out parts that do not reconcile, no figure is taken from it — so this is a floor, not a total.</p>`:''}
       ${Object.keys(mix).length?`<div class="mix" style="margin-top:14px">${Object.entries(mix).slice(0,6).map(([k,v])=>`<div><span>${esc(catL[k]||k)}</span><i style="width:${(v/mixMax*100).toFixed(0)}%"></i><span>${v}</span></div>`).join('')}</div>`:''}
     </div>
     ${ordered}
@@ -2078,7 +2078,7 @@ function showSmall(code){
         <dt>Severe maladministration</dt><dd class="${ho.ho_severe_all?'sev-bad':'sev-none'}">${ho.ho_severe_all||0}</dd>
         ${ho.ho_compensation_sum_all>0?`<dt>Compensation ordered <span class="nd">(read from ${fmtInt(ho.ho_compensation_known_all)} of ${fmtInt(n)} decisions)</span></dt><dd class="sev-none">at least £${fmtInt(ho.ho_compensation_sum_all)}</dd>`:''}
       </dl>
-      ${ho.ho_compensation_sum_all>0?`<p class="src">Amounts are read from the text of each decision, the only place they are published. Where a total and its breakdown do not reconcile, or the award is a weekly sum, no figure is taken — so this is a floor, not a total.</p>`:''}
+      ${ho.ho_compensation_sum_all>0?`<p class="src">Amounts are read from the text of each decision, the only place they are published. Only the order itself is read. Where it names no fixed amount, the award is a weekly sum, or its parts do not reconcile, no figure is taken — so this is a floor, not a total.</p>`:''}
       ${Object.keys(mix).length?`<div class="mix" style="margin-top:14px">${Object.entries(mix).slice(0,6).map(([k,v])=>`<div><span>${esc(CATL[k]||k)}</span><i style="width:${(v/mixMax*100).toFixed(0)}%"></i><span>${v}</span></div>`).join('')}</div>`:''}
     </div></details>
     ${x.orders?`<details><summary><svg class="ic ic-s" aria-hidden="true"><use href="#i-list"/></svg>What The Ombudsman Ordered<span class="pills">${x.orders.compensation?pill(x.orders.compensation+' Compensation'):''}</span></summary><div class="sec">
