@@ -42,8 +42,8 @@ data/raw/        official downloads (not committed; fetched by a script) + the O
 data/derived/    figures we worked out from published text, e.g. compensation amounts (committed)
    │
    │   pipeline/run.sh runs, in order:
-   │   build_spine → build_layers → build_ombudsman → build_vfm → build_rents
-   │   → build_lahs → build_stock → build_bundle → build_standalone
+   │   build_spine → build_layers → read_compensation → build_ombudsman → build_vfm
+   │   → build_rents → build_lahs → build_stock → build_bundle → build_standalone
    ▼
 data/out/*.csv   the joined tables — the reusable public good (committed)
 site/data.json   what the map reads (committed)
