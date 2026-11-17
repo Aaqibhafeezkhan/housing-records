@@ -4,6 +4,7 @@ The pipeline consumes stable local filenames; this module resolves those names t
 current attachment URLs published on GOV.UK instead of pinning versioned asset URLs.
 """
 import argparse
+from datetime import datetime
 import csv
 import json
 import re
@@ -20,14 +21,8 @@ RAW = ROOT / "data" / "raw"
 TIMEOUT = 60
 
 SOURCES = (
-    ("registered-providers-of-social-housing", r"List_of_registered_providers.*\.xlsx$", "rsh/List_of_registered_providers_17_August_2026.xlsx"),
-    ("tenant-satisfaction-measures-202526", r"2026_TSM_Full_Dataset.*\.xlsx$", "rsh/2026_TSM_Full_Dataset_FINAL.xlsx"),
-    ("tenant-satisfaction-measures-202425", r"2025_TSM_Full_Data.*\.xlsx$", "rsh/2025_TSM_Full_Data_v1.1_FINAL.xlsx"),
-    ("private-registered-provider-social-housing-stock-and-rents-in-england-2024-to-2025", r"PRP_Data_Release_2025_Full_Data.*\.zip$", "rsh/PRP_Data_Release_2025_Full_Data_FINAL_V1.1.zip"),
-    ("regulatory-judgements-and-enforcement-notices", r".*RegulatoryJudgementsNotices_Published.*\.xlsx$", "rsh/20260909_RegulatoryJudgementsNotices_Published.xlsx"),
-    ("value-for-money-metrics-and-reporting-2025", r".*VFM_Metrics_tables.*\.xlsx$", "rsh/2026-02-11_1231_VFM_Metrics_tables.xlsx"),
-    ("2025-global-accounts-of-private-registered-providers", r".*GA2025_Datafile_for_Publication.*\.xlsx$", "rsh/20251211_GA2025_Datafile_for_Publication.xlsx"),
-    ("local-authority-housing-statistics-open-data", r"LAHS_open_data_.*\.csv$", "mhclg/LAHS_open_data_1978-79_to_2024-25.csv"),
+    ("registered-providers-of-social-housing", r"List_of_registered_providers.*\.xlsx$"),
+    ("regulatory-judgements-and-enforcement-notices", r".*RegulatoryJudgementsNotices_Published.*\.xlsx$"),
 )
 
 
@@ -72,6 +67,33 @@ def resolve_attachment(page, filename_pattern):
     return matches[0]
 
 
+def register_publication_date(filename):
+    """Read the register's publication date from its official published filename."""
+    match = re.search(r"_(\d{1,2}_[A-Za-z]+_\d{4})$", Path(filename).stem)
+    if not match:
+        raise SourceError(f"Cannot read a publication date from register filename: {filename}")
+    try:
+        return datetime.strptime(match.group(1), "%d_%B_%Y").date().isoformat()
+    except ValueError as exc:
+        raise SourceError(f"Invalid publication date in register filename: {filename}") from exc
+
+
+def latest_judgements_publication_date(path):
+    """Return the newest publication date recorded in the regulatory judgements workbook."""
+    import pandas as pd
+
+    try:
+        dates = pd.to_datetime(
+            pd.read_excel(path, sheet_name="Regulatory Judgements", usecols=["Publication Date"])["Publication Date"],
+            errors="coerce",
+        ).dropna()
+    except (OSError, ValueError, KeyError) as exc:
+        raise SourceError(f"Could not read Publication Date from {path}: {exc}") from exc
+    if dates.empty:
+        raise SourceError(f"No valid Publication Date values found in {path}")
+    return dates.max().date().isoformat()
+
+
 def _request(url):
     request = urllib.request.Request(
         url,
@@ -85,7 +107,7 @@ def _request(url):
 
 
 def download_sources():
-    for slug, pattern, relative_output in SOURCES:
+    for slug, pattern in SOURCES:
         api_url = f"https://www.gov.uk/api/content/{slug}"
         try:
             page = json.loads(_request(api_url))
@@ -93,9 +115,13 @@ def download_sources():
             raise SourceError(f"GOV.UK returned invalid JSON for {slug}: {exc}") from exc
         asset = resolve_attachment(page, pattern)
         asset_url = urllib.parse.urljoin("https://www.gov.uk", asset["url"])
-        target = RAW / relative_output
-        target.parent.mkdir(parents=True, exist_ok=True)
-        print(f"Downloading {asset['name']} -> {relative_output}", flush=True)
+        filename = Path(asset["name"]).name
+        if not filename or filename != asset["name"]:
+            raise SourceError(f"Unsafe published attachment filename: {asset['name']!r}")
+        target_dir = RAW / "rsh"
+        target_dir.mkdir(parents=True, exist_ok=True)
+        target = target_dir / filename
+        print(f"Downloading {asset['name']} -> rsh/{filename}", flush=True)
         payload = _request(asset_url)
         if not payload or payload.lstrip().lower().startswith((b"<!doctype html", b"<html")):
             raise SourceError(f"Downloaded an empty or HTML response instead of a data file: {asset_url}")
@@ -103,13 +129,16 @@ def download_sources():
         if target.suffix.lower() in (".xlsx", ".zip") and not zipfile.is_zipfile(target):
             target.unlink(missing_ok=True)
             raise SourceError(f"Downloaded attachment is not a valid XLSX/ZIP archive: {asset_url}")
+        for previous in target_dir.iterdir():
+            if previous != target and re.fullmatch(pattern, previous.name, flags=re.IGNORECASE):
+                previous.unlink()
         if target.suffix.lower() == ".csv":
             try:
                 payload.decode("utf-8-sig")
             except UnicodeDecodeError as exc:
                 target.unlink(missing_ok=True)
                 raise SourceError(f"Downloaded CSV is not valid UTF-8 text: {asset_url}") from exc
-    print(f"Resolved and downloaded {len(SOURCES)} current GOV.UK source files.")
+    print(f"Resolved and downloaded {len(SOURCES)} frequently updated GOV.UK source files.")
 
 
 def _git_text(*args):

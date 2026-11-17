@@ -2,6 +2,8 @@
 landlord lists), landlord profiles (two TSM years, ranks, grades, Ombudsman record), recent cases, quartiles, geometry."""
 import glob
 import json
+
+from refresh_sources import latest_judgements_publication_date, register_publication_date
 from decimal import Decimal, ROUND_HALF_UP
 
 import numpy as np
@@ -247,8 +249,16 @@ nodata = {c: names[c] for c in paths if c not in la_out}
 orphans = sorted(set(la_out) - set(paths))
 assert not orphans, f"local authority codes with no ONS boundary (add an alias in build_layers.py): {orphans}"
 
-bundle = {"meta": {"built": "2026-11-10", "tsm_year": TSM_YEAR, "tsm_prev": TSM_PREV, "sdr_year": "2024/25", "n_landlords": len(landlords), "ho_cases": int(len(cases)),
-                   "ho_window_from": str(cut.date())[:7], "ho_latest_month": str(cases.ym.max().date())[:7], "grades_date": "2026-09-09"},
+register_file = glob.glob(RAW + "rsh/List_of_registered_providers_*.xlsx")[0]
+judgements_file = glob.glob(RAW + "rsh/*RegulatoryJudgementsNotices*.xlsx")[0]
+register_date = register_publication_date(register_file)
+grades_date = latest_judgements_publication_date(judgements_file)
+
+bundle = {"meta": {"built": register_date, "register_date": register_date,
+                   "tsm_year": TSM_YEAR, "tsm_prev": TSM_PREV, "sdr_year": "2024/25",
+                   "n_landlords": len(landlords), "ho_cases": int(len(cases)),
+                   "ho_window_from": str(cut.date())[:7], "ho_latest_month": str(cases.ym.max().date())[:7],
+                   "grades_date": grades_date},
           "vfm_meta": {"year": "2024/25", "published": "2026-03-06",
                        "segments": {k: {"label": row.label, "median": clean(row["median"]), "n": int(row.n),
                                         "q": [clean(row[c]) for c in ("q10", "q25", "median", "q75", "q90")],

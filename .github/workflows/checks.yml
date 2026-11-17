@@ -41,9 +41,9 @@ jobs:
         run: python -c "import json; json.load(open('site/data.json'))"
 
   rebuild:
-    # Scheduled refresh builds the complete dataset from current official sources before opening its PR.
-    # The archived-snapshot reproduction check remains in place for normal code/data changes.
-    if: github.event_name != 'pull_request' || !startsWith(github.head_ref, 'automation/data-refresh')
+    # Rebuilds everything from the archived snapshot of the official files (a GitHub release) and checks the
+    # result is exactly what is committed. A failure means a source file has changed, or the committed data
+    # was not produced by the pipeline. New source snapshots are handled separately from this check.
     name: Pipeline reproduces the committed data
     runs-on: ubuntu-latest
     steps:

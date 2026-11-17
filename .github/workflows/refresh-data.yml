@@ -29,9 +29,11 @@ jobs:
           node-version: "20"
       - name: Install pipeline dependencies
         run: pip install -r requirements.txt
-      - name: Discover current source downloads
+      - name: Restore the committed source snapshot
+        run: bash pipeline/fetch_snapshot.sh
+      - name: Discover current register and judgements downloads
         run: bash pipeline/fetch_sources.sh
-      - name: Rebuild all published datasets
+      - name: Rebuild datasets using the refreshed register and judgements
         run: bash pipeline/run.sh
       - name: Generate a plain-English change summary
         run: python pipeline/refresh_sources.py summarize

@@ -1,10 +1,14 @@
 # Sources
 
 Every input, where it comes from, and what the pipeline takes from it. All files were downloaded on
-**10 September 2026**; `pipeline/fetch_sources.sh` re-downloads them from these exact URLs.
+**10 September 2026**, except where a later download date is stated. The scheduled refresh discovers
+the current GOV.UK attachment for the monthly register and regulatory judgements and saves each under
+the exact filename published by GOV.UK. Annual releases and all other inputs remain pinned to the
+archived source snapshot; they are not part of the automated refresh.
 
 Asset URLs on `assets.publishing.service.gov.uk` are versioned and change when a publication is
-updated — if one 404s, open the landing page in the second column and take the current link.
+updated. The refresh resolves the current attachment from each publication page rather than relying
+on the versioned URL recorded when the snapshot was created.
 
 ## Regulator of Social Housing (England)
 
