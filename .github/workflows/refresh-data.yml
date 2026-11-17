@@ -1,0 +1,50 @@
+name: Scheduled data refresh
+
+on:
+  schedule:
+    - cron: "17 7 15 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: scheduled-data-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    name: Refresh official data and open a review PR
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install pipeline dependencies
+        run: pip install -r requirements.txt
+      - name: Discover current source downloads
+        run: bash pipeline/fetch_sources.sh
+      - name: Rebuild all published datasets
+        run: bash pipeline/run.sh
+      - name: Generate a plain-English change summary
+        run: python pipeline/refresh_sources.py summarize
+      - name: Open or update a review pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/data-refresh
+          delete-branch: false
+          commit-message: "chore(data): refresh official housing records"
+          title: "chore(data): refresh official housing records"
+          body-path: data-refresh-summary.md
+          add-paths: |
+            data/out/**
+            site/data.json
+            data-refresh-summary.md
