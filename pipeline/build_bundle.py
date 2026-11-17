@@ -254,7 +254,7 @@ judgements_file = glob.glob(RAW + "rsh/*RegulatoryJudgementsNotices*.xlsx")[0]
 register_date = register_publication_date(register_file)
 grades_date = latest_judgements_publication_date(judgements_file)
 
-bundle = {"meta": {"built": register_date, "register_date": register_date,
+bundle = {"meta": {"register_date": register_date,
                    "tsm_year": TSM_YEAR, "tsm_prev": TSM_PREV, "sdr_year": "2024/25",
                    "n_landlords": len(landlords), "ho_cases": int(len(cases)),
                    "ho_window_from": str(cut.date())[:7], "ho_latest_month": str(cases.ym.max().date())[:7],
